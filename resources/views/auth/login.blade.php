@@ -50,6 +50,11 @@
                     {{ __('Log in') }}
                 </x-form.primary-button>
             </div>
+
+			<div class="flex items-center justify-center mt-6 gap-2">
+				<span class="text-gray-400">don't have an account?</span>
+				<a href="{{ route('register') }}" class="underline decoration-2 decoration-amber-300 text-gray-600 hover:text-black">Register</a>
+			</div>
         </form>
     </x-auth-card>
 </x-guest-layout>

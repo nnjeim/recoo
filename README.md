@@ -1,16 +1,16 @@
-<p><img src="https://crowdfavstage.wpengine.com/wp-content/uploads/2019/05/logo.png" width="100"/></p>  
-
-A Laravel application to monitor the push requests to a defined set of github repositories and their respective defined branches.
-
-The application follows by:
-
-1- Pulling the last commits on the defined branch.
-2- Fixing the permissions and ownership.
-3- Optimizing Laravel instance.
+A Laravel application designed to maintain a database of movies.
 
 ### Installation
 - Copy .env.example into .env
 - Run composer install
 - Run db artisan key:generate
-- Set both the database and redis connections in .env.
+- create a file named database.sqlite in the database directory
 - run php artisan migrate
+- run npm install followed by npm run build.
+- Proceed by registering a user.
+
+### Technical description
+- Laravel 9 with laravel/sanctum authentication.
+- Min requirement of php 8.
+- Livewire and alpine.js.
+- Tailwind css.
