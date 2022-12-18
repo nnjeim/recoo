@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Module;
+namespace App\Http\Controllers\View;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Factory as ViewFactory;
 
-class ModuleController
+class ViewController
 {
 	private ViewFactory $viewFactory;
 
@@ -22,7 +22,7 @@ class ModuleController
 	/**
 	 * @return View
 	 */
-	public function builder(): View
+	public function __invoke(): View
 	{
 		$dottedPath = $this->routeName . (strpos($this->routeName, '.') === false ? '.index' : '');
 

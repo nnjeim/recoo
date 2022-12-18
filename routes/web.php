@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Module\ModuleController;
+use App\Http\Controllers\View\ViewController;
 use App\Http\Controllers\Profile\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,14 +20,14 @@ Route::middleware('auth')
 		Route::middleware('verified')
 			->group(function () {
 				// dashboard
-				Route::get('/dashboard', [ModuleController::class, 'builder'])->name('dashboard');
+				Route::get('/dashboard', ViewController::class)->name('dashboard');
 			});
 		// profile
 		Route::group([
 			'prefix' => 'profile',
 			'as' => 'profile.',
 		],function () {
-			Route::get('/', [ModuleController::class, 'builder'])->name('edit');
+			Route::get('/', ViewController::class)->name('edit');
 			Route::patch('/', [ProfileController::class, 'update'])->name('update');
 			Route::delete('/', [ProfileController::class, 'destroy'])->name('destroy');
 		});
@@ -36,18 +36,18 @@ Route::middleware('auth')
 			'prefix' => 'users',
 			'as' => 'users.',
 		],function () {
-			Route::get('/', [ModuleController::class, 'builder'])->name('index');
-			Route::get('/{id}', [ModuleController::class, 'builder'])->where('id', '[0-9]+')->name('edit');
-			Route::get('/create', [ModuleController::class, 'builder'])->name('store');
-			Route::get('/options', [ModuleController::class, 'builder'])->name('options');
+			Route::get('/', ViewController::class)->name('index');
+			Route::get('/{id}', ViewController::class)->where('id', '[0-9]+')->name('edit');
+			Route::get('/create', ViewController::class)->name('store');
+			Route::get('/options', ViewController::class)->name('options');
 		});
 		// records
 		Route::group([
 			'prefix' => 'records',
 			'as' => 'records.',
 		],function () {
-			Route::get('/', [ModuleController::class, 'builder'])->name('index');
-			Route::get('/{id}', [ModuleController::class, 'builder'])->where('id', '[0-9]+')->name('edit');
-			Route::get('/create', [ModuleController::class, 'builder'])->name('store');
+			Route::get('/', ViewController::class)->name('index');
+			Route::get('/{id}', ViewController::class)->where('id', '[0-9]+')->name('edit');
+			Route::get('/create', ViewController::class)->name('store');
 		});
 	});
