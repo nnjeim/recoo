@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600;700&display=swap">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+	@vite(['resources/scss/app.scss', 'resources/js/app.js'])
 
     <!-- Favicons -->
     <link rel="manifest" href="/site.webmanifest" crossorigin="use-credentials">

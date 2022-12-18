@@ -7,6 +7,16 @@ use Exception;
 class RecordNotFoundException extends Exception
 {
 	/**
+	 * Report the exception.
+	 *
+	 * @return bool|null
+	 */
+	public function report()
+	{
+		return null;
+	}
+
+	/**
 	 * Render the exception into an HTTP response.
 	 *
 	 * @param  \Illuminate\Http\Request  $request
