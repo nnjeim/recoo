@@ -1,6 +1,7 @@
 /node_modules
 /public/hot
 /public/storage
+/public/demo.mov
 /storage/*.key
 /vendor
 /node_modules
