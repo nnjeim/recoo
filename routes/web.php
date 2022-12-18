@@ -28,7 +28,6 @@ Route::middleware('auth')
 			'as' => 'profile.',
 		],function () {
 			Route::get('/', ViewController::class)->name('edit');
-			Route::patch('/', [ProfileController::class, 'update'])->name('update');
 			Route::delete('/', [ProfileController::class, 'destroy'])->name('destroy');
 		});
 		// users
