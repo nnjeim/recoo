@@ -31,7 +31,20 @@ trait ActionsTrait
 					$this->imdb_records[] = $this->formatRecord($data);
 				}
 			}
+
+			return;
 		}
+		// error handling
+		$message = '';
+
+		$this->reset(['imdb_records']);
+
+		foreach ($action->errors as $key => $error) {
+			$message = $error[0];
+		}
+
+		// notification
+		$this->notifyAction(false, $message);
 	}
 
 	/**
@@ -41,13 +54,11 @@ trait ActionsTrait
 	 */
 	public function applyImdbRecord(string $imdb_id)
 	{
-		$message = '';
+		$message = 'The record was successfully applied';
 
 		$action = trigger(FetchAction::class, ['i' => $imdb_id]);
 
 		if ($action->success) {
-			$message = $action->message;
-
 			$this->record = $this->formatRecord($action->data);
 
 			$this->activeTab = 'info';

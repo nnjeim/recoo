@@ -13,16 +13,14 @@ class FetchAction extends BaseOmdbAction
 	 */
 	public function execute(array $args = [])
 	{
-		$response = $this
+		$query = $this
 			->httpClient
 			->get($this->formQuery($args));
 
-		$this->success = $response->ok();
-		$this->data = $response->json();
+		$response = json_decode($query, true);
 
-		if (! $this->success) {
-			$this->errors = [];
-		}
+		$this->success = isset($response['Response']) && $response['Response'] === 'True';
+		$this->data = $response;
 
 		return $this;
 	}
@@ -35,10 +33,9 @@ class FetchAction extends BaseOmdbAction
 		return ResponseBuilder::make()
 			->setSuccess($this->success)
 			->setAttributeMessage($this->attribute)
+			->setData($this->success ? $this->data : [])
 			->setErrors(
-				$this->success
-					? []
-					: $this->errors
+				$this->success ? [] : ['message' => [$this->data['Error']]]
 			)
 			->setData($this->data);
 	}
