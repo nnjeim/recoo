@@ -16,3 +16,6 @@ A Laravel application designed to maintain a database of movies.
 - Min requirement of php 8.
 - Livewire and alpine.js.
 - Tailwind css.
+
+### Demo
+<a href="https://cfrev.njeim.net" target="_blank">RecDB</a>
