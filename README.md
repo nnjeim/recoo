@@ -1,3 +1,5 @@
+<p style="text-align: left; padding: 1rem 0 3rem 0;"><img src="https://recdb.njeim.net/recdb.svg" width="200" alt="Laravel world"/></p>
+
 A Laravel application designed to maintain a database of movies.
 
 ### Installation
