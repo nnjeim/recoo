@@ -23,7 +23,7 @@
 				<img class="h-10 w-10 object-cover" x-bind:src="row.poster" x-bind:alt="row.title" />
 			</div>
 			<div class="ml-4 whitespace-nowrap max-w-[100px] xl:max-w-[200px] overflow-hidden text-ellipsis">
-				<a href="{{ rtrim(config('constants.IMDB_HYPERLINK')) . DIRECTORY_SEPARATOR . $rowData['imdb_id'] }}"
+				<a href="{{ rtrim(config('constants.imdb_hyperlink')) . DIRECTORY_SEPARATOR . $rowData['imdb_id'] }}"
 				   target="_blank"
 				   class="underline decoration-2 decoration-blue-200 hover:text-blue-700"
 				   x-text="row.title">

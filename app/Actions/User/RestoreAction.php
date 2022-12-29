@@ -3,7 +3,9 @@
 namespace App\Actions\User;
 
 use App\Actions\User\Base\BaseUserAction;
+use App\Events\User\UserRestoredEvent;
 use App\Http\Response\ResponseBuilder;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
 class RestoreAction extends BaseUserAction
@@ -39,8 +41,23 @@ class RestoreAction extends BaseUserAction
 			throw $e;
 		}
 
+		// post action
+		$this->postAction($user);
+
 		return $this;
 	}
+
+	/**
+	 * @param User $user
+	 */
+	private function postAction(User $user): void
+	{
+		if ($this->success) {
+			// event
+			event(new UserRestoredEvent($user));
+		}
+	}
+
 
 	/**
 	 * @return ResponseBuilder

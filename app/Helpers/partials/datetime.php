@@ -46,7 +46,7 @@ if (! function_exists('adjustUserTimezone')) {
 
 		return adjustTimeZone(
 			$dateTime,
-			request()->input('user_timezone') ?? config('constants.APP_TIMEZONE'),
+			request()->input('user_timezone') ?? config('constants.app_timezone'),
 			$standard,
 			$timeFormat
 		);
@@ -68,7 +68,7 @@ if (! function_exists('adjustTenantTimezone')) {
 
 		return adjustTimeZone(
 			$dateTime,
-			request()->input('tenant_timezone') ?? config('constants.APP_TIMEZONE'),
+			request()->input('tenant_timezone') ?? config('constants.app_timezone'),
 			$standard,
 			$timeFormat
 		);

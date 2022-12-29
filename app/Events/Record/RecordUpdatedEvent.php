@@ -10,10 +10,7 @@ class RecordUpdatedEvent
 {
 	use SerializesModels;
 
-	public Record $record;
-
-	public function __construct(Record $record)
+	public function __construct(public Record $record)
 	{
-		$this->record = $record;
 	}
 }

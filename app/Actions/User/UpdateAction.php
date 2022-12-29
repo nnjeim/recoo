@@ -4,6 +4,7 @@ namespace App\Actions\User;
 
 use App\Actions\User\Base\BaseUserAction;
 use App\Actions\User\Transformers\ShowTransformer;
+use App\Events\User\UserUpdatedEvent;
 use App\Http\Response\ResponseBuilder;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
@@ -18,7 +19,7 @@ class UpdateAction extends BaseUserAction
 	 * @param  array  $args
 	 * @return $this
 	 */
-	public function execute(array $args = [])
+	public function execute(array $args = []): self
 	{
 		// exists
 		$userBuilder = $this->validateModel($args);
@@ -47,11 +48,25 @@ class UpdateAction extends BaseUserAction
 			throw $e;
 		}
 
+		// post action
+		$this->postAction($user);
+
 		$this->data = $this->success
 			? $this->transform($user->refresh())
 			: [];
 
 		return $this;
+	}
+
+	/**
+	 * @param User $user
+	 */
+	private function postAction(User $user): void
+	{
+		if ($this->success) {
+			// event
+			event(new UserUpdatedEvent($user));
+		}
 	}
 
 	/**

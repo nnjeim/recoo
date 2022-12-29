@@ -17,7 +17,7 @@ abstract class BaseOmdbAction extends BaseAction
 
 	public function __construct()
 	{
-		$apiBaseUrl = rtrim(config('constants.OMDB_API_URL'), DIRECTORY_SEPARATOR);
+		$apiBaseUrl = rtrim(config('constants.omdb_api_url'), DIRECTORY_SEPARATOR);
 
 		$this->httpClient =  Http::baseUrl($apiBaseUrl);
 	}
@@ -29,7 +29,7 @@ abstract class BaseOmdbAction extends BaseAction
 	protected function formQuery(array $args = []): string
 	{
 		$queryArgs = [
-			'apikey' => config('constants.OMDB_API_KEY'),
+			'apikey' => config('constants.omdb_api_key'),
 		];
 
 		if (! empty($args)) {

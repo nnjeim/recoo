@@ -1,8 +1,14 @@
 <?php
 
 return [
-	'APP_TIMEZONE' => env('APP_TIMEZONE'),
-	'IMDB_HYPERLINK' => env('IMDB_HYPERLINK'),
-	'OMDB_API_URL' => env('OMDB_API_URL'),
-	'OMDB_API_KEY' => env('OMDB_API_KEY'),
+	'app_timezone' => env('APP_TIMEZONE'),
+	'imdb_hyperlink' => env('IMDB_HYPERLINK'),
+	'omdb_api_url' => env('OMDB_API_URL'),
+	'omdb_api_key' => env('OMDB_API_KEY'),
+	'log' => [
+		'prune_older_than_days' => 30,
+		'pagination' => [
+			'per_page' => 20,
+		],
+	],
 ];

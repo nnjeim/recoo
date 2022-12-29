@@ -9,13 +9,7 @@ class UserPasswordResetEvent
 {
 	use SerializesModels;
 
-	public User $user;
-
-	public string $password;
-
-	public function __construct(User $user, string $password)
+	public function __construct(public User $user)
 	{
-		$this->user = $user;
-		$this->password = $password;
 	}
 }
