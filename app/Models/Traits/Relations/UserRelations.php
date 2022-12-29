@@ -4,6 +4,7 @@ namespace App\Models\Traits\Relations;
 
 use App\Models\Log;
 use App\Models\Channel;
+use App\Models\User;
 use App\Models\UserOption;
 use App\Models\UserLogin;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -13,7 +14,7 @@ trait UserRelations
 {
 	public static function bootUserRelations()
 	{
-		static::deleting(function ($user) {
+		static::deleting(function (User $user) {
 			if ($user->forceDeleting) {
 				// delete logs
 				$user->logs()->delete();
