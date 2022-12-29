@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Subscribers\Record\RecordSubscriber;
 use App\Subscribers\User\UserSubscriber;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -28,6 +29,7 @@ class EventServiceProvider extends ServiceProvider
 	 */
 	protected $subscribe = [
 		UserSubscriber::class,
+		RecordSubscriber::class,
 	];
 
 	/**
