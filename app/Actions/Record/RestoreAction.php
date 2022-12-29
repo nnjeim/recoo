@@ -3,7 +3,9 @@
 namespace App\Actions\Record;
 
 use App\Actions\Record\Base\BaseRecordAction;
+use App\Events\Record\RecordRestoredEvent;
 use App\Http\Response\ResponseBuilder;
+use App\Models\Record;
 use Illuminate\Support\Facades\DB;
 
 class RestoreAction extends BaseRecordAction
@@ -39,7 +41,21 @@ class RestoreAction extends BaseRecordAction
 			throw $e;
 		}
 
+		// post action
+		$this->postAction($record);
+
 		return $this;
+	}
+
+	/**
+	 * @param Record $record
+	 */
+	private function postAction(Record $record): void
+	{
+		if ($this->success) {
+			// event
+			event(new RecordRestoredEvent($record));
+		}
 	}
 
 	/**

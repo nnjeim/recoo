@@ -3,7 +3,9 @@
 namespace App\Actions\Record;
 
 use App\Actions\Record\Base\BaseRecordAction;
+use App\Events\Record\RecordDestroyedEvent;
 use App\Http\Response\ResponseBuilder;
+use App\Models\Record;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Support\Facades\DB;
 
@@ -53,7 +55,21 @@ class DestroyAction extends BaseRecordAction
 			throw $e;
 		}
 
+		// post action
+		$this->postAction($record);
+
 		return $this;
+	}
+
+	/**
+	 * @param Record $record
+	 */
+	private function postAction(Record $record): void
+	{
+		if ($this->success) {
+			// event
+			event(new RecordDestroyedEvent($record));
+		}
 	}
 
 	/**

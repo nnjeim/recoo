@@ -58,7 +58,6 @@ class RestoreAction extends BaseUserAction
 		}
 	}
 
-
 	/**
 	 * @return ResponseBuilder
 	 */

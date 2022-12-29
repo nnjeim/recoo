@@ -4,6 +4,7 @@ namespace App\Actions\Record;
 
 use App\Actions\Record\Base\BaseRecordAction;
 use App\Actions\Record\Transformers\ShowTransformer;
+use App\Events\Record\RecordStoredEvent;
 use App\Http\Response\ResponseBuilder;
 use App\Models\Record;
 use Illuminate\Support\Facades\DB;
@@ -32,11 +33,25 @@ class StoreAction extends BaseRecordAction
 			throw $e;
 		}
 
+		// post action
+		$this->postAction($record);
+
 		$this->data = $this->success
 			? $this->transform($record->refresh())
 			: [];
 
 		return $this;
+	}
+
+	/**
+	 * @param Record $record
+	 */
+	private function postAction(Record $record): void
+	{
+		if ($this->success) {
+			// event
+			event(new RecordStoredEvent($record));
+		}
 	}
 
 	/**
