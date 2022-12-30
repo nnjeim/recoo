@@ -1,4 +1,4 @@
-<p style="text-align: left; padding: 1rem 0 3rem 0;"><img src="https://recdb.njeim.net/recdb.jpg" width="250" height="auto" alt="Records Database"/></p>
+<p style="text-align: left; padding: 1rem 0 3rem 0;"><img src="https://recdb.njeim.net/assets/images/recdb.jpg" width="250" height="auto" alt="Records Database"/></p>
 
 A Laravel application designed to maintain a database of movies.
 
@@ -19,3 +19,15 @@ A Laravel application designed to maintain a database of movies.
 
 ### Demo
 <a href="https://recdb.njeim.net" target="_blank">RecDB demo website</a>
+
+
+<table>
+<tbody>
+<tr>
+<td><img src="https://recdb.njeim.net/assets/images/tailwind.svg" width="150" height="auto" alt="Laravel"/></td>
+<td><img src="https://recdb.njeim.net/assets/images/alpinejs.svg" width="150" height="auto" alt="Laravel"/></td>
+<td><img src="https://recdb.njeim.net/assets/images/laravel.svg" width="150" height="auto" alt="Laravel"/></td>
+<td><img src="https://recdb.njeim.net/assets/images/livewire.svg" width="150" height="auto" alt="Laravel"/></td>
+</tr>
+</tbody>
+</table>
