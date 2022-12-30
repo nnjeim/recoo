@@ -23,7 +23,8 @@ Route::middleware([
 			Route::match(['get', 'post'], '/logout', 'logout')->name('logout');
 		});
 	require __DIR__ . '/partials/auth.php';
-// authenticated routes ------------------------------------------------------------------------------------------*/
+
+	// authenticated routes ------------------------------------------------------------------------------------------*/
 	Route::middleware('auth')
 		->group(function () {
 			// verified routes
