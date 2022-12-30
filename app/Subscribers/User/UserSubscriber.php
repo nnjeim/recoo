@@ -3,6 +3,7 @@
 namespace App\Subscribers\User;
 
 use App\Events\User;
+use App\Notifications\UserEmail\VerifyEmailNotification;
 use App\Subscribers\BaseSubscriber;
 use App\Notifications\User\UserStoredNotification;
 use App\Notifications\User\UserUpdatedNotification;
@@ -55,6 +56,8 @@ class UserSubscriber extends BaseSubscriber
 				'subject' => $user->name,
 			])
 			->log();
+		// email verification notification
+		$user->notify(new VerifyEmailNotification($user));
 	}
 
 	/**

@@ -9,8 +9,6 @@ class VerifyEmailEvent
 {
 	use SerializesModels;
 
-	public function __construct(
-		public User $user,
-		public string $verificationUrl) {
+	public function __construct(public User $user) {
 	}
 }

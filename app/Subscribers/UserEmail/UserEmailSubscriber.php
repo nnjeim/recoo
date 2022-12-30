@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Listeners\UserEmail;
+namespace App\Subscribers\UserEmail;
 
 use App\Events\UserEmail;
 use App\Subscribers\BaseSubscriber;
@@ -35,7 +35,7 @@ class UserEmailSubscriber extends BaseSubscriber
 			->log();
 
 		// verification email notification
-		$user->notify(new VerifyEmailNotification($verificationUrl));
+		$user->notify(new VerifyEmailNotification($user));
 	}
 
 	/**

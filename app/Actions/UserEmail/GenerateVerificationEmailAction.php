@@ -5,10 +5,6 @@ namespace App\Actions\UserEmail;
 use App\Actions\User\Base\BaseUserAction;
 use App\Events\UserEmail\VerifyEmailEvent;
 use App\Http\Response\ResponseBuilder;
-use App\Models\User;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\URL;
 
 class GenerateVerificationEmailAction extends BaseUserAction
 {
@@ -30,30 +26,11 @@ class GenerateVerificationEmailAction extends BaseUserAction
 		}
 
 		// verify email event
-		event(new VerifyEmailEvent(
-			$user,
-			$this->verificationUrl($user),
-		));
+		event(new VerifyEmailEvent($user));
 
 		$this->success = true;
 
 		return $this;
-	}
-
-	/**
-	 * @param User $user
-	 * @return string
-	 */
-	protected function verificationUrl(User $user): string
-	{
-		return URL::temporarySignedRoute(
-			'verification.verify',
-			Carbon::now()->addMinutes(Config::get('auth.verification.expire', 60)),
-			[
-				'id' => $user->getKey(),
-				'hash' => sha1($user->getEmailForVerification()),
-			]
-		);
 	}
 
 	/**

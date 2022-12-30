@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Subscribers\UserEmail\UserEmailSubscriber;
 use App\Subscribers\Record\RecordSubscriber;
 use App\Subscribers\User\UserSubscriber;
 use Illuminate\Auth\Events\Registered;
@@ -30,6 +31,7 @@ class EventServiceProvider extends ServiceProvider
 	protected $subscribe = [
 		UserSubscriber::class,
 		RecordSubscriber::class,
+		UserEmailSubscriber::class,
 	];
 
 	/**
