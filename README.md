@@ -1,12 +1,3 @@
-<style>
-table {
-    border-collapse: collapse;
-}
-
-table > td > img {
-    padding: 1rem;
-}
-</style>
 <p style="text-align: left; padding: 1rem 0 3rem 0;"><img src="https://recdb.njeim.net/assets/images/recdb.jpg" width="250" height="auto" alt="Records Database"/></p>
 
 A Laravel application designed to maintain a database of movies.
