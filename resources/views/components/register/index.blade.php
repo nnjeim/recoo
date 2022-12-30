@@ -5,7 +5,7 @@
 		</a>
 	</x-slot>
 
-	<form method="POST" wire:submit.prevent="storeUser">
+	<form method="POST" wire:submit.prevent="registerUser">
 		@csrf
 		<!-- Name -->
 		<div>

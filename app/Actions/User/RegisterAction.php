@@ -11,6 +11,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 
 class RegisterAction extends BaseUserAction
 {
@@ -50,7 +51,7 @@ class RegisterAction extends BaseUserAction
 	 * @param User $user
 	 * @return RedirectResponse|void
 	 */
-	private function postAction(User $user): ?RedirectResponse
+	private function postAction(User $user)
 	{
 		if ($this->success) {
 			// event
@@ -58,7 +59,7 @@ class RegisterAction extends BaseUserAction
 			// login registered user
 			Auth::login($user);
 			// redirect to home
-			return redirect(RouteServiceProvider::HOME);
+			return Redirect::to(RouteServiceProvider::HOME);
 		}
 	}
 
