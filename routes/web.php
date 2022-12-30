@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\View\ViewController;
 use App\Http\Controllers\Profile\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -21,6 +22,12 @@ Route::middleware([
 			Route::get('login', 'showLoginForm')->name('login');
 			Route::post('login', 'LoginUsingCredentials');
 			Route::match(['get', 'post'], '/logout', 'logout')->name('logout');
+		});
+	// registration routes
+	Route::controller(RegisterController::class)
+		->group(function () {
+			Route::get('register', 'showRegisterForm')->name('register');
+			Route::post('register', 'store');
 		});
 	require __DIR__ . '/partials/auth.php';
 
