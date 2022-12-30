@@ -1,3 +1,12 @@
+<style>
+table {
+    border-collapse: collapse;
+}
+
+table > td > img {
+    padding: 1rem;
+}
+</style>
 <p style="text-align: left; padding: 1rem 0 3rem 0;"><img src="https://recdb.njeim.net/assets/images/recdb.jpg" width="250" height="auto" alt="Records Database"/></p>
 
 A Laravel application designed to maintain a database of movies.
@@ -21,13 +30,13 @@ A Laravel application designed to maintain a database of movies.
 <a href="https://recdb.njeim.net" target="_blank">RecDB demo website</a>
 
 
-<table cellspacing="0" cellpadding="0" style="border: none;">
+<table>
 <tbody>
 <tr>
-<td><img src="https://recdb.njeim.net/assets/images/tailwind.svg" width="100" height="auto" alt="Tailwind" style="padding: 1rem;"/></td>
-<td><img src="https://recdb.njeim.net/assets/images/alpinejs.svg" width="100" height="auto" alt="Alpine" style="padding: 1rem;"/></td>
-<td><img src="https://recdb.njeim.net/assets/images/laravel.svg" width="100" height="auto" alt="Laravel" style="padding: 1rem;"/></td>
-<td><img src="https://recdb.njeim.net/assets/images/livewire.svg" width="100" height="auto" alt="Livewire" style="padding: 1rem;"/></td>
+<td><img src="https://recdb.njeim.net/assets/images/tailwind.svg" width="100" height="auto" alt="Tailwind" /></td>
+<td><img src="https://recdb.njeim.net/assets/images/alpinejs.svg" width="100" height="auto" alt="Alpine" /></td>
+<td><img src="https://recdb.njeim.net/assets/images/laravel.svg" width="100" height="auto" alt="Laravel" /></td>
+<td><img src="https://recdb.njeim.net/assets/images/livewire.svg" width="100" height="auto" alt="Livewire" /></td>
 </tr>
 </tbody>
 </table>
