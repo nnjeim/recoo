@@ -27,7 +27,6 @@ Route::middleware([
 	Route::controller(RegisterController::class)
 		->group(function () {
 			Route::get('register', 'showRegisterForm')->name('register');
-			Route::post('register', 'store');
 		});
 	require __DIR__ . '/partials/auth.php';
 

@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Livewire\Users\Traits\Edit;
+namespace App\Http\Livewire\Auth\Traits\Register;
 
 use App\Models\User;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules\Password;
 use Illuminate\Validation\Validator;
 
 trait ValidationTrait
@@ -36,8 +37,25 @@ trait ValidationTrait
 		]);
 
 		$rules = [
-			'user.name' => 'required|min:2|max:255',
-			'user.email' => ['email', 'max:255', Rule::unique(User::class, 'email')->ignore($this->user['id'])],
+			'user.name' => [
+				'required',
+				'min:2',
+				'max:255',
+			],
+			'user.email' => [
+				'email',
+				'max:255',
+				Rule::unique(User::class, 'email'),
+			],
+			'user.password' => [
+				'required',
+				'confirmed',
+				(new Password(8))
+					->mixedCase()
+					->numbers()
+					->letters()
+					->symbols(),
+			],
 		];
 
 		$messages = [
@@ -45,6 +63,7 @@ trait ValidationTrait
 			'user.name.min' => $transMin('name', 2),
 			'user.email.required' => $transRequired('email'),
 			'user.email.email' => trans('general.errors.email'),
+			'user.password.required' => $transRequired('password'),
 		];
 
 		$this->resetErrorBag();

@@ -2,37 +2,35 @@
 
 namespace App\Http\Livewire\Auth;
 
+use App\Actions\User\RegisterAction;
+use App\Http\Livewire\Auth\Traits\Register\ValidationTrait;
 use Livewire\Component;
 
 class Register extends Component
 {
+	use ValidationTrait;
+
+	public array $user = [
+		'name' => '',
+		'email' => '',
+		'password' => '',
+		'password_confirmation' => '',
+	];
+
 	/**
-	 * Handle an incoming registration request.
-	 *
-	 * @param  Request  $request
-	 * @return RedirectResponse
-	 *
-	 * @throws ValidationException
+	 * @return void
 	 */
-	public function store(Request $request): RedirectResponse
+	public function storeUser()
 	{
-		$request->validate([
-			'name' => ['required', 'string', 'max:255'],
-			'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
-			'password' => ['required', 'confirmed', Rules\Password::defaults()],
-		]);
+		$validator = $this->validateRecord();
 
-		$user = User::create([
-			'name' => $request->name,
-			'email' => $request->email,
-			'password' => Hash::make($request->password),
-		]);
+		$this->displayErrors($validator);
 
-		event(new Registered($user));
+		if ($validator->fails()) {
+			return;
+		}
 
-		Auth::login($user);
-
-		return redirect(RouteServiceProvider::HOME);
+		trigger(RegisterAction::class, $this->user);
 	}
 
 	public function render()
