@@ -14,7 +14,7 @@ class ShowAction extends BaseUserAction
 	 * @param  array  $args
 	 * @return $this
 	 */
-	public function execute(array $args = [])
+	public function execute(array $args = []): self
 	{
 		// exists
 		$userBuilder = $this->validateModel($args);

@@ -17,6 +17,7 @@ trait PaginateTransformer
 		return collect($user)
 			->except(['password', 'created_at', 'updated_at', 'deleted_at'])
 			->merge([
+				'email_verified' => $user->email_verified_at !== null,
 				'profile_photo_url' => $this->defaultProfilePhotoUrl($user),
 				'deleted' => $user->deleted_at !== null,
 			]);

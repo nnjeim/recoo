@@ -31,8 +31,8 @@ trait ShowTransformer
 			->except(['params', 'user_id', 'user', 'created_at', 'updated_at'])
 			->merge([
 					'params' => $formatParams($record->params),
-					'created_at' => adjustTenantTimezone($record->created_at),
-					'updated_at' => adjustTenantTimezone($record->updated_at),
+					'created_at' => adjustUserTimezone($record->created_at),
+					'updated_at' => adjustUserTimezone($record->updated_at),
 				]);
 	}
 }

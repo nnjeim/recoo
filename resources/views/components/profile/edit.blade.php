@@ -1,8 +1,4 @@
 <section>
-	<form id="send-verification" method="post" action="{{ route('verification.send') }}">
-		@csrf
-	</form>
-
 	<x-form.form-section submit="updateUser">
 		<x-slot name="title">
 			{{ __('Profile Information') }}
@@ -25,12 +21,14 @@
 					<x-form.input id="email" type="email" class="mt-1 block w-full" wire:model.defer="user.email" required autocomplete="email" />
 					<x-form.input-error for="user.email" />
 
-					@if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
+						@if(isset($user) && $user['email_verified_at'] === null)
 						<div>
 							<p class="text-sm mt-2 text-gray-800">
 								{{ __('Your email address is unverified.') }}
 
-								<button form="send-verification" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+								<button type="button"
+										class="underline text-sm text-red-600 hover:text-red-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+										wire:click.prevent="sendEmailVerification">
 									{{ __('Click here to re-send the verification email.') }}
 								</button>
 							</p>
@@ -41,7 +39,7 @@
 								</p>
 							@endif
 						</div>
-					@endif
+						@endif
 				</div>
 
 				<div class="flex items-center gap-4">

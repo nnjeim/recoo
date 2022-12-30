@@ -19,7 +19,7 @@ class UpdateAction extends BaseRecordAction
 	 * @param  array  $args
 	 * @return $this
 	 */
-	public function execute(array $args = [])
+	public function execute(array $args = []): self
 	{
 		// exists
 		$recordBuilder = $this->validateModel($args);

@@ -11,7 +11,7 @@ class FetchAction extends BaseOmdbAction
 	 * @param  array  $args
 	 * @return $this
 	 */
-	public function execute(array $args = [])
+	public function execute(array $args = []): self
 	{
 		$query = $this
 			->httpClient

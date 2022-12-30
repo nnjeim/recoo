@@ -15,8 +15,9 @@ trait ShowTransformer
 	{
 		return collect($user)
 			->merge([
-				'created_at' => adjustTenantTimezone($user->created_at),
-				'updated_at' => adjustTenantTimezone($user->updated_at),
+				'email_verified' => $user->email_verified_at !== null,
+				'created_at' => adjustUserTimezone($user->created_at),
+				'updated_at' => adjustUserTimezone($user->updated_at),
 			]);
 	}
 }

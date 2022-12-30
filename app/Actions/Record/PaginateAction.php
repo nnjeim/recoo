@@ -16,7 +16,7 @@ class PaginateAction extends BaseRecordAction
 	 * @param  array  $args
 	 * @return $this
 	 */
-	public function execute(array $args = [])
+	public function execute(array $args = []): self
 	{
 		$recordsBuilder = invoke(PaginateQuery::class, $args);
 		$records = $recordsBuilder->paginate($args['perPage'] ?? 20);

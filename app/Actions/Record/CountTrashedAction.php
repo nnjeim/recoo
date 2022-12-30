@@ -12,7 +12,7 @@ class CountTrashedAction extends BaseRecordAction
 	 * @param  array  $args
 	 * @return $this
 	 */
-	public function execute(?array $args = [])
+	public function execute(?array $args = []): self
 	{
 		$this->success = true;
 		$this->data = Record::query()

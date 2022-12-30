@@ -12,7 +12,7 @@ class SelectAllAction extends BaseRecordAction
 	 * @param  array  $args
 	 * @return $this
 	 */
-	public function execute(array $args = [])
+	public function execute(array $args = []): self
 	{
 		$recordIds = invoke(PaginateQuery::class, $args)
 			->orderBy('records.id', 'asc')

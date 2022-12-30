@@ -53,29 +53,6 @@ if (! function_exists('adjustUserTimezone')) {
 	}
 }
 
-if (! function_exists('adjustTenantTimezone')) {
-	/**
-	 * @param  $dateTime
-	 * @param  string  $standard
-	 * @param  string|null  $timeFormat
-	 * @return string|null
-	 */
-	function adjustTenantTimezone($dateTime, string $standard = 'iso', ?string $timeFormat = null): ?string
-	{
-		if (! $dateTime instanceof Carbon) {
-			$dateTime = Carbon::parse($dateTime);
-		}
-
-		return adjustTimeZone(
-			$dateTime,
-			request()->input('tenant_timezone') ?? config('constants.app_timezone'),
-			$standard,
-			$timeFormat
-		);
-	}
-}
-
-
 
 if (! function_exists('splitDateTime')) {
 	/**

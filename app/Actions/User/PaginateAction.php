@@ -16,7 +16,7 @@ class PaginateAction extends BaseUserAction
 	 * @param  array  $args
 	 * @return $this
 	 */
-	public function execute(array $args = [])
+	public function execute(array $args = []): self
 	{
 		$usersBuilder = invoke(PaginateQuery::class, $args);
 		$users = $usersBuilder->paginate($args['perPage'] ?? 20);
