@@ -21,13 +21,13 @@ A Laravel application designed to maintain a database of movies.
 <a href="https://recdb.njeim.net" target="_blank">RecDB demo website</a>
 
 
-<table>
+<table cellspacing="0" cellpadding="0" style="border: none;">
 <tbody>
 <tr>
-<td><img src="https://recdb.njeim.net/assets/images/tailwind.svg" width="150" height="auto" alt="Laravel"/></td>
-<td><img src="https://recdb.njeim.net/assets/images/alpinejs.svg" width="150" height="auto" alt="Laravel"/></td>
-<td><img src="https://recdb.njeim.net/assets/images/laravel.svg" width="150" height="auto" alt="Laravel"/></td>
-<td><img src="https://recdb.njeim.net/assets/images/livewire.svg" width="150" height="auto" alt="Laravel"/></td>
+<td><img src="https://recdb.njeim.net/assets/images/tailwind.svg" width="100" height="auto" alt="Tailwind" style="padding: 1rem;"/></td>
+<td><img src="https://recdb.njeim.net/assets/images/alpinejs.svg" width="100" height="auto" alt="Alpine" style="padding: 1rem;"/></td>
+<td><img src="https://recdb.njeim.net/assets/images/laravel.svg" width="100" height="auto" alt="Laravel" style="padding: 1rem;"/></td>
+<td><img src="https://recdb.njeim.net/assets/images/livewire.svg" width="100" height="auto" alt="Livewire" style="padding: 1rem;"/></td>
 </tr>
 </tbody>
 </table>
