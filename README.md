@@ -4,12 +4,12 @@ A Laravel application designed to maintain a database of movies.
 
 ### Installation
 - Copy .env.example into .env
-- Run composer install
-- Run db artisan key:generate
-- create a file named database.sqlite in the database directory
-- run php artisan migrate
-- run npm install followed by npm run build.
-- Proceed by registering a user.
+- Run `composer install`.
+- Run `db artisan key:generate`.
+- Create a file named `database.sqlite` in the database directory.
+- Run `php artisan migrate`.
+- Run `npm install` followed by `npm run build`.
+- Proceed with the registration of a user.
 
 ### Technical description
 - Laravel 9 with laravel/sanctum authentication.
@@ -18,4 +18,4 @@ A Laravel application designed to maintain a database of movies.
 - Tailwind css.
 
 ### Demo
-<a href="https://recdb.njeim.net" target="_blank">RecDB</a>
+<a href="https://recdb.njeim.net" target="_blank">RecDB demo website</a>
