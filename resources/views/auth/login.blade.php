@@ -22,12 +22,22 @@
             <!-- Password -->
             <div class="mt-4">
                 <x-form.label for="password" :value="__('Password')" />
-
-                <x-form.input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="current-password" />
-
+				<div class="relative" x-data="{ showPassword: false }">
+					<input
+						id="password"
+						class="block mt-1 w-full border-gray-300 focus:border-red-500 focus:ring-red-500 rounded-md shadow-sm"
+						:type="showPassword === false ? 'password' : 'text'"
+						name="password"
+						required autocomplete="current-password" />
+					<span class="show-password">
+						<template x-if="showPassword === false">
+							<x-micon.visibility_on title="{{ __('show password') }}" class="pointer" size="1.125rem" @click="showPassword = true" />
+						</template>
+						<template x-if="showPassword === true">
+							<x-micon.visibility_off title="{{ __('hide password') }}" class="pointer" size="1.125rem" @click="showPassword = false" />
+						</template>
+					</span>
+				</div>
                 <x-input-error :messages="$errors->get('password')" class="mt-2" />
             </div>
 
