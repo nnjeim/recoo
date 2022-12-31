@@ -36,25 +36,45 @@
 		<!-- Password -->
 		<div class="mt-4">
 			<x-form.label for="password" :value="__('Password')" />
-			<x-form.input
-				id="password"
-				class="block mt-1 w-full"
-				type="password"
-				wire:model.defer="user.password"
-				required
-				autocomplete="new-password" />
+			<div class="relative" x-data="{ showPassword: false }">
+				<input
+					id="password"
+					class="block mt-1 w-full border-gray-300 focus:border-red-500 focus:ring-red-500 rounded-md shadow-sm"
+					:type="showPassword === false ? 'password' : 'text'"
+					wire:model.defer="user.password"
+					required
+					autocomplete="new-password" />
+				<span class="show-password">
+					<template x-if="showPassword === false">
+						<x-micon.visibility_on title="{{ __('show password') }}" class="pointer" size="1.125rem" @click="showPassword = true" />
+					</template>
+					<template x-if="showPassword === true">
+						<x-micon.visibility_off title="{{ __('hide password') }}" class="pointer" size="1.125rem" @click="showPassword = false" />
+					</template>
+				</span>
+			</div>
 			<x-form.input-error for="user.password" class="mt-2" />
 		</div>
 
 		<!-- Confirm Password -->
 		<div class="mt-4">
 			<x-form.label for="password_confirmation" :value="__('Confirm Password')" />
-			<x-form.input
-				id="password_confirmation"
-				class="block mt-1 w-full"
-				type="password"
-				wire:model.defer="user.password_confirmation"
-				required />
+			<div class="relative" x-data="{ showPassword: false }">
+				<input
+					id="password_confirmation"
+					class="block mt-1 w-full border-gray-300 focus:border-red-500 focus:ring-red-500 rounded-md shadow-sm"
+					:type="showPassword === false ? 'password' : 'text'"
+					wire:model.defer="user.password_confirmation"
+					required />
+				<span class="show-password">
+					<template x-if="showPassword === false">
+						<x-micon.visibility_on title="{{ __('show password') }}" class="pointer" size="1.125rem" @click="showPassword = true" />
+					</template>
+					<template x-if="showPassword === true">
+						<x-micon.visibility_off title="{{ __('hide password') }}" class="pointer" size="1.125rem" @click="showPassword = false" />
+					</template>
+				</span>
+			</div>
 			<x-form.input-error for="user.password_confirmation" class="mt-2" />
 		</div>
 
