@@ -15,19 +15,64 @@
 
 		<div>
 			<x-form.label for="current_password" :value="__('Current Password')" />
-			<x-form.input id="current_password" name="current_password" type="password" class="mt-1 block w-full" autocomplete="current-password" />
+			<div class="relative" x-data="{ showPassword: false }">
+				<input
+					id="current_password"
+					name="current_password"
+					class="block mt-1 w-full border-gray-300 focus:border-red-500 focus:ring-red-500 rounded-md shadow-sm"
+					:type="showPassword === false ? 'password' : 'text'"
+					autocomplete="current-password" />
+				<span class="show-password">
+					<template x-if="showPassword === false">
+						<x-micon.visibility_on title="{{ __('show password') }}" class="pointer" size="1.125rem" @click="showPassword = true" />
+					</template>
+					<template x-if="showPassword === true">
+						<x-micon.visibility_off title="{{ __('hide password') }}" class="pointer" size="1.125rem" @click="showPassword = false" />
+					</template>
+				</span>
+			</div>
 			<x-input-error :messages="$errors->updatePassword->get('current_password')" class="mt-2" />
 		</div>
 
 		<div>
 			<x-form.label for="password" :value="__('New Password')" />
-			<x-form.input id="password" name="password" type="password" class="mt-1 block w-full" autocomplete="new-password" />
+			<div class="relative" x-data="{ showPassword: false }">
+				<input
+					id="password"
+					name="password"
+					class="block mt-1 w-full border-gray-300 focus:border-red-500 focus:ring-red-500 rounded-md shadow-sm"
+					:type="showPassword === false ? 'password' : 'text'"
+					autocomplete="new-password" />
+				<span class="show-password">
+					<template x-if="showPassword === false">
+						<x-micon.visibility_on title="{{ __('show password') }}" class="pointer" size="1.125rem" @click="showPassword = true" />
+					</template>
+					<template x-if="showPassword === true">
+						<x-micon.visibility_off title="{{ __('hide password') }}" class="pointer" size="1.125rem" @click="showPassword = false" />
+					</template>
+				</span>
+			</div>
 			<x-input-error :messages="$errors->updatePassword->get('password')" class="mt-2" />
 		</div>
 
 		<div>
 			<x-form.label for="password_confirmation" :value="__('Confirm Password')" />
-			<x-form.input id="password_confirmation" name="password_confirmation" type="password" class="mt-1 block w-full" autocomplete="new-password" />
+			<div class="relative" x-data="{ showPassword: false }">
+				<input
+					id="password_confirmation"
+					name="password_confirmation"
+					class="block mt-1 w-full border-gray-300 focus:border-red-500 focus:ring-red-500 rounded-md shadow-sm"
+					:type="showPassword === false ? 'password' : 'text'"
+					autocomplete="new-password" />
+				<span class="show-password">
+					<template x-if="showPassword === false">
+						<x-micon.visibility_on title="{{ __('show password') }}" class="pointer" size="1.125rem" @click="showPassword = true" />
+					</template>
+					<template x-if="showPassword === true">
+						<x-micon.visibility_off title="{{ __('hide password') }}" class="pointer" size="1.125rem" @click="showPassword = false" />
+					</template>
+				</span>
+			</div>
 			<x-input-error :messages="$errors->updatePassword->get('password_confirmation')" class="mt-2" />
 		</div>
 

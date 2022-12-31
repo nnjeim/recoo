@@ -8,6 +8,6 @@ class PasswordReset extends Component
 {
 	public function render()
 	{
-		return view('components.profile.edit');
+		return view('components.profile.password-reset');
 	}
 }
