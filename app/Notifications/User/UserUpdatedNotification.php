@@ -9,8 +9,6 @@ use Illuminate\Notifications\Notification;
 
 class UserUpdatedNotification extends Notification
 {
-	public string $action = 'update';
-
 	/**
 	 * Create a new notification instance.
 	 *
@@ -26,16 +24,16 @@ class UserUpdatedNotification extends Notification
 	 * @param  mixed  $notifiable
 	 * @return array
 	 */
-	public function via($notifiable): array
+	public function via(mixed $notifiable): array
 	{
 		return [UserUpdatedEmailChannel::class, 'database'];
 	}
 
 	/**
-	 * @param $notifiable
+	 * @param mixed $notifiable
 	 * @return array
 	 */
-	public function toEmailNotification($notifiable): array
+	public function toEmailNotification(mixed $notifiable): array
 	{
 		return [
 			//
@@ -43,15 +41,15 @@ class UserUpdatedNotification extends Notification
 	}
 
 	/**
-	 * @param $notifiable
+	 * @param mixed $notifiable
 	 * @return array
 	 */
-	public function toDatabase($notifiable): array
+	public function toDatabase(mixed $notifiable): array
 	{
 		return [
-			'title' => $this->action,
-			'body' => 'Your profile was updated',
-			'click_action' => '/account',
+			'title' => trans('notifications.profile_updated.title'),
+			'body' => trans('notifications.profile_updated.body'),
+			'click_action' => '/profile',
 		];
 	}
 }

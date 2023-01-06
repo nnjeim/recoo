@@ -26,16 +26,16 @@ class UserPasswordResetNotification extends Notification
 	 * @param  mixed  $notifiable
 	 * @return array
 	 */
-	public function via($notifiable): array
+	public function via(mixed $notifiable): array
 	{
 		return [UserPasswordResetEmailChannel::class, 'database'];
 	}
 
 	/**
-	 * @param $notifiable
+	 * @param mixed $notifiable
 	 * @return array
 	 */
-	public function toEmailNotification($notifiable): array
+	public function toEmailNotification(mixed $notifiable): array
 	{
 		return [
 			//
@@ -43,15 +43,15 @@ class UserPasswordResetNotification extends Notification
 	}
 
 	/**
-	 * @param $notifiable
+	 * @param mixed $notifiable
 	 * @return array
 	 */
-	public function toDatabase($notifiable): array
+	public function toDatabase(mixed $notifiable): array
 	{
 		return [
 			'title' => $this->action,
-			'body' => 'Your profile was updated',
-			'click_action' => '/account',
+			'body' => 'Your password was changed',
+			'click_action' => '/profile',
 		];
 	}
 }

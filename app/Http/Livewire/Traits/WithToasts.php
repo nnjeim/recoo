@@ -24,7 +24,7 @@ trait WithToasts
 	public function notifyAction(bool $success, string $message)
 	{
 		$success
-			? $this->toast($message, trans('response.notification.title.success'), 'success')
-			: $this->toast($message, trans('response.notification.title.warning'), 'warning');
+			? $this->toast($message, trans('notifications.success'))
+			: $this->toast($message, trans('notifications.warning'), 'warning');
 	}
 }

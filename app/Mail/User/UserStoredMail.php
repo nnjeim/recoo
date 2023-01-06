@@ -31,7 +31,7 @@ class UserStoredMail extends Mailable
 	public function envelope(): Envelope
 	{
 		return new Envelope(
-			subject: 'User Created',
+			subject: trans(''),
 		);
 	}
 

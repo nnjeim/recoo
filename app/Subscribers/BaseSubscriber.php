@@ -82,7 +82,7 @@ abstract class BaseSubscriber
 		return $this;
 	}
 
-	private function getUser(): User|null
+	protected function getUser(): User|null
 	{
 		if (Auth::check()) {
 			return Auth::user();
@@ -92,6 +92,15 @@ abstract class BaseSubscriber
 			return $this->model;
 		}
 		// return superuser
-		return User::find(1);
+		return $this->getSuperUser();
+	}
+
+	/**
+	 * @return User
+	 */
+	protected function getSuperUser(): User
+	{
+		// return superuser
+		return User::whereId(1)->first();
 	}
 }

@@ -6,17 +6,14 @@ use App\Channels\User\Email\UserStoredEmailChannel;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Notification;
+use App\Models\User;
 
 class UserStoredNotification extends Notification
 {
-	public string $action = 'store';
-
 	/**
-	 * Create a new notification instance.
-	 *
-	 * @return void
+	 * Create a new notification instance
 	 */
-	public function __construct()
+	public function __construct(private readonly User $user)
 	{
 	}
 
@@ -26,16 +23,26 @@ class UserStoredNotification extends Notification
 	 * @param  mixed  $notifiable
 	 * @return array
 	 */
-	public function via($notifiable): array
+	public function via(mixed $notifiable): array
 	{
-		return [UserStoredEmailChannel::class, 'database'];
+		$via = [];
+		// notify the new user
+		if ($notifiable->id === $this->user->id) {
+			$via[] = UserStoredEmailChannel::class;
+		}
+		// send a database notification to the superuser
+		if ($notifiable->id === 1) {
+			$via[] = 'database';
+		}
+
+		return $via;
 	}
 
 	/**
-	 * @param $notifiable
+	 * @param mixed $notifiable
 	 * @return array
 	 */
-	public function toEmailNotification($notifiable): array
+	public function toEmailNotification(mixed $notifiable): array
 	{
 		return [
 			//
@@ -43,15 +50,15 @@ class UserStoredNotification extends Notification
 	}
 
 	/**
-	 * @param $notifiable
+	 * @param mixed $notifiable
 	 * @return array
 	 */
-	public function toDatabase($notifiable): array
+	public function toDatabase(mixed $notifiable): array
 	{
 		return [
-			'title' => $this->action,
-			'body' => 'The user account ' . $notifiable->name . ' was stored',
-			'click_action' => '/users/' . $notifiable->id,
+			'title' => trans('notifications.user_stored.title'),
+			'body' => trans('notifications.user_stored.body', ['name' => $this->user->name]),
+			'click_action' => '/users/' . $this->user->id,
 		];
 	}
 }

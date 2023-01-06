@@ -7,5 +7,4 @@ return [
 	'validations' => include 'partials/validations.php',
 	'attributes' => include 'partials/attributes.php',
 	'email' => include 'partials/email.php',
-	'notification' => include 'partials/notification.php',
 ];

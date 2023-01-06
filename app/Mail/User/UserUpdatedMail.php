@@ -31,7 +31,7 @@ class UserUpdatedMail extends Mailable
 	public function envelope(): Envelope
 	{
 		return new Envelope(
-			subject: 'User Updated',
+			subject: trans('notifications.profile_updated.title'),
 		);
 	}
 

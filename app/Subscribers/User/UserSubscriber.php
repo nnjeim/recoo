@@ -23,9 +23,10 @@ class UserSubscriber extends BaseSubscriber
 	/**
 	 * @param User\UserStoredEvent $event
 	 */
-	public function userStored(User\UserStoredEvent $event)
+	public function userStored(User\UserStoredEvent $event): void
 	{
 		$user = $event->user;
+		$superUser = $this->getSuperUser();
 		// Log
 		$this
 			->setModel($user)
@@ -37,17 +38,20 @@ class UserSubscriber extends BaseSubscriber
 				'model' => $user->id,
 			])
 			->log();
-		// Notification
-		$user->notify(new UserStoredNotification());
+		// User Notification
+		$user->notify(new UserStoredNotification($user));
+		// Superuser Notification
+		$superUser->notify(new UserStoredNotification($user));
 	}
 
 	/**
 	 * @param  User\UserRegisteredEvent  $event
 	 * @return void
 	 */
-	public function userRegistered(User\UserRegisteredEvent $event)
+	public function userRegistered(User\UserRegisteredEvent $event): void
 	{
 		$user = $event->user;
+		$superUser = $this->getSuperUser();
 		// Log
 		$this
 			->setModel($user)
@@ -56,6 +60,10 @@ class UserSubscriber extends BaseSubscriber
 				'subject' => $user->name,
 			])
 			->log();
+		// User Notification
+		$user->notify(new UserStoredNotification($user));
+		// Superuser Notification
+		$superUser->notify(new UserStoredNotification($user));
 		// email verification notification
 		$user->notify(new VerifyEmailNotification($user));
 	}
@@ -63,7 +71,7 @@ class UserSubscriber extends BaseSubscriber
 	/**
 	 * @param User\UserUpdatedEvent $event
 	 */
-	public function userUpdated(User\UserUpdatedEvent $event)
+	public function userUpdated(User\UserUpdatedEvent $event): void
 	{
 		$user = $event->user;
 		// Log
@@ -84,7 +92,7 @@ class UserSubscriber extends BaseSubscriber
 	/**
 	 * @param User\UserDestroyedEvent $event
 	 */
-	public function userDestroyed(User\UserDestroyedEvent $event)
+	public function userDestroyed(User\UserDestroyedEvent $event): void
 	{
 		$user = $event->user;
 		// Log
@@ -100,7 +108,7 @@ class UserSubscriber extends BaseSubscriber
 	/**
 	 * @param User\UserRestoredEvent $event
 	 */
-	public function userRestored(User\UserRestoredEvent $event)
+	public function userRestored(User\UserRestoredEvent $event): void
 	{
 		$user = $event->user;
 		// Log
@@ -116,7 +124,7 @@ class UserSubscriber extends BaseSubscriber
 	/**
 	 * @param User\UserPasswordResetEvent $event
 	 */
-	public function userPasswordReset(User\UserPasswordResetEvent $event)
+	public function userPasswordReset(User\UserPasswordResetEvent $event): void
 	{
 		$user = $event->user;
 		// Log
@@ -134,7 +142,7 @@ class UserSubscriber extends BaseSubscriber
 	/**
 	 * @param  Verified  $event
 	 */
-	public function userVerified(Verified $event)
+	public function userVerified(Verified $event): void
 	{
 		$user = $event->user;
 		// Log

@@ -150,11 +150,10 @@ class ResponseBuilder
 		string $attribute,
 		bool $success,
 		bool $plural = false,
-		array $additionalAttributes = []
 	): ResponseBuilder {
-		$attributes = $additionalAttributes + [
-				'attribute' => trans_choice("response.attributes.$attribute", (int) $plural + 1),
-			];
+		$attributes = [
+			'attribute' => trans_choice("response.attributes.$attribute", (int) $plural + 1),
+		];
 		return $this->setMessage(trans_choice("response.actions.$action." . ((int) $success), (int) $plural + 1, $attributes));
 	}
 
