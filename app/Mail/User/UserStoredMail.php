@@ -7,6 +7,8 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Mail\Mailables\Content;
+use Illuminate\Mail\Mailables\Envelope;
 
 class UserStoredMail extends Mailable
 {
@@ -22,14 +24,26 @@ class UserStoredMail extends Mailable
 	}
 
 	/**
-	 * Build the message.
+	 * Get the message envelope.
 	 *
-	 * @return $this
+	 * @return Envelope
 	 */
-	public function build(): self
+	public function envelope(): Envelope
 	{
-		return $this
-			->from(config('mail.from.address'), config('mail.from.name'))
-			->markdown('email.user.userStored');
+		return new Envelope(
+			subject: 'User Created',
+		);
+	}
+
+	/**
+	 * Get the message content definition.
+	 *
+	 * @return Content
+	 */
+	public function content(): Content
+	{
+		return new Content(
+			markdown: 'email.user.userStored',
+		);
 	}
 }

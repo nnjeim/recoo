@@ -7,6 +7,8 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Mail\Mailables\Content;
+use Illuminate\Mail\Mailables\Envelope;
 
 class VerifyEmailMail extends Mailable
 {
@@ -22,15 +24,26 @@ class VerifyEmailMail extends Mailable
 	}
 
 	/**
-	 * Build the message.
+	 * Get the message envelope.
 	 *
-	 * @return $this
+	 * @return Envelope
 	 */
-	public function build(): self
+	public function envelope(): Envelope
 	{
-		return $this
-			->from(config('mail.from.address'), config('mail.from.name'))
-			->subject(config('app.name') . ' - Verify Email Address')
-			->markdown('email.userEmail.verifyEmail');
+		return new Envelope(
+			subject: 'Verify Email Address',
+		);
+	}
+
+	/**
+	 * Get the message content definition.
+	 *
+	 * @return Content
+	 */
+	public function content(): Content
+	{
+		return new Content(
+			markdown: 'email.userEmail.verifyEmail',
+		);
 	}
 }

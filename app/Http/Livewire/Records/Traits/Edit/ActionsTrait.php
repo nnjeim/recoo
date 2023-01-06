@@ -21,7 +21,7 @@ trait ActionsTrait
 	/**
 	 * @return void
 	 */
-	public function updateRecord()
+	public function updateRecord(): void
 	{
 		$message = '';
 
@@ -39,6 +39,8 @@ trait ActionsTrait
 
 		if ($action->success) {
 			$message = $action->message;
+
+			$this->emit('saved');
 		}
 
 		if ($action->errors) {

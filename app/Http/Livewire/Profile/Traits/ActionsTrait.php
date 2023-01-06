@@ -29,6 +29,8 @@ trait ActionsTrait
 
 		if ($action->success) {
 			$message = $action->message;
+
+			$this->emit('saved');
 		}
 
 		if ($action->errors) {

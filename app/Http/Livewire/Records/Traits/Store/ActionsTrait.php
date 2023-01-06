@@ -61,6 +61,8 @@ trait ActionsTrait
 		if ($action->success) {
 			$this->record = $this->formatRecord($action->data);
 
+			$this->emit('saved');
+
 			$this->activeTab = 'info';
 		}
 

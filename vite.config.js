@@ -1,6 +1,9 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
-import basicSsl from '@vitejs/plugin-basic-ssl';
+// import basicSsl from '@vitejs/plugin-basic-ssl';
+// import fs from 'fs';
+
+const host = '10.28.10.10';
 
 export default defineConfig({
   plugins: [
@@ -19,6 +22,12 @@ export default defineConfig({
     },
   },
   server: {
-    host: '10.28.10.10',
+    host,
+    // https: true,
+    hmr: { host },
+    // https: {
+    //   key: fs.readFileSync('/etc/ssl/private/_dev-key.pem'),
+    //   cert: fs.readFileSync('/etc/ssl/certs/_dev.pem'),
+    // },
   },
 });
