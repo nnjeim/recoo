@@ -3,16 +3,16 @@
 namespace App\Http\Livewire\Users\Traits\Store;
 
 use App\Actions\User;
-use Illuminate\Http\RedirectResponse;
+use Livewire\Redirector;
 
 trait ActionsTrait
 {
 	/**
 	 * Method to store a user.
 	 *
-	 * @return RedirectResponse|null
+	 * @return Redirector|null
 	 */
-	public function storeUser(): ?RedirectResponse
+	public function storeUser(): ?Redirector
 	{
 		$message = '';
 

@@ -4,7 +4,7 @@ namespace App\Http\Livewire\Records\Traits\Store;
 
 use App\Actions\Omdb\FetchAction;
 use App\Actions\Record;
-use Illuminate\Http\RedirectResponse;
+use Livewire\Redirector;
 
 trait ActionsTrait
 {
@@ -12,7 +12,7 @@ trait ActionsTrait
 	 * Method to search a record by imdb id or other search criteria.
 	 * @return void
 	 */
-	public function searchImdb()
+	public function searchImdb(): void
 	{
 		if (empty($this->imdb_search)) {
 			return;
@@ -53,7 +53,7 @@ trait ActionsTrait
 	 * @param  string  $imdb_id
 	 * @return void
 	 */
-	public function applyImdbRecord(string $imdb_id)
+	public function applyImdbRecord(string $imdb_id): void
 	{
 		$message = 'The record was successfully applied';
 
@@ -78,9 +78,9 @@ trait ActionsTrait
 	}
 
 	/**
-	 * @return RedirectResponse|null
+	 * @return Redirector|null
 	 */
-	public function storeRecord(): ?RedirectResponse
+	public function storeRecord(): ?Redirector
 	{
 		$message = '';
 

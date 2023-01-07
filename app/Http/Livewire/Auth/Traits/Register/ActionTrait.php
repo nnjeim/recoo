@@ -10,7 +10,7 @@ trait ActionTrait
 	 * Method to register a new user.
 	 * @return void
 	 */
-	public function registerUser()
+	public function registerUser(): void
 	{
 		$validator = $this->validateRecord();
 

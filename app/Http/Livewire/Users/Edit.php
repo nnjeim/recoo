@@ -7,6 +7,7 @@ use App\Http\Livewire\Users\Traits\Edit\StateTrait;
 use App\Http\Livewire\Users\Traits\Edit\ValidationTrait;
 use App\Http\Livewire\Traits\WithToasts;
 use App\Http\Livewire\Traits\WithVerticalTabs;
+use Illuminate\View\View;
 use Livewire\Component;
 
 class Edit extends Component
@@ -25,7 +26,10 @@ class Edit extends Component
 		$this->initTabs();
 	}
 
-	public function render()
+	/**
+	 * @return View
+	 */
+	public function render(): View
 	{
 		return view('components.users.edit');
 	}

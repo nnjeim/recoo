@@ -80,7 +80,7 @@ img {
     -premailer-cellpadding: 0;
     -premailer-cellspacing: 0;
     -premailer-width: 100%;
-    background-color: #edf2f7;
+    background-color: #ffffff;
     margin: 0;
     padding: 0;
     width: 100%;
@@ -112,9 +112,9 @@ img {
 /* Logo */
 
 .logo {
-    height: 75px;
+    height: auto;
     max-height: 75px;
-    width: 75px;
+    width: auto;
 }
 
 /* Body */
@@ -123,7 +123,7 @@ img {
     -premailer-cellpadding: 0;
     -premailer-cellspacing: 0;
     -premailer-width: 100%;
-    background-color: #edf2f7;
+    background-color: #ffffff;
     border-bottom: 1px solid #edf2f7;
     border-top: 1px solid #edf2f7;
     margin: 0;
@@ -265,7 +265,7 @@ img {
 }
 
 .panel-content {
-    background-color: #edf2f7;
+    background-color: #ffffff;
     color: #718096;
     padding: 16px;
 }
