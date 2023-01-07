@@ -29,18 +29,16 @@ class StoreAction extends BaseRecordAction
 			$record = Record::create($args + ['user_id' => auth()->id()]);
 
 			DB::commit();
-			$this->success = true;
 		} catch (Throwable $e) {
 			DB::rollback();
 			throw $e;
 		}
 
+		$this->success = true;
+		$this->data = $this->transform($record->refresh());
+
 		// post action
 		$this->postAction($record);
-
-		$this->data = $this->success
-			? $this->transform($record->refresh())
-			: [];
 
 		return $this;
 	}

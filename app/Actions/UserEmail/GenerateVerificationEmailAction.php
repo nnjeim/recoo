@@ -4,6 +4,7 @@ namespace App\Actions\UserEmail;
 
 use App\Actions\User\Base\BaseUserAction;
 use App\Events\UserEmail\VerifyEmailEvent;
+use App\Exceptions\RecordNotFoundException;
 use App\Http\Response\ResponseBuilder;
 
 class GenerateVerificationEmailAction extends BaseUserAction
@@ -13,6 +14,7 @@ class GenerateVerificationEmailAction extends BaseUserAction
 	/**
 	 * @param array $args
 	 * @return $this
+	 * @throws RecordNotFoundException
 	 */
 	public function execute(array $args = []): self
 	{

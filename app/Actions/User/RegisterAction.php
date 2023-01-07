@@ -7,11 +7,8 @@ use App\Actions\User\Transformers\ShowTransformer;
 use App\Events\User\UserRegisteredEvent;
 use App\Http\Response\ResponseBuilder;
 use App\Models\User;
-use App\Providers\RouteServiceProvider;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Redirect;
 use Throwable;
 
 class RegisterAction extends BaseUserAction
@@ -48,31 +45,27 @@ class RegisterAction extends BaseUserAction
 			throw $e;
 		}
 
-		// post action
-		$this->postAction($user);
-
 		$this->success = true;
 		$this->data = $this->transform($user->refresh());
+
+		// post action
+		$this->postAction($user);
 
 		return $this;
 	}
 
 	/**
 	 * @param User $user
-	 * @return RedirectResponse|null
+	 * @return void
 	 */
-	private function postAction(User $user): RedirectResponse|null
+	private function postAction(User $user): void
 	{
 		if ($this->success) {
 			// event
 			event(new UserRegisteredEvent($user));
 			// login registered user
-			Auth::login($user);
-			// redirect to home
-			return Redirect::to(RouteServiceProvider::HOME);
+			Auth::loginUsingId($user->id);
 		}
-
-		return null;
 	}
 
 	/**

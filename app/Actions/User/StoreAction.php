@@ -33,18 +33,16 @@ class StoreAction extends BaseUserAction
 			$user = User::create($args);
 
 			DB::commit();
-			$this->success = true;
 		} catch (Throwable $e) {
 			DB::rollback();
 			throw $e;
 		}
 
+		$this->success = true;
+		$this->data = $this->transform($user->refresh());
+
 		// post action
 		$this->postAction($user);
-
-		$this->data = $this->success
-			? $this->transform($user->refresh())
-			: [];
 
 		return $this;
 	}

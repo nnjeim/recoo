@@ -23,7 +23,11 @@ trait ActionHelpersTrait
 		return 'soft';
 	}
 
-	protected function setErrors(string $message)
+	/**
+	 * @param string $message
+	 * @return array
+	 */
+	protected function setErrors(string $message): array
 	{
 		return [
 			'message' => [$message],

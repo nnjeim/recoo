@@ -82,10 +82,9 @@
 			<a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500" href="{{ route('login') }}">
 				{{ __('Already registered?') }}
 			</a>
-
-			<x-form.primary-button class="ml-4">
-				{{ __('Register') }}
-			</x-form.primary-button>
+			<x-form.submit-button
+				class="ml-4"
+				:text="__('Register')" />
 		</div>
 	</form>
 </x-auth-card>

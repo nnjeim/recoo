@@ -35,7 +35,7 @@ trait ActionsTrait
 			// notification
 			$this->notifyAction($action->success, $message);
 
-			return redirect()->route('users.edit', ['id' => $action->data['id']]);
+			return $this->redirectRoute('users.edit', ['id' => $action->data['id']]);
 		}
 
 		if ($action->errors) {

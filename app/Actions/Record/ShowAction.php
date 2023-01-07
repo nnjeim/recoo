@@ -4,6 +4,7 @@ namespace App\Actions\Record;
 
 use App\Actions\Record\Base\BaseRecordAction;
 use App\Actions\Record\Transformers\ShowTransformer;
+use App\Exceptions\RecordNotFoundException;
 use App\Http\Response\ResponseBuilder;
 
 class ShowAction extends BaseRecordAction
@@ -11,8 +12,9 @@ class ShowAction extends BaseRecordAction
 	use ShowTransformer;
 
 	/**
-	 * @param  array  $args
+	 * @param array $args
 	 * @return $this
+	 * @throws RecordNotFoundException
 	 */
 	public function execute(array $args = []): self
 	{

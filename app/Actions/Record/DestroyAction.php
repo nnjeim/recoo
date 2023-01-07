@@ -52,11 +52,12 @@ class DestroyAction extends BaseRecordAction
 			}
 
 			DB::commit();
-			$this->success = true;
 		} catch (Throwable $e) {
 			DB::rollback();
 			throw $e;
 		}
+
+		$this->success = true;
 
 		// post action
 		$this->postAction($record);

@@ -3,23 +3,31 @@
 namespace App\Http\Livewire\Auth\Traits\Register;
 
 use App\Actions\User\RegisterAction;
+use App\Providers\RouteServiceProvider;
+use Livewire\Redirector;
 
 trait ActionTrait
 {
 	/**
-	 * Method to register a new user.
-	 * @return void
+	 * @return null
 	 */
-	public function registerUser(): void
+	public function registerUser()
 	{
 		$validator = $this->validateRecord();
 
 		$this->displayErrors($validator);
 
 		if ($validator->fails()) {
-			return;
+			return null;
 		}
 		// registration action
-		trigger(RegisterAction::class, $this->user);
+		$action = trigger(RegisterAction::class, $this->user);
+
+		if ($action->success) {
+			// redirect to home
+			return $this->redirect(RouteServiceProvider::HOME);
+		}
+
+		return null;
 	}
 }

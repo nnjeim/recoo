@@ -22,8 +22,6 @@ class RestoreAction extends BaseRecordAction
 	 */
 	public function execute(array $args = []): self
 	{
-		$record = null;
-
 		// exist
 		$recordBuilder = $this->validateModel($args + ['showDeleted' => true]);
 
@@ -39,11 +37,12 @@ class RestoreAction extends BaseRecordAction
 			$record->restore();
 
 			DB::commit();
-			$this->success = true;
 		} catch (Throwable $e) {
 			DB::rollback();
 			throw $e;
 		}
+
+		$this->success = true;
 
 		// post action
 		$this->postAction($record);

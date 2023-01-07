@@ -13,7 +13,7 @@ trait ActionExceptionsTrait
 	 * @return mixed
 	 * @throws RecordNotFoundException
 	 */
-	public function modelNotFound(string $attribute = 'record', bool $plural = false)
+	public function modelNotFound(string $attribute = 'record', bool $plural = false): mixed
 	{
 		throw new RecordNotFoundException(
 			trans(
@@ -32,7 +32,7 @@ trait ActionExceptionsTrait
 	 * @return mixed
 	 * @throws UnprocessableException
 	 */
-	public function unprocessableAction(string $action, string $attribute, bool $plural = false)
+	public function unprocessableAction(string $action, string $attribute, bool $plural = false): mixed
 	{
 		throw new UnprocessableException(
 			trans(
