@@ -4,17 +4,21 @@ namespace App\Actions\Record;
 
 use App\Actions\Record\Base\BaseRecordAction;
 use App\Events\Record\RecordRestoredEvent;
+use App\Exceptions\UnprocessableException;
 use App\Http\Response\ResponseBuilder;
 use App\Models\Record;
 use Illuminate\Support\Facades\DB;
+use Throwable;
 
 class RestoreAction extends BaseRecordAction
 {
 	protected string $action = 'restore';
 
 	/**
-	 * @param  array  $args
+	 * @param array $args
 	 * @return $this
+	 * @throws Throwable
+	 * @throws UnprocessableException
 	 */
 	public function execute(array $args = []): self
 	{
@@ -36,7 +40,7 @@ class RestoreAction extends BaseRecordAction
 
 			DB::commit();
 			$this->success = true;
-		} catch (Exception $e) {
+		} catch (Throwable $e) {
 			DB::rollback();
 			throw $e;
 		}

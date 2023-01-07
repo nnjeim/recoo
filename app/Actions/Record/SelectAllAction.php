@@ -4,13 +4,15 @@ namespace App\Actions\Record;
 
 use App\Actions\Record\Base\BaseRecordAction;
 use App\Actions\Record\Queries\PaginateQuery;
+use App\Exceptions\RecordNotFoundException;
 use App\Http\Response\ResponseBuilder;
 
 class SelectAllAction extends BaseRecordAction
 {
 	/**
-	 * @param  array  $args
+	 * @param array $args
 	 * @return $this
+	 * @throws RecordNotFoundException
 	 */
 	public function execute(array $args = []): self
 	{

@@ -12,6 +12,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use Throwable;
 
 class RegisterAction extends BaseUserAction
 {
@@ -20,19 +21,29 @@ class RegisterAction extends BaseUserAction
 	protected string $action = 'register';
 
 	/**
-	 * @param  array  $args
+	 * @param array $args
 	 * @return $this
+	 * @throws Throwable
 	 */
 	public function execute(array $args = []): self
 	{
 		// transaction
 		DB::beginTransaction();
 		try {
-			$user = User::create($args);
+			$user = tap(
+				User::create($args),
+				function(User $user) {
+					// auto verify superuser
+					if ($user->id === 1) {
+						$user->update([
+							'email_verified_at' => now(),
+						]);
+					}
+				}
+			);
 
 			DB::commit();
-			$this->success = true;
-		} catch (Exception $e) {
+		} catch (Throwable $e) {
 			DB::rollback();
 			throw $e;
 		}
@@ -40,18 +51,17 @@ class RegisterAction extends BaseUserAction
 		// post action
 		$this->postAction($user);
 
-		$this->data = $this->success
-			? $this->transform($user->refresh())
-			: [];
+		$this->success = true;
+		$this->data = $this->transform($user->refresh());
 
 		return $this;
 	}
 
 	/**
 	 * @param User $user
-	 * @return RedirectResponse|void
+	 * @return RedirectResponse|null
 	 */
-	private function postAction(User $user)
+	private function postAction(User $user): RedirectResponse|null
 	{
 		if ($this->success) {
 			// event
@@ -61,6 +71,8 @@ class RegisterAction extends BaseUserAction
 			// redirect to home
 			return Redirect::to(RouteServiceProvider::HOME);
 		}
+
+		return null;
 	}
 
 	/**

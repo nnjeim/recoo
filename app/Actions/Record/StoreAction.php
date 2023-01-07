@@ -8,6 +8,7 @@ use App\Events\Record\RecordStoredEvent;
 use App\Http\Response\ResponseBuilder;
 use App\Models\Record;
 use Illuminate\Support\Facades\DB;
+use Throwable;
 
 class StoreAction extends BaseRecordAction
 {
@@ -16,8 +17,9 @@ class StoreAction extends BaseRecordAction
 	protected string $action = 'store';
 
 	/**
-	 * @param  array  $args
+	 * @param array $args
 	 * @return $this
+	 * @throws Throwable
 	 */
 	public function execute(array $args = []): self
 	{
@@ -28,7 +30,7 @@ class StoreAction extends BaseRecordAction
 
 			DB::commit();
 			$this->success = true;
-		} catch (Exception $e) {
+		} catch (Throwable $e) {
 			DB::rollback();
 			throw $e;
 		}

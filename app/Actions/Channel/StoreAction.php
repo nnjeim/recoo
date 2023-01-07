@@ -18,7 +18,8 @@ class StoreAction extends BaseChannelAction
 
 	public function __invoke(): Model
 	{
-		$channel = $this->model
+		return $this
+			->model
 			->channels()
 			->create([
 				'user_id' => $this->user_id,
@@ -27,17 +28,5 @@ class StoreAction extends BaseChannelAction
 				'params' => $this->params,
 				'flag' => 0,
 			]);
-
-		// post action
-		if ($channel) {
-//			$this->postAction();
-		}
-
-		return $channel;
-	}
-
-	private function postAction()
-	{
-		//
 	}
 }

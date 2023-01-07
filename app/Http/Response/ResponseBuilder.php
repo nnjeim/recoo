@@ -5,6 +5,14 @@ namespace App\Http\Response;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Collection;
 
+/**
+ * @property bool $success
+ * @property string $message
+ * @property mixed $data
+ * @property array|array[] $errors
+ * @property array $meta
+ * @property int $statusCode
+ */
 class ResponseBuilder
 {
 	public const HTTP_OK = 200;
@@ -150,10 +158,11 @@ class ResponseBuilder
 		string $attribute,
 		bool $success,
 		bool $plural = false,
+		array $additionalAttributes = []
 	): ResponseBuilder {
-		$attributes = [
-			'attribute' => trans_choice("response.attributes.$attribute", (int) $plural + 1),
-		];
+		$attributes = $additionalAttributes + [
+				'attribute' => trans_choice("response.attributes.$attribute", (int) $plural + 1),
+			];
 		return $this->setMessage(trans_choice("response.actions.$action." . ((int) $success), (int) $plural + 1, $attributes));
 	}
 
@@ -175,9 +184,8 @@ class ResponseBuilder
 	private function getPlatformMeta(): array
 	{
 		return [
-			'response_time' => 1000 * number_format((microtime(true) - LARAVEL_START), 2) . ' ms',
+			'response_time' => 1000 * (float) number_format((microtime(true) - LARAVEL_START), 2) . ' ms',
 			'remote_address_timezone' => request('user_timezone'),
-			'tenant_timezone' => request('tenant_timezone'),
 		];
 	}
 

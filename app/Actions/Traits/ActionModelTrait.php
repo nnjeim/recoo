@@ -2,6 +2,8 @@
 
 namespace App\Actions\Traits;
 
+use App\Actions\BaseAction;
+use App\Exceptions\RecordNotFoundException;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -30,7 +32,7 @@ trait ActionModelTrait
 
 	/**
 	 * @param array $args
-	 * @return $this
+	 * @return ActionModelTrait|BaseAction
 	 */
 	protected function setArguments(array $args): self
 	{
@@ -41,7 +43,7 @@ trait ActionModelTrait
 
 	/**
 	 * @param string $field
-	 * @return $this
+	 * @return ActionModelTrait|BaseAction
 	 */
 	protected function setField(string $field): self
 	{
@@ -52,7 +54,7 @@ trait ActionModelTrait
 
 	/**
 	 * @param string $value
-	 * @return $this
+	 * @return ActionModelTrait|BaseAction
 	 */
 	protected function setValue(string $value): self
 	{
@@ -70,7 +72,7 @@ trait ActionModelTrait
 
 	/**
 	 * @param array $additionalFields
-	 * @return $this
+	 * @return ActionModelTrait|BaseAction
 	 */
 	protected function setAdditionalFields(array $additionalFields = []): self
 	{
@@ -81,7 +83,7 @@ trait ActionModelTrait
 
 	/**
 	 * @param array $where
-	 * @return $this
+	 * @return ActionModelTrait|BaseAction
 	 */
 	protected function where(array $where): self
 	{
@@ -92,7 +94,7 @@ trait ActionModelTrait
 
 	/**
 	 * @param $relations
-	 * @return $this
+	 * @return ActionModelTrait|BaseAction
 	 */
 	protected function with($relations): self
 	{
@@ -102,7 +104,7 @@ trait ActionModelTrait
 	}
 
 	/**
-	 * @return $this
+	 * @return ActionModelTrait|BaseAction
 	 */
 	private function setClauses(): self
 	{
@@ -132,7 +134,7 @@ trait ActionModelTrait
 	}
 
 	/**
-	 * @return $this
+	 * @return ActionModelTrait|BaseAction
 	 */
 	private function newQuery(): self
 	{
@@ -152,7 +154,7 @@ trait ActionModelTrait
 	}
 
 	/**
-	 * @return $this
+	 * @return ActionModelTrait|BaseAction
 	 */
 	private function eagerLoad(): self
 	{
@@ -164,7 +166,7 @@ trait ActionModelTrait
 	}
 
 	/**
-	 * @return $this
+	 * @return ActionModelTrait|BaseAction
 	 */
 	private function unsetClauses(): self
 	{
@@ -203,7 +205,7 @@ trait ActionModelTrait
 
 	/**
 	 * @param string $key
-	 * @return self
+	 * @return ActionModelTrait|BaseAction
 	 */
 	protected function withoutGlobalScope(string $key): self
 	{
@@ -215,6 +217,7 @@ trait ActionModelTrait
 	/**
 	 * @param array|null $args
 	 * @return Builder
+	 * @throws RecordNotFoundException
 	 */
 	protected function validateModel(?array $args = null): Builder
 	{

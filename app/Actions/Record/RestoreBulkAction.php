@@ -10,6 +10,8 @@ class RestoreBulkAction extends BaseRecordAction
 {
 	protected string $action = 'restore';
 
+	private int $restoredCount = 0;
+
 	/**
 	 * @param  array  $args
 	 * @return $this
@@ -44,11 +46,11 @@ class RestoreBulkAction extends BaseRecordAction
 		return ResponseBuilder::make()
 			->setSuccess($this->success)
 			->setActionMessage(
-				$this->action,
-				$this->attribute,
-				$this->success,
-				$this->restoredCount > 1,
-				[
+				action: $this->action,
+				attribute: $this->attribute,
+				success: $this->success,
+				plural: $this->restoredCount > 1,
+				additionalAttributes: [
 					'restoredCount' => $this->restoredCount,
 					'totalCount' => count($this->data),
 				]

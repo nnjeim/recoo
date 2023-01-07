@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Records\Traits\Store;
 
 use App\Actions\Omdb\FetchAction;
 use App\Actions\Record;
+use Illuminate\Http\RedirectResponse;
 
 trait ActionsTrait
 {
@@ -77,10 +78,9 @@ trait ActionsTrait
 	}
 
 	/**
-	 * Method to store a record.
-	 * @return void
+	 * @return RedirectResponse|null
 	 */
-	public function storeRecord()
+	public function storeRecord(): ?RedirectResponse
 	{
 		$message = '';
 
@@ -91,7 +91,7 @@ trait ActionsTrait
 		$this->displayErrors($validator);
 
 		if ($validator->fails()) {
-			return;
+			return null;
 		}
 
 		$action = trigger(Record\StoreAction::class, $this->record)->withResponse();
@@ -112,6 +112,8 @@ trait ActionsTrait
 
 		// notification
 		$this->notifyAction($action->success, $message);
+
+		return null;
 	}
 
 	/**

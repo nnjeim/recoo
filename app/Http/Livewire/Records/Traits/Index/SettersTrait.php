@@ -8,7 +8,7 @@ trait SettersTrait
 	 * Lifecycle method triggered when the filters property is updated.
 	 * @return void
 	 */
-	public function updatedFilters()
+	public function updatedFilters(): void
 	{
 		$this->persist('filters', $this->filters);
 		$this->resetPage();
@@ -77,7 +77,7 @@ trait SettersTrait
 	 * @param  int  $id
 	 * @return void
 	 */
-	public function toggleSelect(int $id)
+	public function toggleSelect(int $id): void
 	{
 		$selectedRecords = $this->selectedRecords;
 
@@ -95,11 +95,11 @@ trait SettersTrait
 	}
 
 	/**
-	 * Method to set the confirm deletion modal visibility.
+	 * Method to set the deletion confirmation modal visibility.
 	 * @param  int|null  $id
 	 * @return void
 	 */
-	public function confirmRecordDeletion(?int $id = null)
+	public function confirmRecordDeletion(?int $id = null): void
 	{
 		if ($id !== null) {
 			$this->toggleSelect($id);

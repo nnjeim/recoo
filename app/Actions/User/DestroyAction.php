@@ -4,23 +4,26 @@ namespace App\Actions\User;
 
 use App\Actions\User\Base\BaseUserAction;
 use App\Events\User\UserDestroyedEvent;
+use App\Exceptions\UnprocessableException;
 use App\Http\Response\ResponseBuilder;
 use App\Models\User;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Support\Facades\DB;
+use Throwable;
 
 class DestroyAction extends BaseUserAction
 {
 	protected string $action = 'destroy';
 
 	/**
-	 * @param  array  $args
+	 * @param array $args
 	 * @return $this
+	 * @throws AuthorizationException
+	 * @throws Throwable
+	 * @throws UnprocessableException
 	 */
 	public function execute(array $args = []): self
 	{
-		$user = null;
-
 		['id' => $id] = $args;
 
 		if ((int) $id === 1) {
@@ -50,7 +53,7 @@ class DestroyAction extends BaseUserAction
 
 			DB::commit();
 			$this->success = true;
-		} catch (Exception $e) {
+		} catch (Throwable $e) {
 			DB::rollback();
 			throw $e;
 		}

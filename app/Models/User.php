@@ -21,11 +21,6 @@ class User extends Authenticatable implements MustVerifyEmail
 	use HasProfilePhoto;
 	use UserRelations;
 
-	/**
-	 * The attributes that are mass assignable.
-	 *
-	 * @var array
-	 */
 	protected $fillable = [
 		'name',
 		'email',
@@ -34,21 +29,11 @@ class User extends Authenticatable implements MustVerifyEmail
 		'status',
 	];
 
-	/**
-	 * The attributes that should be hidden for serialization.
-	 *
-	 * @var array
-	 */
 	protected $hidden = [
 		'password',
 		'remember_token',
 	];
 
-	/**
-	 * The attributes that should be cast.
-	 *
-	 * @var array
-	 */
 	protected $casts = [
 		'email_verified_at' => 'datetime',
 		'deleted_at' => 'datetime',

@@ -10,7 +10,8 @@ use Illuminate\Support\Facades\Storage;
 trait PaginateTransformer
 {
 	/**
-	 * @param  User  $user
+	 * @param User $user
+	 * @return Collection
 	 */
 	protected function transform(User $user): Collection
 	{

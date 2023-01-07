@@ -51,11 +51,11 @@ class DestroyBulkAction extends BaseRecordAction
 		return ResponseBuilder::make()
 			->setSuccess($this->success)
 			->setActionMessage(
-				$this->action,
-				$this->attribute,
-				$this->success,
-				$this->deletedCount > 1,
-				[
+				action: $this->action,
+				attribute: $this->attribute,
+				success: $this->success,
+				plural: $this->deletedCount > 1,
+				additionalAttributes: [
 					'deletedCount' => $this->deletedCount,
 					'totalCount' => count($this->data),
 				]

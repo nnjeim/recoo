@@ -13,7 +13,7 @@ trait RecordRelations
 	public static function bootRecordRelations()
 	{
 		static::deleting(function (Record $record) {
-			if ($user->forceDeleting) {
+			if ($record->forceDeleting) {
 				// delete logs
 				$record->logs()->delete();
 			}

@@ -4,17 +4,21 @@ namespace App\Actions\User;
 
 use App\Actions\User\Base\BaseUserAction;
 use App\Events\User\UserRestoredEvent;
+use App\Exceptions\UnprocessableException;
 use App\Http\Response\ResponseBuilder;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Throwable;
 
 class RestoreAction extends BaseUserAction
 {
 	protected string $action = 'restore';
 
 	/**
-	 * @param  array  $args
+	 * @param array $args
 	 * @return $this
+	 * @throws Throwable
+	 * @throws UnprocessableException
 	 */
 	public function execute(array $args = []): self
 	{
@@ -36,7 +40,7 @@ class RestoreAction extends BaseUserAction
 
 			DB::commit();
 			$this->success = true;
-		} catch (Exception $e) {
+		} catch (Throwable $e) {
 			DB::rollback();
 			throw $e;
 		}

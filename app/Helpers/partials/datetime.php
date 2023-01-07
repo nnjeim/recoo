@@ -7,10 +7,10 @@ if (! function_exists('adjustTimeZone')) {
 	 * @param $carbonDate
 	 * @param string $timezone
 	 * @param string $standard
-	 * @param null $timeFormat
+	 * @param string|null $timeFormat
 	 * @return string|null
 	 */
-	function adjustTimeZone($carbonDate, string $timezone = 'UTC', string $standard = 'iso', $timeFormat = null): ?string
+	function adjustTimeZone($carbonDate, string $timezone = 'UTC', string $standard = 'iso', ?string $timeFormat = null): ?string
 	{
 		if (! $carbonDate instanceof Carbon) {
 			return null;
@@ -59,12 +59,12 @@ if (! function_exists('splitDateTime')) {
 	 * @param $carbonDate
 	 * @param  string  $timezone
 	 * @param  string  $type
-	 * @return string|void
+	 * @return string|null
 	 */
-	function splitDateTime($carbonDate, string $timezone = 'UTC', string $type = 'date')
+	function splitDateTime($carbonDate, string $timezone = 'UTC', string $type = 'date'): ?string
 	{
 		if (! $carbonDate instanceof Carbon) {
-			return;
+			return null;
 		}
 		$split = explode(' ', adjustTimeZone($carbonDate, $timezone, 'sql', 'Y-m-d H:i'));
 

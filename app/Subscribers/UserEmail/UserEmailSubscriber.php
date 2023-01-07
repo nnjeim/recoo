@@ -24,7 +24,6 @@ class UserEmailSubscriber extends BaseSubscriber
 	public function verifyEmail(UserEmail\VerifyEmailEvent $event): void
 	{
 		$user = $event->user;
-		$verificationUrl = $event->verificationUrl;
 		// Log
 		$this
 			->setModel($user)

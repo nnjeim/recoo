@@ -3,6 +3,8 @@
 namespace App\Exceptions;
 
 use Exception;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class RecordNotFoundException extends Exception
 {
@@ -11,7 +13,7 @@ class RecordNotFoundException extends Exception
 	 *
 	 * @return bool|null
 	 */
-	public function report()
+	public function report(): ?bool
 	{
 		return null;
 	}
@@ -19,10 +21,10 @@ class RecordNotFoundException extends Exception
 	/**
 	 * Render the exception into an HTTP response.
 	 *
-	 * @param  \Illuminate\Http\Request  $request
-	 * @return \Illuminate\Http\Response
+	 * @param Request $request
+	 * @return Response
 	 */
-	public function render($request)
+	public function render(Request $request): Response
 	{
 		return response()->view('errors.404', ['message' => $this->getMessage()], 404);
 	}

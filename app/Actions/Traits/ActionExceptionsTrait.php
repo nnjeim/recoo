@@ -8,8 +8,8 @@ use App\Exceptions\RecordNotFoundException;
 trait ActionExceptionsTrait
 {
 	/**
-	 * @param  string  $attribute
-	 * @param  bool  $plural
+	 * @param string $attribute
+	 * @param bool $plural
 	 * @return mixed
 	 * @throws RecordNotFoundException
 	 */
@@ -26,9 +26,9 @@ trait ActionExceptionsTrait
 	}
 
 	/**
-	 * @param  string  $action
-	 * @param  string  $attribute
-	 * @param  bool  $plural
+	 * @param string $action
+	 * @param string $attribute
+	 * @param bool $plural
 	 * @return mixed
 	 * @throws UnprocessableException
 	 */

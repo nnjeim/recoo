@@ -54,7 +54,7 @@ class PaginateQuery
 				->orWhere(fn ($q) => $q
 					->where('records.params->year', 'like', '%' . $term . '%')
 				)
-				// search by user name or email
+				// search by username or email
 				->orWhereHas(
 					'user',
 					fn ($q) => $q
@@ -65,22 +65,15 @@ class PaginateQuery
 		);
 		// sorting
 		$query->when(! empty($sortBy), function ($q) use ($sortBy, $sortOrder) {
-			switch ($sortBy) {
-				case 'year':
-					return $q->orderBy('records.params->year', $sortOrder);
-					break;
-
-				case 'user_name':
-					return $q->orderBy(
-						User::select('users.name')
-							->whereColumn('users.id', '=', 'records.user_id')
-							->take(1),
-						$sortOrder
-					);
-					break;
-
-				default:
-					return $q->orderBy($sortBy, $sortOrder);
+			return match ($sortBy) {
+				'year' => $q->orderBy('records.params->year', $sortOrder),
+				'user_name' => $q->orderBy(
+					User::select('users.name')
+						->whereColumn('users.id', '=', 'records.user_id')
+						->take(1),
+					$sortOrder
+				),
+				default => $q->orderBy($sortBy, $sortOrder),
 			};
 		});
 

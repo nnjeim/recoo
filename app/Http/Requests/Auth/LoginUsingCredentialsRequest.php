@@ -16,8 +16,8 @@ class LoginUsingCredentialsRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
-    {
+    public function authorize(): bool
+	{
         return true;
     }
 
@@ -26,8 +26,8 @@ class LoginUsingCredentialsRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
-    {
+    public function rules(): array
+	{
         return [
             'email' => ['required', 'string', 'email'],
             'password' => ['required', 'string'],
@@ -39,10 +39,10 @@ class LoginUsingCredentialsRequest extends FormRequest
      *
      * @return void
      *
-     * @throws \Illuminate\Validation\ValidationException
+     * @throws ValidationException
      */
-    public function authenticate()
-    {
+    public function authenticate(): void
+	{
         $this->ensureIsNotRateLimited();
 
         if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
@@ -61,10 +61,10 @@ class LoginUsingCredentialsRequest extends FormRequest
      *
      * @return void
      *
-     * @throws \Illuminate\Validation\ValidationException
+     * @throws ValidationException
      */
-    public function ensureIsNotRateLimited()
-    {
+    public function ensureIsNotRateLimited(): void
+	{
         if (! RateLimiter::tooManyAttempts($this->throttleKey(), 5)) {
             return;
         }
@@ -86,8 +86,8 @@ class LoginUsingCredentialsRequest extends FormRequest
      *
      * @return string
      */
-    public function throttleKey()
-    {
+    public function throttleKey(): string
+	{
         return Str::transliterate(Str::lower($this->input('email')).'|'.$this->ip());
     }
 }

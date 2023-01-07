@@ -11,11 +11,11 @@ trait HasProfilePhoto
     /**
      * Update the user's profile photo.
      *
-     * @param  \Illuminate\Http\UploadedFile  $photo
+     * @param UploadedFile $photo
      * @return void
      */
-    public function updateProfilePhoto(UploadedFile $photo)
-    {
+    public function updateProfilePhoto(UploadedFile $photo): void
+	{
         tap($this->profile_photo_path, function ($previous) use ($photo) {
             $this->forceFill([
                 'profile_photo_path' => $photo->storePublicly(

@@ -1,0 +1,43 @@
+includes:
+    - ./vendor/nunomaduro/larastan/extension.neon
+
+parameters:
+    paths:
+        - app/
+
+    # Level 9 is the highest level
+    level: 5
+
+    inferPrivatePropertyTypeFromConstructor: true
+    checkMissingIterableValueType: false
+
+    ignoreErrors:
+        - '/.*Call to an undefined method Illuminate\\Http\\.*/'
+        - '/.*Call to an undefined method Illuminate\\Database\\.*/'
+        - '/.*Access to an undefined property Illuminate\\Database\\.*/'
+        - '/.*Call to an undefined method Illuminate\\Support\\.*/'
+        - '/.*Call to an undefined static method Illuminate\\Support\\.*/'
+        - '/.*Access to an undefined property App(.*)Models.*/'
+        - '/.*Access to undefined constant App(.*)Models.*/'
+        - '/.*Call to an undefined method App(.*)Models.*/'
+        - '/.*Call to an undefined static method App(.*)Models.*/'
+        - '/.*Relation(.*)is not found in App(.*)Models.*/'
+        - '/.*Call to an undefined method Illuminate\\Contracts\\Auth\\Authenticatable::.*/'
+        - '/.*Access to an undefined property Illuminate\\Contracts\\Auth\\Authenticatable::.*/'
+        - '/.*Argument of an invalid type(.*)supplied for foreach, only iterables are supported*/'
+        - '/.*Access to an undefined property App(.*)Requests.*/'
+        - '/.*Call to an undefined method App(.*)Request.*/'
+        - '/.*Illuminate\\Database\\Eloquent\\Model\|null given.*/'
+        - '/.*Illuminate\\Database\\Eloquent\\Model given.*/'
+        - '/.*invoke.*/'
+        - '/.*trigger.*/'
+
+    scanFiles:
+        - _ide_helper.php
+        - _ide_helper_models.php
+        - .phpstorm.meta.php
+
+#    excludePaths:
+#        - ./*/*/FileToBeExcluded.php
+#
+

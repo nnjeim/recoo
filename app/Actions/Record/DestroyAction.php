@@ -4,23 +4,26 @@ namespace App\Actions\Record;
 
 use App\Actions\Record\Base\BaseRecordAction;
 use App\Events\Record\RecordDestroyedEvent;
+use App\Exceptions\UnprocessableException;
 use App\Http\Response\ResponseBuilder;
 use App\Models\Record;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Support\Facades\DB;
+use Throwable;
 
 class DestroyAction extends BaseRecordAction
 {
 	protected string $action = 'destroy';
 
 	/**
-	 * @param  array  $args
+	 * @param array $args
 	 * @return $this
+	 * @throws AuthorizationException
+	 * @throws Throwable
+	 * @throws UnprocessableException
 	 */
 	public function execute(array $args = []): self
 	{
-		$record = null;
-
 		['id' => $id] = $args;
 
 		if ((int) $id === 1) {
@@ -50,7 +53,7 @@ class DestroyAction extends BaseRecordAction
 
 			DB::commit();
 			$this->success = true;
-		} catch (Exception $e) {
+		} catch (Throwable $e) {
 			DB::rollback();
 			throw $e;
 		}

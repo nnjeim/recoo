@@ -9,7 +9,7 @@ use App\Models\User;
 class CountTrashedAction extends BaseUserAction
 {
 	/**
-	 * @param  array  $args
+	 * @param array|null $args
 	 * @return $this
 	 */
 	public function execute(?array $args = []): self

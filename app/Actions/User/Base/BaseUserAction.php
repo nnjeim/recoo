@@ -12,4 +12,6 @@ abstract class BaseUserAction extends BaseAction
 	protected string $cacheTag = 'users';
 
 	protected string $attribute = 'user';
+
+	abstract public function execute(array $args = []);
 }

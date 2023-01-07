@@ -11,11 +11,6 @@ class Record extends Model
 	use SoftDeletes;
 	use RecordRelations;
 
-	/**
-	 * The attributes that are mass assignable.
-	 *
-	 * @var array
-	 */
 	protected $fillable = [
 		'title',
 		'imdb_id',
@@ -23,11 +18,6 @@ class Record extends Model
 		'user_id',
 	];
 
-	/**
-	 * The attributes that should be cast.
-	 *
-	 * @var array
-	 */
 	protected $casts = [
 		'params' => 'array',
 	];

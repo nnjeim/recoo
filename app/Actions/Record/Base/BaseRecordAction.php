@@ -12,4 +12,6 @@ abstract class BaseRecordAction extends BaseAction
 	protected string $cacheTag = 'records';
 
 	protected string $attribute = 'record';
+
+	abstract public function execute(array $args = []);
 }

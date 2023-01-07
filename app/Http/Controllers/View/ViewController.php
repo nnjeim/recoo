@@ -24,7 +24,7 @@ class ViewController
 	 */
 	public function __invoke(): View
 	{
-		$dottedPath = $this->routeName . (strpos($this->routeName, '.') === false ? '.index' : '');
+		$dottedPath = $this->routeName . (! str_contains($this->routeName, '.') ? '.index' : '');
 
 		return $this
 			->viewFactory

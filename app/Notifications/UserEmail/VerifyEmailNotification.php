@@ -20,9 +20,9 @@ class VerifyEmailNotification extends Notification
 	 *
 	 * @return void
 	 */
-	public function __construct(private User $user)
+	public function __construct(private readonly User $user)
 	{
-		$this->verificationUrl = $this->formVerificationUrl($user);
+		$this->verificationUrl = $this->formVerificationUrl();
 	}
 
 	/**
@@ -46,17 +46,16 @@ class VerifyEmailNotification extends Notification
 	}
 
 	/**
-	 * @param User $user
 	 * @return string
 	 */
-	private function formVerificationUrl(User $user): string
+	private function formVerificationUrl(): string
 	{
 		return URL::temporarySignedRoute(
 			'verification.verify',
 			Carbon::now()->addMinutes(Config::get('auth.verification.expire', 60)),
 			[
-				'id' => $user->getKey(),
-				'hash' => sha1($user->getEmailForVerification()),
+				'id' => $this->user->getKey(),
+				'hash' => sha1($this->user->getEmailForVerification()),
 			]
 		);
 	}

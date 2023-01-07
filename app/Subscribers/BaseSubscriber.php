@@ -18,7 +18,7 @@ abstract class BaseSubscriber
 	protected array $click_action = [];
 
 	/**
-	 * @param array $args
+	 * @return void
 	 */
 	protected function log(): void
 	{

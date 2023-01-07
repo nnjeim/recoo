@@ -64,6 +64,8 @@ class PaginateQuery
 			])) {
 				return $q->orderBy($sortBy, $sortOrder);
 			}
+
+			return $q;
 		});
 
 		return $query;

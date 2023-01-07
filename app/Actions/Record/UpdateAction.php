@@ -8,6 +8,7 @@ use App\Events\Record\RecordUpdatedEvent;
 use App\Http\Response\ResponseBuilder;
 use App\Models\Record;
 use Illuminate\Support\Facades\DB;
+use Throwable;
 
 class UpdateAction extends BaseRecordAction
 {
@@ -16,8 +17,9 @@ class UpdateAction extends BaseRecordAction
 	protected string $action = 'update';
 
 	/**
-	 * @param  array  $args
+	 * @param array $args
 	 * @return $this
+	 * @throws Throwable
 	 */
 	public function execute(array $args = []): self
 	{
@@ -37,7 +39,7 @@ class UpdateAction extends BaseRecordAction
 
 			DB::commit();
 			$this->success = true;
-		} catch (Exception $e) {
+		} catch (Throwable $e) {
 			DB::rollback();
 			throw $e;
 		}

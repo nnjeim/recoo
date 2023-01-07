@@ -9,6 +9,7 @@ use App\Http\Response\ResponseBuilder;
 use App\Models\User;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
+use Throwable;
 
 class StoreAction extends BaseUserAction
 {
@@ -17,8 +18,9 @@ class StoreAction extends BaseUserAction
 	protected string $action = 'store';
 
 	/**
-	 * @param  array  $args
+	 * @param array $args
 	 * @return $this
+	 * @throws Throwable
 	 */
 	public function execute(array $args = []): self
 	{
@@ -32,7 +34,7 @@ class StoreAction extends BaseUserAction
 
 			DB::commit();
 			$this->success = true;
-		} catch (Exception $e) {
+		} catch (Throwable $e) {
 			DB::rollback();
 			throw $e;
 		}

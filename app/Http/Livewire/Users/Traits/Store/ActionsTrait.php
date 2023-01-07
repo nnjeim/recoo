@@ -3,13 +3,16 @@
 namespace App\Http\Livewire\Users\Traits\Store;
 
 use App\Actions\User;
+use Illuminate\Http\RedirectResponse;
 
 trait ActionsTrait
 {
 	/**
-	 * @return void
+	 * Method to store a user.
+	 *
+	 * @return RedirectResponse|null
 	 */
-	public function storeUser()
+	public function storeUser(): ?RedirectResponse
 	{
 		$message = '';
 
@@ -20,7 +23,7 @@ trait ActionsTrait
 		$this->displayErrors($validator);
 
 		if ($validator->fails()) {
-			return;
+			return null;
 		}
 
 		$action = trigger(User\StoreAction::class, $this->user)->withResponse();
@@ -43,5 +46,7 @@ trait ActionsTrait
 
 		// notification
 		$this->notifyAction($action->success, $message);
+
+		return null;
 	}
 }

@@ -107,7 +107,7 @@ trait ActionsTrait
 
 	/**
 	 * Method to restore records.
-	 * @param  int  $id
+	 * @param int|null $id
 	 * @return void
 	 */
 	public function restoreRecords(?int $id = null)

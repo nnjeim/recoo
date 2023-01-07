@@ -9,7 +9,7 @@ use App\Models\Record;
 class CountTrashedAction extends BaseRecordAction
 {
 	/**
-	 * @param  array  $args
+	 * @param array|null $args
 	 * @return $this
 	 */
 	public function execute(?array $args = []): self

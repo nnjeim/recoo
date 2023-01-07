@@ -13,5 +13,5 @@ abstract class BaseLogAction extends BaseAction
 
 	protected string $attribute = 'log';
 
-	abstract public function execute(array $args);
+	abstract public function execute(array $args = []);
 }
