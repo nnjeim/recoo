@@ -7,7 +7,9 @@ use App\Http\Livewire\Users\Traits\Store\StateTrait;
 use App\Http\Livewire\Users\Traits\Store\ValidationTrait;
 use App\Http\Livewire\Traits\WithToasts;
 use App\Http\Livewire\Traits\WithVerticalTabs;
-use Illuminate\View\View;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
 class Store extends Component
@@ -25,9 +27,9 @@ class Store extends Component
 	}
 
 	/**
-	 * @return View
+	 * @return Application|Factory|View
 	 */
-	public function render(): View
+	public function render(): Application|Factory|View
 	{
 		return view('components.users.store');
 	}

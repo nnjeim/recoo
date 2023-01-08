@@ -8,11 +8,11 @@ trait WithPersist
 	 * Method to forget persisted key.
 	 *
 	 *
-	 * @param  array|string  $keys
+	 * @param array|string $keys
 	 *
 	 * @return $this
 	 */
-	public function forget($keys): self
+	public function forget(array|string $keys): self
 	{
 		if (is_array($keys)) {
 			session()->forget(array_map([$this, 'getKey'], $keys));
@@ -23,16 +23,29 @@ trait WithPersist
 		return $this;
 	}
 
+	/**
+	 * @param string $key
+	 * @return mixed
+	 */
 	public function getPersisted(string $key): mixed
 	{
 		return session($this->getKey($key));
 	}
 
+	/**
+	 * @param string $key
+	 * @return string
+	 */
 	public function getKey(string $key): string
 	{
 		return static::class . '_' . $key;
 	}
 
+	/**
+	 * @param string $key
+	 * @param mixed $value
+	 * @return $this
+	 */
 	public function persist(string $key, mixed $value): self
 	{
 		session([$this->getKey($key) => $value]);

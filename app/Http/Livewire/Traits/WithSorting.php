@@ -8,7 +8,7 @@ trait WithSorting
 
 	public string $sortDirection = 'desc';
 
-	public function sortBy($field)
+	public function sortBy($field): void
 	{
 		$this->sortDirection = $this->sortBy === $field
 			? $this->reverseSort()

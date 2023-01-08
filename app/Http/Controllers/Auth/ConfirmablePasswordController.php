@@ -4,21 +4,23 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
-use Illuminate\View\View;
 
 class ConfirmablePasswordController extends Controller
 {
     /**
      * Show the confirm password view.
      *
-     * @return View
-     */
-    public function show(): View
-    {
+     * @return Application|Factory|View
+	 */
+    public function show(): Application|Factory|View
+	{
         return view('auth.confirm-password');
     }
 

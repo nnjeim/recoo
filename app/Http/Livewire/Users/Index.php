@@ -9,6 +9,9 @@ use App\Http\Livewire\Users\Traits\Index\ActionsTrait;
 use App\Http\Livewire\Users\Traits\Index\GettersTrait;
 use App\Http\Livewire\Users\Traits\Index\SettersTrait;
 use App\Http\Livewire\Users\Traits\Index\StateTrait;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -46,7 +49,10 @@ class Index extends Component
 		'restoreRecord-ev' => 'restoreRecords',
 	];
 
-	public function render()
+	/**
+	 * @return Application|Factory|View
+	 */
+	public function render(): Application|Factory|View
 	{
 		// persist
 		$this->getPersistedProps();

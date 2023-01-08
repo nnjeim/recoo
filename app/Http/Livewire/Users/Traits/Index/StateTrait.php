@@ -14,7 +14,7 @@ trait StateTrait
 
 	public array $pageRecords = [];
 
-	public $confirmingRecordDeletion = false;
+	public mixed $confirmingRecordDeletion = false;
 
 	public bool $showDeleted = false;
 

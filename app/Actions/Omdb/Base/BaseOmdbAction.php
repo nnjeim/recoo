@@ -3,6 +3,7 @@
 namespace App\Actions\Omdb\Base;
 
 use App\Actions\BaseAction;
+use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Support\Facades\Http;
 
 abstract class BaseOmdbAction extends BaseAction
@@ -13,7 +14,7 @@ abstract class BaseOmdbAction extends BaseAction
 
 	protected string $apiBaseUrl;
 
-	protected $httpClient;
+	protected PendingRequest $httpClient;
 
 	public function __construct()
 	{

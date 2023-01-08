@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 trait RecordRelations
 {
-	public static function bootRecordRelations()
+	public static function bootRecordRelations(): void
 	{
 		static::deleting(function (Record $record) {
 			if ($record->forceDeleting) {

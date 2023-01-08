@@ -13,7 +13,7 @@ class UnprocessableException extends Exception
 	 *
 	 * @return bool|null
 	 */
-	public function report()
+	public function report(): ?bool
 	{
 		return null;
 	}

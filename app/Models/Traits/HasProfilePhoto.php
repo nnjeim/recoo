@@ -33,8 +33,8 @@ trait HasProfilePhoto
      *
      * @return void
      */
-    public function deleteProfilePhoto()
-    {
+    public function deleteProfilePhoto(): void
+	{
         if (is_null($this->profile_photo_path)) {
             return;
         }
@@ -51,8 +51,8 @@ trait HasProfilePhoto
      *
      * @return string
      */
-    public function getProfilePhotoUrlAttribute()
-    {
+    public function getProfilePhotoUrlAttribute(): string
+	{
         return $this->profile_photo_path
                     ? Storage::disk('public')->url($this->profile_photo_path)
                     : $this->defaultProfilePhotoUrl();
@@ -63,12 +63,20 @@ trait HasProfilePhoto
      *
      * @return string
      */
-    protected function defaultProfilePhotoUrl()
-    {
+    protected function defaultProfilePhotoUrl(): string
+	{
         $name = trim(collect(explode(' ', $this->name))->map(function ($segment) {
             return mb_substr($segment, 0, 1);
         })->join(' '));
 
         return 'https://ui-avatars.com/api/?name='.urlencode($name).'&color=7F9CF5&background=EBF4FF';
     }
+
+	/**
+	 * @return string
+	 */
+	protected function profilePhotoDisk(): string
+	{
+		return 'public';
+	}
 }

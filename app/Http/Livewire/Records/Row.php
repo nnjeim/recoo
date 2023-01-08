@@ -3,13 +3,17 @@
 namespace App\Http\Livewire\Records;
 
 use App\Http\Livewire\Traits\WithToasts;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Support\Collection;
 use Livewire\Component;
 
 class Row extends Component
 {
 	use WithToasts;
 
-	public $rowData;
+	public Collection $rowData;
 
 	public function showRecord()
 	{
@@ -26,7 +30,10 @@ class Row extends Component
 		$this->emitUp('restoreRecord-ev', $this->rowData['id']);
 	}
 
-	public function render()
+	/**
+	 * @return Factory|View|Application
+	 */
+	public function render(): Factory|View|Application
 	{
 		return view('components.records.row');
 	}

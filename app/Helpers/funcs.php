@@ -8,7 +8,7 @@ if (! function_exists('trigger')) {
 	 * @param  null  $args
 	 * @return mixed
 	 */
-	function trigger(string $className, $args = null)
+	function trigger(string $className, $args = null): mixed
 	{
 		return app($className)->execute($args);
 	}

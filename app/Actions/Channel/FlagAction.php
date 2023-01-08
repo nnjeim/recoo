@@ -6,7 +6,7 @@ use App\Models\Channel;
 
 class FlagAction
 {
-	public function __construct(private Channel $channel)
+	public function __construct(private readonly Channel $channel)
 	{
 	}
 

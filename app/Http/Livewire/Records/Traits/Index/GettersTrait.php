@@ -36,7 +36,10 @@ trait GettersTrait
 		return $exportUrl;
 	}
 
-	public function getPersistedProps()
+	/**
+	 * @return void
+	 */
+	public function getPersistedProps(): void
 	{
 		// persist
 		if ($this->getPersisted('perPage')) {

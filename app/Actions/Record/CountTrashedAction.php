@@ -14,6 +14,7 @@ class CountTrashedAction extends BaseRecordAction
 	 */
 	public function execute(?array $args = []): self
 	{
+
 		$this->success = true;
 		$this->data = Record::query()
 			->onlyTrashed()

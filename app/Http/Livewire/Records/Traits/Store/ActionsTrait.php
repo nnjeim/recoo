@@ -4,7 +4,7 @@ namespace App\Http\Livewire\Records\Traits\Store;
 
 use App\Actions\Omdb\FetchAction;
 use App\Actions\Record;
-use Livewire\Redirector;
+use Illuminate\Http\RedirectResponse;
 
 trait ActionsTrait
 {
@@ -78,9 +78,9 @@ trait ActionsTrait
 	}
 
 	/**
-	 * @return Redirector|null
+	 * @return RedirectResponse|null
 	 */
-	public function storeRecord(): ?Redirector
+	public function storeRecord(): ?RedirectResponse
 	{
 		$message = '';
 

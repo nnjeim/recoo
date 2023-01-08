@@ -24,7 +24,8 @@ abstract class BaseSubscriber
 	{
 		$user = $this->getUser();
 		// log
-		$this->model
+		$this
+			->model
 			->logs()
 			->create([
 				'user_id' => $user?->id,

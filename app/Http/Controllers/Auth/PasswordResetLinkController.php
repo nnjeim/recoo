@@ -3,21 +3,23 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Validation\ValidationException;
-use Illuminate\View\View;
 
 class PasswordResetLinkController extends Controller
 {
     /**
      * Display the password reset link request view.
      *
-     * @return View
-     */
-    public function create(): View
-    {
+     * @return Application|Factory|View
+	 */
+    public function create(): Application|Factory|View
+	{
         return view('auth.forgot-password');
     }
 

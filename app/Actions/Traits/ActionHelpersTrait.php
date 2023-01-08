@@ -2,8 +2,6 @@
 
 namespace App\Actions\Traits;
 
-use App\Actions\ModuleOption;
-use App\Actions\ModuleSetting;
 use Illuminate\Support\Facades\Auth;
 
 trait ActionHelpersTrait

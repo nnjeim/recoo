@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 trait UserRelations
 {
-	public static function bootUserRelations()
+	public static function bootUserRelations(): void
 	{
 		static::deleting(function (User $user) {
 			if ($user->forceDeleting) {

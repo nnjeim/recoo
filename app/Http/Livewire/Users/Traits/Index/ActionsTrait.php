@@ -110,7 +110,7 @@ trait ActionsTrait
 	 * @param int|null $id
 	 * @return void
 	 */
-	public function restoreRecords(?int $id = null)
+	public function restoreRecords(?int $id = null): void
 	{
 		$message = '';
 
@@ -141,7 +141,7 @@ trait ActionsTrait
 		$this->notifyAction($action->success, $message);
 	}
 
-	public function exportUrlProperty()
+	public function exportUrlProperty(): void
 	{
 		$this->dispatchBrowserEvent('setExportUrlProperty-ev', ['url' => $this->getExportUrlProperty()]);
 	}

@@ -18,7 +18,7 @@ class UserStoredEmailChannel
 	 * @param UserStoredNotification $notification
 	 * @return void
 	 */
-	public function send($notifiable, UserStoredNotification $notification)
+	public function send($notifiable, UserStoredNotification $notification): void
 	{
 		$channel = invoke(Channel\StoreAction::class, $notifiable, $notifiable->id, 'store', 'email');
 

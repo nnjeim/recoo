@@ -12,7 +12,7 @@ trait ValidationTrait
 	 * @param  Validator  $validator
 	 * @return void
 	 */
-	public function displayErrors(Validator $validator)
+	public function displayErrors(Validator $validator): void
 	{
 		if ($validator->errors()->count()) {
 			foreach ($validator->errors()->messages() as $key => $message) {

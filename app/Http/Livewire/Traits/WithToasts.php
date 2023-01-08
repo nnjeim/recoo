@@ -11,7 +11,7 @@ trait WithToasts
 	 * @param  string  $type
 	 * @return void
 	 */
-	public function toast(string $message, string $title = 'Congratulations!', string $type = 'success')
+	public function toast(string $message, string $title = 'Congratulations!', string $type = 'success'): void
 	{
 		$this->dispatchBrowserEvent('toast-ev', ['message' => $message, 'title' => $title, 'type' => $type]);
 	}
@@ -21,7 +21,7 @@ trait WithToasts
 	 * @param  string  $message
 	 * @return void
 	 */
-	public function notifyAction(bool $success, string $message)
+	public function notifyAction(bool $success, string $message): void
 	{
 		$success
 			? $this->toast($message, trans('notifications.success'))

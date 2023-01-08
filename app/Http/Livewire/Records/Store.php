@@ -7,6 +7,9 @@ use App\Http\Livewire\Records\Traits\Store\StateTrait;
 use App\Http\Livewire\Records\Traits\Store\ValidationTrait;
 use App\Http\Livewire\Traits\WithToasts;
 use App\Http\Livewire\Traits\WithVerticalTabs;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
 class Store extends Component
@@ -23,7 +26,7 @@ class Store extends Component
 		$this->initTabs();
 	}
 
-	public function render()
+	public function render(): Factory|View|Application
 	{
 		return view('components.records.store');
 	}

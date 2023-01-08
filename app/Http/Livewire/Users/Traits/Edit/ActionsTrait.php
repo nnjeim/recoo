@@ -21,7 +21,7 @@ trait ActionsTrait
 	/**
 	 * @return void
 	 */
-	public function updateUser()
+	public function updateUser(): void
 	{
 		$message = '';
 
