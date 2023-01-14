@@ -64,7 +64,7 @@ Route::middleware([
 					'prefix' => 'profile',
 					'as' => 'profile.',
 				], function () {
-					Route::get('/', ViewController::class)->name('edit');
+					Route::get('/', [ProfileController::class, 'index'])->name('index');
 					Route::delete('/', [ProfileController::class, 'destroy'])->name('destroy');
 				});
 				// users
