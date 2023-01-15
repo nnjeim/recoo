@@ -2,7 +2,8 @@
 
 use App\Http\Controllers\Auth;
 use App\Http\Controllers\View\ViewController;
-use App\Http\Controllers\Profile\ProfileController;
+use App\Http\Controllers\Auth\NewPasswordController;
+use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Middleware\EnsureEmailIsVerified;
 use Illuminate\Support\Facades\Route;
 
@@ -28,7 +29,14 @@ Route::middleware([
 		->group(function () {
 			Route::get('register', 'showRegisterForm')->name('register');
 		});
-	require __DIR__ . '/partials/auth.php';
+	// password recovery routes
+	Route::middleware('guest')
+		->group(function () {
+			Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])->name('password.request');
+			Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])->name('password.email');
+			Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])->name('password.reset');
+			Route::post('reset-password', [NewPasswordController::class, 'store'])->name('password.store');
+		});
 
 	/*
 	|--------------------------------------------------------------------------
@@ -72,35 +80,37 @@ Route::middleware([
 			*/
 			Route::middleware(EnsureEmailIsVerified::class)
 				->group(function () {
-					// dashboard
-					Route::get('/dashboard', ViewController::class)->name('dashboard');
-					// profile
-					Route::group([
-						'prefix' => 'profile',
-						'as' => 'profile.',
-					], function () {
-						Route::get('/', [ProfileController::class, 'index'])->name('index');
-						Route::delete('/', [ProfileController::class, 'destroy'])->name('destroy');
-					});
-					// users
-					Route::group([
-						'prefix' => 'users',
-						'as' => 'users.',
-					], function () {
-						Route::get('/', ViewController::class)->name('index');
-						Route::get('/{id}', ViewController::class)->where('id', '[0-9]+')->name('edit');
-						Route::get('/create', ViewController::class)->name('store');
-						Route::get('/options', ViewController::class)->name('options');
-					});
-					// records
-					Route::group([
-						'prefix' => 'records',
-						'as' => 'records.',
-					], function () {
-						Route::get('/', ViewController::class)->name('index');
-						Route::get('/{id}', ViewController::class)->where('id', '[0-9]+')->name('edit');
-						Route::get('/create', ViewController::class)->name('store');
-					});
+					Route::controller(ViewController::class)
+						->group(function () {
+							// dashboard
+							Route::get('/dashboard', 'builder')->name('dashboard');
+							// profile
+							Route::group([
+								'prefix' => 'profile',
+								'as' => 'profile.',
+							], function () {
+								Route::get('/', 'builder')->name('index');
+							});
+							// users
+							Route::group([
+								'prefix' => 'users',
+								'as' => 'users.',
+							], function () {
+								Route::get('/', 'builder')->name('index');
+								Route::get('/{id}', 'builder')->where('id', '[0-9]+')->name('edit');
+								Route::get('/create', 'builder')->name('store');
+								Route::get('/options', 'builder')->name('options');
+							});
+							// records
+							Route::group([
+								'prefix' => 'records',
+								'as' => 'records.',
+							], function () {
+								Route::get('/', 'builder')->name('index');
+								Route::get('/{id}', 'builder')->where('id', '[0-9]+')->name('edit');
+								Route::get('/create', 'builder')->name('store');
+							});
+						});
 				});
 		});
 });

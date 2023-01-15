@@ -1,35 +1,12 @@
 <?php
 
-namespace App\Http\Livewire\Profile;
+namespace App\Http\Livewire\Profile\Traits\PasswordUpdate;
 
 use App\Actions\Auth\UpdatePasswordAction;
-use App\Http\Livewire\Traits\WithToasts;
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\View\View;
 use Illuminate\Validation\Rules\Password;
-use Illuminate\Support\Facades\Auth;
-use Livewire\Component;
 
-class PasswordReset extends Component
+trait ActionsTrait
 {
-	use WithToasts;
-
-	protected $errorBag = 'updatePassword';
-
-	public string $current_password = '';
-
-	public string $password = '';
-
-	public string $password_confirmation = '';
-
-	public array $user;
-
-	public function mount()
-	{
-		$this->user = Auth::user()->toArray();
-	}
-
 	/**
 	 * Method to update a user's password.
 	 *
@@ -84,13 +61,5 @@ class PasswordReset extends Component
 			// redirect to login page
 			redirect()->route('login');
 		}
-	}
-
-	/**
-	 * @return Factory|View|Application
-	 */
-	public function render(): Factory|View|Application
-	{
-		return view('components.profile.password-reset');
 	}
 }

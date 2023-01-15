@@ -17,9 +17,9 @@
 			</div>
 
 			<div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-				<!-- password reset -->
+				<!-- password update -->
 				<div class="max-w-xl">
-					<livewire:profile.password-reset/>
+					<livewire:profile.password-update/>
 				</div>
 			</div>
 

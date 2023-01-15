@@ -22,7 +22,7 @@ class ViewController
 	/**
 	 * @return View
 	 */
-	public function __invoke(): View
+	public function builder(): View
 	{
 		$dottedPath = $this->routeName . (! str_contains($this->routeName, '.') ? '.index' : '');
 
