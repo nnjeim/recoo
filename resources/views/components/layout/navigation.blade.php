@@ -91,7 +91,7 @@
             </div>
 
             <div class="mt-3 space-y-1">
-                <x-responsive-nav-link :href="route('profile.index§§')">
+                <x-responsive-nav-link :href="route('profile.index')">
                     {{ __('general.navbar.profile') }}
                 </x-responsive-nav-link>
 

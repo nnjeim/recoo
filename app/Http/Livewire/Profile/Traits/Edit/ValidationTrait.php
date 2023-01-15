@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Profile\Traits;
+namespace App\Http\Livewire\Profile\Traits\Edit;
 
 use App\Models\User;
 use Illuminate\Validation\Rule;

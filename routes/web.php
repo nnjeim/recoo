@@ -37,55 +37,71 @@ Route::middleware([
 	*/
 	Route::middleware('auth')
 		->group(function () {
-		Route::controller(Auth\EmailVerificationController::class)
-			->group(function () {
-				// verify email view
-				Route::get('verify-email', 'showVerificationEmailForm')->name('verification.notice');
-				// resend verification email action
-				Route::post('email/verification-notification', 'resendVerificationEmail')
-					->middleware('throttle:6,1')
-					->name('verification.send');
-				// verify email action
-				Route::get('verify-email/{id}/{hash}', 'verifyEmail')
-					->middleware(['signed', 'throttle:6,1'])
-					->name('verification.verify');
-			});
-		/*
-		|--------------------------------------------------------------------------
-		| Verified routes
-		|--------------------------------------------------------------------------
-		*/
-		Route::middleware(EnsureEmailIsVerified::class)
-			->group(function () {
-				// dashboard
-				Route::get('/dashboard', ViewController::class)->name('dashboard');
-				// profile
-				Route::group([
-					'prefix' => 'profile',
-					'as' => 'profile.',
-				], function () {
-					Route::get('/', [ProfileController::class, 'index'])->name('index');
-					Route::delete('/', [ProfileController::class, 'destroy'])->name('destroy');
+			/*
+			|--------------------------------------------------------------------------
+			| Password routes
+			|--------------------------------------------------------------------------
+			*/
+			Route::controller(Auth\PasswordController::class)
+				->group(function () {
+					Route::get('confirm-password', 'show')->name('password.confirm');
+					Route::post('confirm-password', 'store');
+					Route::put('password', 'update')->name('password.update');
 				});
-				// users
-				Route::group([
-					'prefix' => 'users',
-					'as' => 'users.',
-				], function () {
-					Route::get('/', ViewController::class)->name('index');
-					Route::get('/{id}', ViewController::class)->where('id', '[0-9]+')->name('edit');
-					Route::get('/create', ViewController::class)->name('store');
-					Route::get('/options', ViewController::class)->name('options');
+			/*
+			|--------------------------------------------------------------------------
+			| Email verification routes
+			|--------------------------------------------------------------------------
+			*/
+			Route::controller(Auth\EmailVerificationController::class)
+				->group(function () {
+					// verify email view
+					Route::get('verify-email', 'showVerificationEmailForm')->name('verification.notice');
+					// resend verification email action
+					Route::post('email/verification-notification', 'resendVerificationEmail')
+						->middleware('throttle:6,1')
+						->name('verification.send');
+					// verify email action
+					Route::get('verify-email/{id}/{hash}', 'verifyEmail')
+						->middleware(['signed', 'throttle:6,1'])
+						->name('verification.verify');
 				});
-				// records
-				Route::group([
-					'prefix' => 'records',
-					'as' => 'records.',
-				], function () {
-					Route::get('/', ViewController::class)->name('index');
-					Route::get('/{id}', ViewController::class)->where('id', '[0-9]+')->name('edit');
-					Route::get('/create', ViewController::class)->name('store');
+			/*
+			|--------------------------------------------------------------------------
+			| Verified routes
+			|--------------------------------------------------------------------------
+			*/
+			Route::middleware(EnsureEmailIsVerified::class)
+				->group(function () {
+					// dashboard
+					Route::get('/dashboard', ViewController::class)->name('dashboard');
+					// profile
+					Route::group([
+						'prefix' => 'profile',
+						'as' => 'profile.',
+					], function () {
+						Route::get('/', [ProfileController::class, 'index'])->name('index');
+						Route::delete('/', [ProfileController::class, 'destroy'])->name('destroy');
+					});
+					// users
+					Route::group([
+						'prefix' => 'users',
+						'as' => 'users.',
+					], function () {
+						Route::get('/', ViewController::class)->name('index');
+						Route::get('/{id}', ViewController::class)->where('id', '[0-9]+')->name('edit');
+						Route::get('/create', ViewController::class)->name('store');
+						Route::get('/options', ViewController::class)->name('options');
+					});
+					// records
+					Route::group([
+						'prefix' => 'records',
+						'as' => 'records.',
+					], function () {
+						Route::get('/', ViewController::class)->name('index');
+						Route::get('/{id}', ViewController::class)->where('id', '[0-9]+')->name('edit');
+						Route::get('/create', ViewController::class)->name('store');
+					});
 				});
-			});
 		});
 });

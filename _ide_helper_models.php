@@ -71,6 +71,33 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\Notification
+ *
+ * @property int $id
+ * @property string $type
+ * @property string $notifiable_type
+ * @property int $notifiable_id
+ * @property string $data
+ * @property \Illuminate\Support\Carbon|null $read_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Notification newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Notification newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Notification query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Notification whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Notification whereData($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Notification whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Notification whereNotifiableId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Notification whereNotifiableType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Notification whereReadAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Notification whereType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Notification whereUpdatedAt($value)
+ */
+	class Notification extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Record
  *
  * @property int $id
@@ -147,6 +174,27 @@ namespace App\Models{
  * @method static \Illuminate\Database\Query\Builder|User withoutTrashed()
  */
 	class User extends \Eloquent implements \Illuminate\Contracts\Auth\MustVerifyEmail {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\UserLogin
+ *
+ * @property int $id
+ * @property int $user_id
+ * @property array|null $params
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|UserLogin newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|UserLogin newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|UserLogin query()
+ * @method static \Illuminate\Database\Eloquent\Builder|UserLogin whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserLogin whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserLogin whereParams($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserLogin whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserLogin whereUserId($value)
+ */
+	class UserLogin extends \Eloquent {}
 }
 
 namespace App\Models{
