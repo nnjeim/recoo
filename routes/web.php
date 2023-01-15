@@ -46,7 +46,6 @@ Route::middleware([
 				->group(function () {
 					Route::get('confirm-password', 'show')->name('password.confirm');
 					Route::post('confirm-password', 'store');
-					Route::put('password', 'update')->name('password.update');
 				});
 			/*
 			|--------------------------------------------------------------------------

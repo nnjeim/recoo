@@ -9,6 +9,8 @@ use Livewire\Component;
 
 class Login extends Component
 {
+	public string $status = '';
+
 	/**
 	 * @return Application|Factory|View
 	 */

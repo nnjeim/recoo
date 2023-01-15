@@ -7,6 +7,7 @@ return [
 	'email' => 'email address|email addresses',
 	'record' => 'record|records',
 	'user' => 'user|users',
+	'password' => 'password|passwords',
 	'address' => 'address|addresses',
 	'profile' => 'profile|profiles',
 	'role' => 'role|roles',
