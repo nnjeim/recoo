@@ -1,8 +1,55 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import "micons";
-@import "buttons";
+
+.micon {
+    @apply
+    inline-block
+    align-middle;
+}
+
+.button {
+    @apply
+    active:bg-gray-900
+    border
+    border-transparent
+    duration-150
+    ease-in-out
+    focus:bg-gray-700
+    focus:outline-none
+    focus:ring-2
+    focus:ring-offset-2
+    focus:ring-red-600
+    font-semibold
+    hover:bg-gray-700
+    inline-flex
+    items-center
+    px-4
+    py-2
+    rounded-md
+    text-white
+    text-xs
+    tracking-widest
+    transition
+    uppercase;
+}
+
+.button-primary {
+    @apply
+    bg-gray-800
+    border-gray-800
+}
+
+.button-transparent {
+    @apply
+    active:bg-gray-200
+    bg-gray-100
+    border
+    border-gray-800
+    hover:bg-gray-200
+    text-gray-800;
+}
+
 
 .show-password {
     top: 9px;

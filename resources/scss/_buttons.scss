@@ -23,20 +23,20 @@
     transition
     ease-in-out
     duration-150
+}
 
-    &-primary {
-        @apply
-        bg-gray-800
-        border-gray-800
-    }
+button-primary {
+    @apply
+    bg-gray-800
+    border-gray-800
+}
 
-    &-transparent {
-        @apply
-        border
-        border-gray-800
-        bg-gray-100
-        text-gray-800
-        hover:bg-gray-200
-        active:bg-gray-200
-    }
+button-transparent {
+    @apply
+    border
+    border-gray-800
+    bg-gray-100
+    text-gray-800
+    hover:bg-gray-200
+    active:bg-gray-200
 }
