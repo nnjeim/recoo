@@ -1,23 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@import "_micons";
-@import "_buttons";
+@import "micons";
+@import "buttons";
 
 .show-password {
-	top: 9px;
-	right: 9px;
-	width: 18px;
-	height: 18px;
-	position: absolute;
-	cursor: pointer;
+    top: 9px;
+    right: 9px;
+    width: 18px;
+    height: 18px;
+    position: absolute;
+    cursor: pointer;
 }
 
 .table__tr {
-	&:hover {
-		box-shadow: inset 1px 0 0 #dadce0, inset -1px 0 0 #dadce0, 0 1px 2px 0 rgb(60 64 67 / 30%), 0 1px 3px 1px rgb(60 64 67 / 15%);
-		position: relative;
-		z-index: 2;
-	}
+    &:hover {
+        @apply
+        relative
+        shadow-table_tr
+        z-[2];
+    }
 }
