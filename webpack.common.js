@@ -96,7 +96,7 @@ module.exports = {
     },
   },
   resolve: {
-    extensions: ['.js'],
+    extensions: ['.js', '.jsx'],
     alias: {
       '@js': path.resolve(__dirname, 'resources/js'),
     },
