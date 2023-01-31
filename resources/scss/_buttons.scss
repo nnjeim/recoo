@@ -1,42 +1,43 @@
 .button {
     @apply
+    active:bg-gray-900
+    border
+    border-transparent
+    duration-150
+    ease-in-out
+    focus:bg-gray-700
+    focus:outline-none
+    focus:ring-2
+    focus:ring-offset-2
+    focus:ring-red-600
+    font-semibold
+    hover:bg-gray-700
     inline-flex
     items-center
     px-4
     py-2
-    bg-transparent
-    border
-    border-transparent
     rounded-md
-    font-semibold
-    text-xs
     text-white
-    uppercase
+    text-xs
     tracking-widest
-    hover:bg-gray-700
-    focus:bg-gray-700
-    active:bg-gray-900
-    focus:outline-none
-    focus:ring-2
-    focus:ring-red-600
-    focus:ring-offset-2
     transition
-    ease-in-out
-    duration-150
-}
+    uppercase;
 
-button-primary {
-    @apply
-    bg-gray-800
-    border-gray-800
-}
+    &-primary {
+        @extend .button;
+        @apply
+        bg-gray-800
+        border-gray-800
+    }
 
-button-transparent {
-    @apply
-    border
-    border-gray-800
-    bg-gray-100
-    text-gray-800
-    hover:bg-gray-200
-    active:bg-gray-200
+    &-transparent {
+        @extend .button;
+        @apply
+        active:bg-gray-200
+        bg-gray-100
+        border
+        border-gray-800
+        hover:bg-gray-200
+        text-gray-800;
+    }
 }
