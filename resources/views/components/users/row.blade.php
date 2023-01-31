@@ -1,5 +1,6 @@
 <tr x-cloak
 	x-data='usersRowData(<?php echo json_encode($rowData, JSON_HEX_APOS); ?>)'
+	class="table__tr"
 	x-bind:class="{
 		'bg-red-600/5': row.deleted,
 		'even:bg-gray-50': !row.deleted,

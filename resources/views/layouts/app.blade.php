@@ -15,8 +15,11 @@
 	<!-- Fonts -->
 	<link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
 	<!-- Styles -->
+	<link rel="stylesheet" href="{{ mix('css/app.css') }}">
 	@stack('styles')
-	@vite(['resources/scss/app.scss', 'resources/js/app.js'])
+	<!-- Scripts -->
+	<script type="application/javascript" src="{{ mix('js/vendor.js') }}" defer></script>
+	<script type="application/javascript" src="{{ mix('js/index.js') }}" defer></script>
 	@livewireStyles
 	<!-- Scripts -->
 	@stack('scripts')
