@@ -2,12 +2,14 @@
 
 namespace App\Subscribers\User;
 
+use App\Actions\Geoip\LookupAction;
 use App\Events\User;
 use App\Notifications\UserEmail\VerifyEmailNotification;
 use App\Subscribers\BaseSubscriber;
 use App\Notifications\User\UserStoredNotification;
 use App\Notifications\User\UserUpdatedNotification;
-use Illuminate\Auth\Events\Verified;
+use Illuminate\Auth\Events\Login;
+use Illuminate\Auth\Events\Logout;
 
 class UserSubscriber extends BaseSubscriber
 {
@@ -18,6 +20,47 @@ class UserSubscriber extends BaseSubscriber
 	 */
 	public function __construct()
 	{
+	}
+
+	/**
+	 * @param  Login  $event
+	 * @return void
+	 */
+	public function userLogin(Login $event): void
+	{
+		$user = $event->user;
+		// Log
+		$this
+			->setModel($user)
+			->setLabel(__FUNCTION__)
+			->setBody([
+				'subject' => $user->name,
+			])
+			->log();
+
+		// update user logins
+		$user
+			->logins()
+			->create([
+				'params' => invoke(LookupAction::class),
+			]);
+	}
+
+	/**
+	 * @param  Logout  $event
+	 * @return void
+	 */
+	public function userLogout(Logout $event): void
+	{
+		$user = $event->user;
+		// Log
+		$this
+			->setModel($user)
+			->setLabel(__FUNCTION__)
+			->setBody([
+				'subject' => $user->name,
+			])
+			->log();
 	}
 
 	/**
@@ -140,27 +183,15 @@ class UserSubscriber extends BaseSubscriber
 	}
 
 	/**
-	 * @param  Verified  $event
-	 */
-	public function userVerified(Verified $event): void
-	{
-		$user = $event->user;
-		// Log
-		$this
-			->setModel($user)
-			->setLabel(__FUNCTION__)
-			->setBody([
-				'subject' => $user->name,
-			])
-			->log();
-	}
-
-	/**
 	 * @param $events
 	 * @return void
 	 */
 	public function subscribe($events): void
 	{
+		$events->listen(Login::class, self::class . '@userLogin');
+
+		$events->listen(Logout::class, self::class . '@userLogout');
+
 		$events->listen(User\UserStoredEvent::class, self::class . '@userStored');
 
 		$events->listen(User\UserRegisteredEvent::class, self::class . '@userRegistered');
@@ -172,7 +203,5 @@ class UserSubscriber extends BaseSubscriber
 		$events->listen(User\UserRestoredEvent::class, self::class . '@userRestored');
 
 		$events->listen(User\UserPasswordResetEvent::class, self::class . '@userPasswordReset');
-
-		$events->listen(Verified::class, self::class . '@userVerified');
 	}
 }

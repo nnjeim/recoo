@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Actions\Geoip\LookupAction;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Verified;
-use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -16,23 +14,21 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 class EmailVerificationController extends Controller
 {
-    /**
-     * Display the email verification prompt.
-     *
-     * @param  Request  $request
-     * @return Application|RedirectResponse|View|Factory
+	/**
+	 * Display the email verification prompt.
+	 *
+	 * @param  Request  $request
+	 * @return Application|RedirectResponse|View|Factory
 	 */
-    public function showVerificationEmailForm(Request $request): Application|RedirectResponse|View|Factory
+	public function showVerificationEmailForm(Request $request): Application|RedirectResponse|View|Factory
 	{
-        return $request->user()->hasVerifiedEmail()
-			? redirect()->intended(RouteServiceProvider::HOME)
-			: view('auth.verify-email');
-    }
+		return $request->user()->hasVerifiedEmail() ? redirect()->intended(RouteServiceProvider::HOME) : view('auth.verify-email');
+	}
 
 	/**
 	 * Mark the authenticated user's email address as verified.
 	 *
-	 * @param Request $request
+	 * @param  Request  $request
 	 * @return RedirectResponse
 	 */
 	public function resendVerificationEmail(Request $request): RedirectResponse
@@ -55,28 +51,13 @@ class EmailVerificationController extends Controller
 	public function verifyEmail(EmailVerificationRequest $request): RedirectResponse
 	{
 		if ($request->user()->hasVerifiedEmail()) {
-			return redirect()->intended(RouteServiceProvider::HOME.'?verified=1');
+			return redirect()->intended(RouteServiceProvider::HOME . '?verified=1');
 		}
 
 		if ($request->user()->markEmailAsVerified()) {
-			// update user logins
-			$this->updateLastLogin($request->user());
-
 			event(new Verified($request->user()));
 		}
 
-		return redirect()->intended(RouteServiceProvider::HOME.'?verified=1');
-	}
-
-	/**
-	 * @param Authenticatable $user
-	 */
-	private function updateLastLogin(Authenticatable $user): void
-	{
-		// user login
-		$user->logins()
-			->create([
-				'params' => invoke(LookupAction::class),
-			]);
+		return redirect()->intended(RouteServiceProvider::HOME . '?verified=1');
 	}
 }
