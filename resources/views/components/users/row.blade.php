@@ -44,6 +44,15 @@
 			</div>
 		</template>
 	</x-table.td>
+	<x-table.td>
+		<div class="flex flex-wrap gap-1 mb-1.5">
+			<div x-text="'{{ __('users.table.body.last_login_at') }}'"></div>
+			<div x-text="row.last_login_at"></div>
+		</div>
+	</x-table.td>
+	<x-table.td align="center">
+		<span x-text="row.roles"></span>
+	</x-table.td>
 	<x-table.td align="center">
 		<div class="w-full flex justify-center items-center">
 			<template x-if="+row.status === 1">

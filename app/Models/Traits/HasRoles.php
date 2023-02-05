@@ -26,6 +26,17 @@ trait HasRoles
 	}
 
 	/**
+	 * @param  string  $name
+	 * @return int
+	 */
+	public function getRoleId(string $name): int
+	{
+		$role = Arr::first(Role::all(), fn ($role) => $role['name'] === $name);
+
+		return $role->id;
+	}
+
+	/**
 	 * @param string $roleName
 	 * @return bool
 	 */

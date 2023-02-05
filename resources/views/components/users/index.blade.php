@@ -76,6 +76,14 @@
 					:sortBy="$sortBy"
 					:sortDirection="$sortDirection"
 				/>
+				<x-table.th title="{{ __('users.table.headers.login_status') }}" />
+				<x-table.th-sortable
+					title="{{ __('users.table.headers.roles') }}"
+					align="center"
+					sortField="role"
+					:sortBy="$sortBy"
+					:sortDirection="$sortDirection"
+				/>
 				<x-table.th-sortable
 					title="{{ __('users.table.headers.status') }}"
 					align="center"

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Actions\Geoip\LookupAction;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Verified;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -57,9 +59,24 @@ class EmailVerificationController extends Controller
 		}
 
 		if ($request->user()->markEmailAsVerified()) {
+			// update user logins
+			$this->updateLastLogin($request->user());
+
 			event(new Verified($request->user()));
 		}
 
 		return redirect()->intended(RouteServiceProvider::HOME.'?verified=1');
+	}
+
+	/**
+	 * @param Authenticatable $user
+	 */
+	private function updateLastLogin(Authenticatable $user): void
+	{
+		// user login
+		$user->logins()
+			->create([
+				'params' => invoke(LookupAction::class),
+			]);
 	}
 }

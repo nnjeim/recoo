@@ -26,6 +26,8 @@ return [
 		'headers' => [
 			'name' => 'Name',
 			'email_verified' => 'Email verified',
+			'login_status' => 'Login status',
+			'roles' => 'Roles',
 			'status' => 'Status',
 			'actions' => 'Actions',
 		],

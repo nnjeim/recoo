@@ -20,6 +20,8 @@ trait PaginateTransformer
 			->merge([
 				'email_verified' => $user->email_verified_at !== null,
 				'profile_photo_url' => $this->defaultProfilePhotoUrl($user),
+				'roles' => $user->roles()->pluck('name')->join(', '),
+				'last_login_at' => $user->last_login_at ? adjustUserTimezone($user->last_login_at) : '-',
 				'deleted' => $user->deleted_at !== null,
 			]);
 	}

@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Traits\HasProfilePhoto;
 use App\Models\Traits\HasRoles;
 use App\Models\Traits\Relations\UserRelations;
+use App\Models\Traits\Scopes\UserScopes;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -21,6 +22,7 @@ class User extends Authenticatable implements MustVerifyEmail
 	use SoftDeletes;
 	use HasProfilePhoto;
 	use UserRelations;
+	use UserScopes;
 	use HasRoles;
 
 	protected $fillable = [

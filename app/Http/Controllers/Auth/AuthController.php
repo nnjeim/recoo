@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Actions\Geoip\LookupAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginUsingCredentialsRequest;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\Factory as ViewFactory;
-use Illuminate\Http\RedirectResponse;
 
 class AuthController extends Controller
 {
@@ -58,6 +60,8 @@ class AuthController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
+	    // update user logins
+		$this->updateLastLogin($request->user());
 
         return redirect()->intended(RouteServiceProvider::HOME);
     }
@@ -78,4 +82,16 @@ class AuthController extends Controller
 
         return redirect('/');
     }
+
+	/**
+	 * @param Authenticatable $user
+	 */
+	private function updateLastLogin(Authenticatable $user): void
+	{
+		// user login
+		$user->logins()
+			->create([
+				'params' => invoke(LookupAction::class),
+			]);
+	}
 }

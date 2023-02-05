@@ -7,6 +7,7 @@ use App\Actions\User\Transformers\ShowTransformer;
 use App\Events\User\UserRegisteredEvent;
 use App\Http\Response\ResponseBuilder;
 use App\Models\User;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Throwable;
@@ -30,12 +31,18 @@ class RegisterAction extends BaseUserAction
 			$user = tap(
 				User::create($args),
 				function(User $user) {
-					// auto verify superuser
-					if ($user->id === 1) {
-						$user->update([
-							'email_verified_at' => now(),
-						]);
+					// user roles
+					if (empty($args['roles'])) {
+						// set default user role if none set.
+						$args['roles'] = [
+							[
+								'id' => $user->defaultRoleId(),
+								'name' => $user->defaultRoleName(),
+							],
+						];
 					}
+
+					$user->syncRoles($args['roles']);
 				}
 			);
 

@@ -3,6 +3,7 @@
 namespace App\Actions\User\Queries;
 
 use App\Models\User;
+use App\Models\Role;
 use Illuminate\Database\Eloquent\Builder;
 
 class PaginateQuery
@@ -36,7 +37,9 @@ class PaginateQuery
 			'search' => '',
 		];
 
-		$query = User::query();
+		$query = User::with(['roles'])
+			->withLastLoginDate()
+			->where('users.id', '>', 1);
 		// deleted
 		$query->when(isTrue($deleted), fn ($q) => $q->onlyTrashed());
 		// status
@@ -49,8 +52,13 @@ class PaginateQuery
 			->filter()
 			->each(fn ($term) => $q
 				->where(fn ($q) => $q
-					->where('users.name', 'like', '%' . $term . '%')
-					->orWhere('users.email', 'like', '%' . $term . '%')
+					->where(fn ($q) => $q
+						->where('users.name', 'like', '%' . $term . '%')
+						->orWhere('users.email', 'like', '%' . $term . '%')
+					)
+					->orWhereHas('roles', function ($q) use ($term) {
+						return $q->where('roles.name', 'like', '%' . strtolower($term) . '%');
+					})
 				)
 			)
 		);
@@ -63,6 +71,16 @@ class PaginateQuery
 				'email_verified_at'
 			])) {
 				return $q->orderBy($sortBy, $sortOrder);
+			}
+
+			if ($sortBy === 'role') {
+				return $q->orderBy(
+					Role::select('roles.name')
+						->join('role_user', fn ($join) => $join->on('role_user.role_id', '=', 'roles.id'))
+						->whereColumn('users.id', 'role_user.user_id')
+						->take(1),
+					$sortOrder
+				);
 			}
 
 			return $q;

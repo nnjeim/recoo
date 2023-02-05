@@ -30,8 +30,20 @@ class StoreAction extends BaseUserAction
 		// transaction
 		DB::beginTransaction();
 		try {
-			$user = User::create($args);
+			$user = tap(User::create($args), function (User $user) use ($args) {
+				// user roles
+				if (empty($args['roles'])) {
+					// set default user role if none set.
+					$args['roles'] = [
+						[
+							'id' => $user->defaultRoleId(),
+							'name' => $user->defaultRoleName(),
+						],
+					];
+				}
 
+				$user->syncRoles($args['roles']);
+			});
 			DB::commit();
 		} catch (Throwable $e) {
 			DB::rollback();
