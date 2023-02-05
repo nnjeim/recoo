@@ -8,6 +8,12 @@ trait StateTrait
 		'name' => '',
 		'email' => '',
 		'status' => '1',
+		'roles' => [
+			[
+				'id' => 3,
+				'name' => 'editor',
+			]
+		]
 	];
 
 	public string $activeTab = 'info';

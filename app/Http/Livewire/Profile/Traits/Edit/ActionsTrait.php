@@ -4,9 +4,22 @@ namespace App\Http\Livewire\Profile\Traits\Edit;
 
 use App\Actions\User;
 use App\Actions\UserEmail\GenerateVerificationEmailAction;
+use Illuminate\Support\Facades\Auth;
 
 trait ActionsTrait
 {
+	/**
+	 * @return void
+	 */
+	public function showUser(): void
+	{
+		$action = trigger(User\ShowAction::class, ['id' => Auth::id()]);
+
+		if ($action->success) {
+			$this->user = $action->data->toArray();
+		}
+	}
+
 	/**
 	 * Method to update the user.
 	 * @return void

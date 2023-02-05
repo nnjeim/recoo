@@ -1,0 +1,8 @@
+.table__tr {
+    &:hover {
+        @apply
+        relative
+        shadow-table_tr
+        z-[2];
+    }
+}

@@ -13,18 +13,19 @@
 				wire:model.defer="imdb_search"
 				type="search"
 				placeholder="{{ __('records.entity.search_imdb_placeholder') }}"
-				class="w-48 mb-0"
+				class="w-48 m-0"
 			/>
 			<!-- search by id or title -->
 			<x-form.select
 				wire:model="imdb_search_type"
-				class="w-48 mt-0 mb-0"
+				class="w-48 m-0"
 				:options="$imdb_search_type_options">
 			</x-form.select>
 			<!-- apply search -->
-			<div class="bg-orange-400 hover:bg-orange-600 h-10 w-10 flex items-center justify-center rounded-full cursor-pointer ml-auto"
-				 wire:click="searchImdb">
-				<x-micon.search class="text-white" size="1.2rem" />
+			<div
+				class="flex items-center justify-center cursor-pointer rounded-full p-3 h-[2.4rem] w-[2.4rem] bg-orange-400 text-white hover:text-white"
+				wire:click="searchImdb">
+				<x-micon.search size="1.2rem" />
 			</div>
 		</div>
 	</div>
@@ -46,7 +47,7 @@
 							<x-table.td align="center">
 								<button
 									type="button"
-									class="button button-transparent"
+									class="form__btn_transparent"
 									wire:click.prevent="applyImdbRecord('{{ $record['imdb_id'] }}')">
 									{{ __('records.entity.apply') }}
 								</button>

@@ -8,7 +8,7 @@
 							  type="text"
 							  class="mt-1 block w-full"
 							  wire:model.defer="record.title"/>
-				<x-form.input-error for="record.title"/>
+				<x-form.input-error for="record.title" class="mt-1" />
 			</div>
 			<!-- release year -->
 			<div>
@@ -17,7 +17,7 @@
 							  type="number"
 							  class="mt-1 block w-full"
 							  wire:model.defer="record.params.year"/>
-				<x-form.input-error for="record.params.year"/>
+				<x-form.input-error for="record.params.year" class="mt-1" />
 			</div>
 			<!-- IMDb id -->
 			<div>
@@ -26,7 +26,7 @@
 							  type="text"
 							  class="mt-1 block w-full"
 							  wire:model.defer="record.imdb_id"/>
-				<x-form.input-error for="record.imdb_id"/>
+				<x-form.input-error for="record.imdb_id" class="mt-1" />
 			</div>
 			<!-- genre -->
 			<div>
@@ -35,7 +35,7 @@
 							  type="text"
 							  class="mt-1 block w-full"
 							  wire:model.defer="record.params.genre"/>
-				<x-form.input-error for="record.params.genre"/>
+				<x-form.input-error for="record.params.genre" class="mt-1" />
 			</div>
 			<!-- poster -->
 			<div>
@@ -44,7 +44,7 @@
 							  type="text"
 							  class="mt-1 block w-full"
 							  wire:model.defer="record.params.poster"/>
-				<x-form.input-error for="record.params.poster"/>
+				<x-form.input-error for="record.params.poster" class="mt-1" />
 			</div>
 		</div>
 	</x-slot>

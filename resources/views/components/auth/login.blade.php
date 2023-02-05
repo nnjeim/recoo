@@ -24,11 +24,11 @@
 			<div class="relative" x-data="{ showPassword: false }">
 				<input
 					id="password"
-					class="block mt-1 w-full border-gray-300 focus:border-red-500 focus:ring-red-500 rounded-md shadow-sm"
+					class="form__input"
 					:type="showPassword === false ? 'password' : 'text'"
 					name="password"
 					required autocomplete="current-password" />
-				<span class="show-password">
+				<span class="form__input_show-password">
 						<template x-if="showPassword === false">
 							<x-micon.visibility_on title="{{ __('show password') }}" class="pointer" size="1.125rem" @click="showPassword = true" />
 						</template>

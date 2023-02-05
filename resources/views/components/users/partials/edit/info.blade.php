@@ -8,7 +8,7 @@
 							  type="text"
 							  class="mt-1 block w-full"
 							  wire:model.defer="user.name" />
-				<x-form.input-error for="user.name" />
+				<x-form.input-error for="user.name" class="mt-1" />
 			</div>
 			<!-- email -->
 			<div>
@@ -17,7 +17,17 @@
 							  type="text"
 							  class="mt-1 block w-full"
 							  wire:model.defer="user.email" />
-				<x-form.input-error for="user.email" />
+				<x-form.input-error for="user.email" class="mt-1" />
+			</div>
+			<!-- roles -->
+			<div>
+				<x-form.label for="user_roles">{{ __('users.entity.roles') }}</x-form.label>
+				<x-form.selectors.multiple
+					wire:model="user.roles"
+					autocomplete="off"
+					options="roles"
+					placeholder="{{ __('users.entity.roles_placeholder') }}" />
+				<x-form.input-error for="user.roles" class="mt-1" />
 			</div>
 		</div>
 	</x-slot>

@@ -8,6 +8,8 @@ trait StateTrait
 
 	public array $user = [];
 
+	public array $roles = [];
+
 	public string $activeTab = 'info';
 
 	public array $tabs = [

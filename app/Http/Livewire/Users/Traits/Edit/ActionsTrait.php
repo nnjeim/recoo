@@ -3,9 +3,22 @@
 namespace App\Http\Livewire\Users\Traits\Edit;
 
 use App\Actions\User;
+use App\Actions\Role;
 
 trait ActionsTrait
 {
+	/**
+	 * @return void
+	 */
+	public function fetchRoles()
+	{
+		$action = trigger(Role\IndexAction::class, []);
+
+		if ($action->success) {
+			$this->roles = $action->data->toArray();
+		}
+	}
+
 	/**
 	 * @return void
 	 */

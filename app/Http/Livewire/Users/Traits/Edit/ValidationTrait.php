@@ -38,6 +38,7 @@ trait ValidationTrait
 		$rules = [
 			'user.name' => 'required|min:2|max:255',
 			'user.email' => ['email', 'max:255', Rule::unique(User::class, 'email')->ignore($this->user['id'])],
+			'user.roles' => 'required',
 		];
 
 		$messages = [
@@ -45,6 +46,7 @@ trait ValidationTrait
 			'user.name.min' => $transMin('name', 2),
 			'user.email.required' => $transRequired('email'),
 			'user.email.email' => trans('general.errors.email'),
+			'user.roles.required' => $transRequired('roles'),
 		];
 
 		$this->resetErrorBag();

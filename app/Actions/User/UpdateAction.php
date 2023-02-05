@@ -39,6 +39,8 @@ class UpdateAction extends BaseUserAction
 						$user->email_verified_at = null;
 					}
 
+					$user->syncRoles($args['roles']);
+
 					$user->save();
 				}
 			);

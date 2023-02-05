@@ -21,7 +21,7 @@ class Edit extends Component
 
 	public function mount()
 	{
-		$this->user = Auth::user()->toArray();
+		$this->showUser();
 	}
 
 	/**

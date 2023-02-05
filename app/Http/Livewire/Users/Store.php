@@ -22,6 +22,7 @@ class Store extends Component
 
 	public function mount()
 	{
+		$this->fetchRoles();
 		// tabs
 		$this->initTabs();
 	}

@@ -2,22 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 @import "buttons";
+@import "form";
 @import "micons";
-
-.show-password {
-    top: 9px;
-    right: 9px;
-    width: 18px;
-    height: 18px;
-    position: absolute;
-    cursor: pointer;
-}
-
-.table__tr {
-    &:hover {
-        @apply
-        relative
-        shadow-table_tr
-        z-[2];
-    }
-}
+@import "table";

@@ -22,6 +22,8 @@ class Edit extends Component
 
 	public function mount()
 	{
+		$this->fetchRoles();
+
 		$this->showUser();
 
 		// tabs

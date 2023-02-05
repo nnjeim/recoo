@@ -3,10 +3,23 @@
 namespace App\Http\Livewire\Users\Traits\Store;
 
 use App\Actions\User;
+use App\Actions\Role;
 use Livewire\Redirector;
 
 trait ActionsTrait
 {
+	/**
+	 * @return void
+	 */
+	public function fetchRoles()
+	{
+		$action = trigger(Role\IndexAction::class, []);
+
+		if ($action->success) {
+			$this->roles = $action->data->toArray();
+		}
+	}
+
 	/**
 	 * Method to store a user.
 	 *

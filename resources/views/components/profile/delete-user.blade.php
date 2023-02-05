@@ -37,7 +37,7 @@
 								placeholder="Password"
 								autocomplete="current-password"
 								wire:model.defer="password" />
-							<span class="show-password">
+							<span class="form__input_show-password">
 								<template x-if="showPassword === false">
 									<x-micon.visibility_on title="{{ __('show password') }}" class="pointer" size="1.125rem" @click="showPassword = true" />
 								</template>
