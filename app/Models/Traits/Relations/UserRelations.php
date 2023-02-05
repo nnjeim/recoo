@@ -2,11 +2,14 @@
 
 namespace App\Models\Traits\Relations;
 
-use App\Models\Log;
 use App\Models\Channel;
+use App\Models\Log;
 use App\Models\User;
-use App\Models\UserOption;
 use App\Models\UserLogin;
+use App\Models\UserOption;
+use App\Models\Role;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
@@ -16,8 +19,12 @@ trait UserRelations
 	{
 		static::deleting(function (User $user) {
 			if ($user->forceDeleting) {
+				// delete user logins
+				$user->logins()->delete();
 				// delete logs
 				$user->logs()->delete();
+				// detach roles
+				$user->roles()->detach();
 				// delete channels
 				$user->channels()->delete();
 				// delete notifications
@@ -40,6 +47,22 @@ trait UserRelations
 	public function channels(): MorphMany
 	{
 		return $this->morphMany(Channel::class, 'channelable');
+	}
+
+	/**
+	 * @return BelongsToMany
+	 */
+	public function roles(): BelongsToMany
+	{
+		return $this->belongsToMany(Role::class, 'role_user')->withTimestamps();
+	}
+
+	/**
+	 * @return HasMany
+	 */
+	public function logins(): HasMany
+	{
+		return $this->hasMany(UserLogin::class);
 	}
 
 	/**

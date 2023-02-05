@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
     {
 	    $this->call([
 			Partials\RoleSeeder::class,
+			Partials\UserSeeder::class,
 	    ]);
     }
 }

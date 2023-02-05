@@ -6,10 +6,10 @@ A Laravel application designed to maintain a database of movies.
 - Copy .env.example into .env
 - Run `composer install`.
 - Run `db artisan key:generate`.
-- Create a file named `database.sqlite` in the database directory.
+- Create a file named `database.sqlite` in the database directory or define a connection to your database.
 - Run `php artisan migrate`.
+- Run `php artisan db:seed`.
 - Run `npm install` followed by `npm run build`.
-- Proceed with the registration of a user.
 
 ### Technical description
 - Laravel 9 with laravel/sanctum authentication.
