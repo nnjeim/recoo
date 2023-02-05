@@ -15,8 +15,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
 	    $this->call([
-			Partials\ModuleOptionSeeder::class,
-			Partials\ModuleSettingSeeder::class,
+			Partials\RoleSeeder::class,
 	    ]);
     }
 }
