@@ -2,14 +2,16 @@
 
 namespace App\Models;
 
+use App\Models\Traits\HasPermissions;
 use App\Models\Traits\Relations\RecordRelations;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Record extends Model
 {
-	use SoftDeletes;
+	use HasPermissions;
 	use RecordRelations;
+	use SoftDeletes;
 
 	protected $fillable = [
 		'title',

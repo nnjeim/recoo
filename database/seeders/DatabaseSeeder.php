@@ -17,6 +17,8 @@ class DatabaseSeeder extends Seeder
 	    $this->call([
 			Partials\RoleSeeder::class,
 			Partials\UserSeeder::class,
+		    Partials\PermissionsSeeder::class,
+		    Partials\RolePermissionSeeder::class,
 	    ]);
     }
 }
