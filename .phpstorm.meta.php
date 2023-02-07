@@ -193,6 +193,7 @@ namespace PHPSTORM_META {
             'filesystem.cloud' => \Illuminate\Filesystem\FilesystemAdapter::class,
             'filesystem.disk' => \Illuminate\Filesystem\FilesystemAdapter::class,
             'flare.logger' => \Monolog\Logger::class,
+            'geoip' => \Torann\GeoIP\GeoIP::class,
             'hash' => \Illuminate\Hashing\HashManager::class,
             'hash.driver' => \Illuminate\Hashing\BcryptHasher::class,
             'log' => \Illuminate\Log\LogManager::class,
@@ -405,6 +406,7 @@ namespace PHPSTORM_META {
             'filesystem.cloud' => \Illuminate\Filesystem\FilesystemAdapter::class,
             'filesystem.disk' => \Illuminate\Filesystem\FilesystemAdapter::class,
             'flare.logger' => \Monolog\Logger::class,
+            'geoip' => \Torann\GeoIP\GeoIP::class,
             'hash' => \Illuminate\Hashing\HashManager::class,
             'hash.driver' => \Illuminate\Hashing\BcryptHasher::class,
             'log' => \Illuminate\Log\LogManager::class,
@@ -617,6 +619,7 @@ namespace PHPSTORM_META {
             'filesystem.cloud' => \Illuminate\Filesystem\FilesystemAdapter::class,
             'filesystem.disk' => \Illuminate\Filesystem\FilesystemAdapter::class,
             'flare.logger' => \Monolog\Logger::class,
+            'geoip' => \Torann\GeoIP\GeoIP::class,
             'hash' => \Illuminate\Hashing\HashManager::class,
             'hash.driver' => \Illuminate\Hashing\BcryptHasher::class,
             'log' => \Illuminate\Log\LogManager::class,
@@ -829,6 +832,7 @@ namespace PHPSTORM_META {
             'filesystem.cloud' => \Illuminate\Filesystem\FilesystemAdapter::class,
             'filesystem.disk' => \Illuminate\Filesystem\FilesystemAdapter::class,
             'flare.logger' => \Monolog\Logger::class,
+            'geoip' => \Torann\GeoIP\GeoIP::class,
             'hash' => \Illuminate\Hashing\HashManager::class,
             'hash.driver' => \Illuminate\Hashing\BcryptHasher::class,
             'log' => \Illuminate\Log\LogManager::class,
@@ -1041,6 +1045,7 @@ namespace PHPSTORM_META {
             'filesystem.cloud' => \Illuminate\Filesystem\FilesystemAdapter::class,
             'filesystem.disk' => \Illuminate\Filesystem\FilesystemAdapter::class,
             'flare.logger' => \Monolog\Logger::class,
+            'geoip' => \Torann\GeoIP\GeoIP::class,
             'hash' => \Illuminate\Hashing\HashManager::class,
             'hash.driver' => \Illuminate\Hashing\BcryptHasher::class,
             'log' => \Illuminate\Log\LogManager::class,
@@ -1253,6 +1258,7 @@ namespace PHPSTORM_META {
             'filesystem.cloud' => \Illuminate\Filesystem\FilesystemAdapter::class,
             'filesystem.disk' => \Illuminate\Filesystem\FilesystemAdapter::class,
             'flare.logger' => \Monolog\Logger::class,
+            'geoip' => \Torann\GeoIP\GeoIP::class,
             'hash' => \Illuminate\Hashing\HashManager::class,
             'hash.driver' => \Illuminate\Hashing\BcryptHasher::class,
             'log' => \Illuminate\Log\LogManager::class,
@@ -1465,6 +1471,7 @@ namespace PHPSTORM_META {
             'filesystem.cloud' => \Illuminate\Filesystem\FilesystemAdapter::class,
             'filesystem.disk' => \Illuminate\Filesystem\FilesystemAdapter::class,
             'flare.logger' => \Monolog\Logger::class,
+            'geoip' => \Torann\GeoIP\GeoIP::class,
             'hash' => \Illuminate\Hashing\HashManager::class,
             'hash.driver' => \Illuminate\Hashing\BcryptHasher::class,
             'log' => \Illuminate\Log\LogManager::class,
@@ -1677,6 +1684,7 @@ namespace PHPSTORM_META {
             'filesystem.cloud' => \Illuminate\Filesystem\FilesystemAdapter::class,
             'filesystem.disk' => \Illuminate\Filesystem\FilesystemAdapter::class,
             'flare.logger' => \Monolog\Logger::class,
+            'geoip' => \Torann\GeoIP\GeoIP::class,
             'hash' => \Illuminate\Hashing\HashManager::class,
             'hash.driver' => \Illuminate\Hashing\BcryptHasher::class,
             'log' => \Illuminate\Log\LogManager::class,
@@ -1889,6 +1897,7 @@ namespace PHPSTORM_META {
             'filesystem.cloud' => \Illuminate\Filesystem\FilesystemAdapter::class,
             'filesystem.disk' => \Illuminate\Filesystem\FilesystemAdapter::class,
             'flare.logger' => \Monolog\Logger::class,
+            'geoip' => \Torann\GeoIP\GeoIP::class,
             'hash' => \Illuminate\Hashing\HashManager::class,
             'hash.driver' => \Illuminate\Hashing\BcryptHasher::class,
             'log' => \Illuminate\Log\LogManager::class,
@@ -2101,6 +2110,7 @@ namespace PHPSTORM_META {
             'filesystem.cloud' => \Illuminate\Filesystem\FilesystemAdapter::class,
             'filesystem.disk' => \Illuminate\Filesystem\FilesystemAdapter::class,
             'flare.logger' => \Monolog\Logger::class,
+            'geoip' => \Torann\GeoIP\GeoIP::class,
             'hash' => \Illuminate\Hashing\HashManager::class,
             'hash.driver' => \Illuminate\Hashing\BcryptHasher::class,
             'log' => \Illuminate\Log\LogManager::class,
@@ -2313,6 +2323,7 @@ namespace PHPSTORM_META {
             'filesystem.cloud' => \Illuminate\Filesystem\FilesystemAdapter::class,
             'filesystem.disk' => \Illuminate\Filesystem\FilesystemAdapter::class,
             'flare.logger' => \Monolog\Logger::class,
+            'geoip' => \Torann\GeoIP\GeoIP::class,
             'hash' => \Illuminate\Hashing\HashManager::class,
             'hash.driver' => \Illuminate\Hashing\BcryptHasher::class,
             'log' => \Illuminate\Log\LogManager::class,
@@ -2343,6 +2354,10 @@ namespace PHPSTORM_META {
         ]));
 
 
+    override(\Illuminate\Foundation\Testing\Concerns\InteractsWithContainer::mock(0), map(["" => "@&\Mockery\MockInterface"]));
+    override(\Illuminate\Foundation\Testing\Concerns\InteractsWithContainer::partialMock(0), map(["" => "@&\Mockery\MockInterface"]));
+    override(\Illuminate\Foundation\Testing\Concerns\InteractsWithContainer::instance(0), type(1));
+    override(\Illuminate\Foundation\Testing\Concerns\InteractsWithContainer::spy(0), map(["" => "@&\Mockery\MockInterface"]));
     override(\Illuminate\Support\Arr::add(0), type(0));
     override(\Illuminate\Support\Arr::except(0), type(0));
     override(\Illuminate\Support\Arr::first(0), elementType(0));
