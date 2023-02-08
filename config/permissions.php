@@ -9,7 +9,7 @@ return [
 		/**
 		 * point to the model classes.
 		 */
-		'App/Models',
+		'app/Models',
 	],
 	'defaults' => [
 		/**
