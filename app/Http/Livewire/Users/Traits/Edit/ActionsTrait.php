@@ -24,6 +24,15 @@ trait ActionsTrait
 	 */
 	public function showUser(): void
 	{
+		// permission
+		if (! can('show_user')) {
+			$this->notifyAction(
+				false,
+				trans('partials/actions.show_failure', ['attribute' => trans_choice('partials/attributes.user', 1)])
+			);
+			return;
+		}
+
 		$action = trigger(User\ShowAction::class, ['id' => $this->userId]);
 
 		if ($action->success) {

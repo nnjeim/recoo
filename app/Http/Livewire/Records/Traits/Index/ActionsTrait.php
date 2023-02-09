@@ -71,6 +71,15 @@ trait ActionsTrait
 	 */
 	public function destroyRecords(?int $id = null): void
 	{
+		// permission
+		if (! can('destroy_record')) {
+			$this->notifyAction(
+				false,
+				trans('partials/actions.destroy_failure', ['attribute' => trans_choice('partials/attributes.record', 1)])
+			);
+			return;
+		}
+
 		$message = '';
 
 		$mode = empty($this->filters['deleted']) ? 'soft' : 'force';
@@ -112,6 +121,15 @@ trait ActionsTrait
 	 */
 	public function restoreRecords(?int $id = null): void
 	{
+		// permission
+		if (! can('restore_record')) {
+			$this->notifyAction(
+				false,
+				trans('partials/actions.restore_failure', ['attribute' => trans_choice('partials/attributes.record', 1)])
+			);
+			return;
+		}
+
 		$message = '';
 
 		$action = $id === null

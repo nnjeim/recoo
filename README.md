@@ -12,10 +12,11 @@ A Laravel application designed to maintain a database of movies.
 - Run `npm install` followed by `npm run build`.
 
 ### Technical description
-- Laravel 9 with laravel/sanctum authentication.
+- Laravel 9.
 - Min requirement of php 8.
 - Livewire and alpine.js.
 - Tailwind css.
+- Role and user permissions.
 
 ### Demo
 <a href="https://admin.recoo.app" target="_blank">RecDB demo website</a>

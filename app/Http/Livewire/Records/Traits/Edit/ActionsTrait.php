@@ -11,6 +11,15 @@ trait ActionsTrait
 	 */
 	public function showRecord(): void
 	{
+		// permission
+		if (! can('show_record')) {
+			$this->notifyAction(
+				false,
+				trans('partials/actions.show_failure', ['attribute' => trans_choice('partials/attributes.record', 1)])
+			);
+			return;
+		}
+
 		$action = trigger(Record\ShowAction::class, ['id' => $this->recordId]);
 
 		if ($action->success) {
@@ -23,6 +32,15 @@ trait ActionsTrait
 	 */
 	public function updateRecord(): void
 	{
+		// permission
+		if (! can('update_record')) {
+			$this->notifyAction(
+				false,
+				trans('partials/actions.update_failure', ['attribute' => trans_choice('partials/attributes.record', 1)])
+			);
+			return;
+		}
+
 		$message = '';
 
 		$validator = $this->validateRecord();
