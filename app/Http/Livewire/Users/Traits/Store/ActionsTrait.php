@@ -27,6 +27,15 @@ trait ActionsTrait
 	 */
 	public function storeUser(): ?Redirector
 	{
+		// permission
+		if (! can('store_user')) {
+			$this->notifyAction(
+				false,
+				trans('partials/actions.store_failure', ['attribute' => trans_choice('partials/attributes.user', 1)])
+			);
+			return null;
+		}
+
 		$message = '';
 
 		$validator = $this->validateRecord();

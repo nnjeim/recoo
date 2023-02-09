@@ -36,6 +36,15 @@ trait ActionsTrait
 	 */
 	public function updateUser(): void
 	{
+		// permission
+		if (! can('update_user')) {
+			$this->notifyAction(
+				false,
+				trans('partials/actions.update_failure', ['attribute' => trans_choice('partials/attributes.user', 1)])
+			);
+			return;
+		}
+
 		$message = '';
 
 		$validator = $this->validateRecord();

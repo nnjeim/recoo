@@ -73,7 +73,10 @@ trait ActionsTrait
 	{
 		// permission
 		if (! can('destroy_user')) {
-			$this->notifyAction(false, 'Unprocessable action!');
+			$this->notifyAction(
+				false,
+				trans('partials/actions.destroy_failure', ['attribute' => trans_choice('partials/attributes.user', 1)])
+			);
 			$this->confirmingRecordDeletion = false;
 			return;
 		}
@@ -121,7 +124,10 @@ trait ActionsTrait
 	{
 		// permission
 		if (! can('restore_user')) {
-			$this->notifyAction(false, 'Unprocessable action!');
+			$this->notifyAction(
+				false,
+				trans('partials/actions.restore_failure', ['attribute' => trans_choice('partials/attributes.user', 1)])
+			);
 			$this->confirmingRecordDeletion = false;
 			return;
 		}
