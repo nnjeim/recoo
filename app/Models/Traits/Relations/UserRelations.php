@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\UserLogin;
 use App\Models\UserOption;
 use App\Models\Role;
+use App\Models\Permission;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -25,6 +26,8 @@ trait UserRelations
 				$user->logs()->delete();
 				// detach roles
 				$user->roles()->detach();
+				// delete permissions
+				$user->permissions()->delete();
 				// delete channels
 				$user->channels()->delete();
 				// delete notifications
@@ -63,6 +66,14 @@ trait UserRelations
 	public function logins(): HasMany
 	{
 		return $this->hasMany(UserLogin::class);
+	}
+
+	/**
+	 * @return BelongsToMany
+	 */
+	public function permissions(): BelongsToMany
+	{
+		return $this->belongsToMany(Permission::class)->withTimestamps();
 	}
 
 	/**

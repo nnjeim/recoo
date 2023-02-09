@@ -1,5 +1,7 @@
 <?php
 
+use App\Actions\Permission\CanAction;
+
 include 'partials/datetime.php';
 
 if (! function_exists('trigger')) {
@@ -83,3 +85,15 @@ if (! function_exists('array_only')) {
 		);
 	}
 }
+
+if (! function_exists('can')) {
+	/**
+	 * @param  string  $name
+	 * @return mixed
+	 */
+	function can(string $name): mixed
+	{
+		return app(CanAction::class)->execute($name);
+	}
+}
+
