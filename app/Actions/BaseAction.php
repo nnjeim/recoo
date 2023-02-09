@@ -20,8 +20,4 @@ abstract class BaseAction
 	public array $errors = [];
 
 	public mixed $data;
-
-	abstract public function execute(array $args = []);
-
-	abstract public function withResponse(): ResponseBuilder;
 }

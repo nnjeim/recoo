@@ -26,7 +26,7 @@ class CanAction extends BasePermissionAction
 
 		$permission_id = $this->validatePermission($name);
 
-		$respond = fn ($bool) => $this->persist->rememberCacheForever($bool);
+		$respond = fn ($bool) => $bool;
 		// Validate role permissions.
 		if ($this->validateRolePermissions($user, $permission_id)) {
 			return $respond(true);

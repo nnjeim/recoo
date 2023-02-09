@@ -71,6 +71,13 @@ trait ActionsTrait
 	 */
 	public function destroyRecords(?int $id = null): void
 	{
+		// permission
+		if (! can('destroy_user')) {
+			$this->notifyAction(false, 'Unprocessable action!');
+			$this->confirmingRecordDeletion = false;
+			return;
+		}
+
 		$message = '';
 
 		$mode = empty($this->filters['deleted']) ? 'soft' : 'force';
@@ -112,6 +119,13 @@ trait ActionsTrait
 	 */
 	public function restoreRecords(?int $id = null): void
 	{
+		// permission
+		if (! can('restore_user')) {
+			$this->notifyAction(false, 'Unprocessable action!');
+			$this->confirmingRecordDeletion = false;
+			return;
+		}
+
 		$message = '';
 
 		$action = $id === null

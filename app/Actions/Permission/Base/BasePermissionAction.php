@@ -12,6 +12,4 @@ abstract class BasePermissionAction extends BaseAction
 	protected string $cacheTag = 'permissions';
 
 	protected string $attribute = 'permission';
-
-	abstract public function execute(array $args = []);
 }

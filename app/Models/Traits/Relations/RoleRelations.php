@@ -5,6 +5,7 @@ namespace App\Models\Traits\Relations;
 use App\Models\Log;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\Permission;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
@@ -15,6 +16,9 @@ trait RoleRelations
 		static::deleting(function ($role) {
 			if ($role->forceDeleting) {
 				self::reassignRoles($role);
+				// detach role permissions
+				$role->permissions()->detach();
+				// delete logs
 				$role->logs()->delete();
 			}
 		});
@@ -34,6 +38,14 @@ trait RoleRelations
 	public function logs(): MorphMany
 	{
 		return $this->morphMany(Log::class, 'logable');
+	}
+
+	/**
+	 * @return BelongsToMany
+	 */
+	public function permissions(): BelongsToMany
+	{
+		return $this->belongsToMany(Permission::class, 'permission_role')->withTimestamps();
 	}
 
 	/**
