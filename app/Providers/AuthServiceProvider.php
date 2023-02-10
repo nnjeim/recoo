@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use App\Actions\Permission\CanAction;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
@@ -25,6 +28,12 @@ class AuthServiceProvider extends ServiceProvider
 	{
 		$this->registerPolicies();
 
-		//
+		Blade::if('can', function (string $name) {
+			if (! Auth::check()) {
+				return false;
+			}
+
+			return trigger(CanAction::class, $name);
+		});
 	}
 }

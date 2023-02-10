@@ -1,3 +1,6 @@
+@php
+
+@endphp
 <div class="flex items-center gap-4"
 	 x-cloak
 	 x-data="usersBulkActions()">

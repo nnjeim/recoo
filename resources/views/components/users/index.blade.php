@@ -50,12 +50,14 @@
 					class="mb-0"
 				/>
 			</div>
+			@can('store_user')
 			<div class="h-8 w-[1px] bg-gray-300 mx-4"></div>
 			<a href="{{ route('users.store') }}"
 			   class="form__btn_transparent">
 				<x-micon.add size="1.5rem" />
 				<span>{{ __('users.table.action_bar.user') }}</span>
 			</a>
+			@endcan
 		</div>
 	</div>
 	<!-- table -->

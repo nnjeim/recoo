@@ -89,11 +89,11 @@ if (! function_exists('array_only')) {
 if (! function_exists('can')) {
 	/**
 	 * @param  string  $name
-	 * @return mixed
+	 * @return bool
 	 */
-	function can(string $name): mixed
+	function can(string $name): bool
 	{
-		return app(CanAction::class)->execute($name);
+		return trigger(CanAction::class, $name);
 	}
 }
 
