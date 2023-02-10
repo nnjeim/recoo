@@ -5,9 +5,9 @@ namespace App\Subscribers\User;
 use App\Actions\Geoip\LookupAction;
 use App\Events\User;
 use App\Notifications\UserEmail\VerifyEmailNotification;
-use App\Subscribers\BaseSubscriber;
 use App\Notifications\User\UserStoredNotification;
 use App\Notifications\User\UserUpdatedNotification;
+use App\Subscribers\BaseSubscriber;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Auth\Events\Logout;
 
@@ -37,7 +37,6 @@ class UserSubscriber extends BaseSubscriber
 				'subject' => $user->name,
 			])
 			->log();
-
 		// update user logins
 		$user
 			->logins()
