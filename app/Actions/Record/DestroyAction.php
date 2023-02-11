@@ -24,12 +24,6 @@ class DestroyAction extends BaseRecordAction
 	 */
 	public function execute(array $args = []): self
 	{
-		['id' => $id] = $args;
-
-		if ((int) $id === 1) {
-			throw new AuthorizationException();
-		}
-
 		// exists
 		$recordBuilder = $this->validateModel($args + ['showDeleted' => true]);
 
