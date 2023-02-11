@@ -33,10 +33,22 @@ trait ActionHelpersTrait
 	}
 
 	/**
+	 * @return bool
+	 */
+	protected function isCacheEnabled(): bool
+	{
+		return config('recoo.cache.enabled');
+	}
+
+	/**
 	 * @return void
 	 */
 	protected function flushModuleCache(): void
 	{
+		if (! config('recoo.cache.enabled')) {
+			return;
+		}
+
 		$this
 			->setCacheTag($this->cacheTag)
 			->flushCacheTag();

@@ -6,6 +6,7 @@ use App\Actions\Role\Queries\IndexQuery;
 use App\Actions\Role\Transformers\IndexTransformer;
 use App\Actions\Role\Base\BaseRoleAction;
 use App\Http\Response\ResponseBuilder;
+use Illuminate\Support\Collection;
 
 class IndexAction extends BaseRoleAction
 {
@@ -25,18 +26,8 @@ class IndexAction extends BaseRoleAction
 			'limit' => null,
 		];
 
-		// cache
-		$this->setCacheTag($this->cacheTag)->formCacheKey('index');
-
-		if (! $this->hasCacheKey()) {
-			$this->rememberCacheForever($this->transform(invoke(IndexQuery::class)));
-		}
-
-		// transaction
-		$roles = $this->getCacheKey();
-
 		// search
-		$roles = $roles
+		$roles = $this->formData()
 			->when($search !== null, fn ($q) => $q
 				->filter(fn ($q) => (str_contains(strtolower($q['name']), strtolower($search))))
 			)
@@ -47,6 +38,22 @@ class IndexAction extends BaseRoleAction
 		$this->data = $roles;
 
 		return $this;
+	}
+
+	/**
+	 * @return Collection
+	 */
+	private function formData(): Collection
+	{
+		if (! $this->isCacheEnabled()) {
+			return $this->transform(invoke(IndexQuery::class));
+		}
+		// cache
+		$this->setCacheTag($this->cacheTag)->formCacheKey('index');
+
+		return $this->hasCacheKey()
+			? $this->getCacheKey()
+			: $this->rememberCacheForever($this->transform(invoke(IndexQuery::class)));
 	}
 
 	/**
