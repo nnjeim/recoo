@@ -11,12 +11,17 @@ A Laravel application designed to maintain a database of movies.
 - Run `php artisan db:seed`.
 - Run `npm install` followed by `npm run build`.
 
+### Technical requirement  
+- php 8.1 or greater.  
+- redis cache store.  
+
 ### Technical description
-- Laravel 9.
-- Min requirement of php 8.
-- Livewire and alpine.js.
-- Tailwind css.
-- Role and user permissions.
+- Laravel 9.  
+- Livewire and alpine.js.  
+- Tailwind css.  
+- Role and user permissions.  
+- Caching.  
+- Static analysis with phpstan.  
 
 ### Demo
 <a href="https://admin.recoo.app" target="_blank">RecDB demo website</a>
