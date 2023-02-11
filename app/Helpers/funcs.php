@@ -93,7 +93,7 @@ if (! function_exists('can')) {
 	 */
 	function can(string $name): bool
 	{
-		return trigger(CanAction::class, $name);
+		return trigger(CanAction::class, $name)->data;
 	}
 }
 

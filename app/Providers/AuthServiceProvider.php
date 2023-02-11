@@ -3,10 +3,11 @@
 namespace App\Providers;
 
 use App\Actions\Permission\CanAction;
+use App\Actions\Permission\FetchUserPermissions;
+use Illuminate\Auth\SessionGuard;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -27,13 +28,24 @@ class AuthServiceProvider extends ServiceProvider
 	public function boot(): void
 	{
 		$this->registerPolicies();
+		// add the user permission to Auth.
+		SessionGuard::macro('permissions', function () {
+			return trigger(FetchUserPermissions::class)->data;
+		});
 
+		// blade can helper.
 		Blade::if('can', function (string $name) {
 			if (! Auth::check()) {
 				return false;
 			}
 
-			return trigger(CanAction::class, $name);
+			$permissions = Auth::permissions()->toArray();
+
+			if (! in_array($name, array_keys($permissions))) {
+				return false;
+			}
+
+			return $permissions[$name];
 		});
 	}
 }

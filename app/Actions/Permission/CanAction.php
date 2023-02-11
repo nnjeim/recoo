@@ -3,6 +3,7 @@
 namespace App\Actions\Permission;
 
 use App\Actions\Permission\Base\BasePermissionAction;
+use App\Http\Response\ResponseBuilder;
 use App\Models\Permission;
 use App\Models\User;
 use Illuminate\Auth\Access\AuthorizationException;
@@ -11,32 +12,70 @@ class CanAction extends BasePermissionAction
 {
 	/**
 	 * @param  string  $name
+	 * @return $this
+	 * @throws AuthorizationException
+	 */
+	public function execute(string $name): self
+	{
+		$this->success = true;
+		$this->data = $this->formData($name);
+
+		return $this;
+	}
+
+	/**
+	 * @return ResponseBuilder
+	 */
+	public function withResponse(): ResponseBuilder
+	{
+		return ResponseBuilder::make()
+			->setSuccess($this->success)
+			->setAttributeMessage($this->attribute)
+			->setData($this->data);
+	}
+
+	/**
 	 * @return bool
 	 * @throws AuthorizationException
 	 */
-	public function execute(string $name): bool
+	private function formData(string $name): bool
 	{
-		$request = app('request');
-
-		$user = $request->user();
+		$user = request()->user();
 
 		if ($user->isSuper()) {
 			return true;
 		}
 
-		$permission_id = $this->validatePermission($name);
+		if (! $this->isCacheEnabled()) {
+			return $this->computeUserPermission($user, $name);
+		}
+		// cache
+		$this->setCacheTag($this->cacheTag)->formCacheKey('user', $user->id, $name);
 
-		$respond = fn ($bool) => $bool;
+		return $this->hasCacheKey()
+			? $this->getCacheKey()
+			: $this->rememberCacheForever($this->computeUserPermission($user, $name));
+	}
+
+	/**
+	 * @param  User  $user
+	 * @param  string  $name
+	 * @return bool
+	 * @throws AuthorizationException
+	 */
+	private function computeUserPermission(User $user, string $name): bool
+	{
+		$permission_id = $this->validatePermission($name);
 		// Validate role permissions.
 		if ($this->validateRolePermissions($user, $permission_id)) {
-			return $respond(true);
+			return true;
 		}
 		// Validate the user permissions.
 		if ($this->validateUserPermissions($user, $permission_id)) {
-			return $respond(true);
+			return true;
 		}
 
-		return $respond(false);
+		return false;
 	}
 
 	/**
