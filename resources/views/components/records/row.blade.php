@@ -51,30 +51,38 @@
 	<x-table.td align="center" class="w-24">
 		<template x-if="!row.deleted">
 			<div class="flex items-center justify-center w-full gap-1">
+				@can('destroy_record')
 				<a class="flex items-center justify-center h-8 w-8 rounded-full bg-transparent hover:bg-gray-100"
 				   x-on:click="$wire.call('destroyRecord')">
 					<x-micon.delete class="cursor-pointer micon-hover text-red-600 hover:text-red-800"
 									title="{{__('records.table.body.actions.delete')}}" />
 				</a>
+				@endcan
+				@can('show_record')
 				<a class="flex items-center justify-center h-8 w-8 rounded-full bg-transparent hover:bg-gray-100"
 				   x-on:click="$wire.call('showRecord')">
 					<x-micon.edit class="cursor-pointer micon-hover text-gray-600 hover:text-black"
 						title="{{__('records.table.body.actions.edit')}}" />
 				</a>
+				@endcan
 			</div>
 		</template>
 		<template x-if="row.deleted">
 			<div class="flex items-center justify-center w-full gap-2">
+				@can('destroy_record')
 				<a class="flex items-center justify-center h-8 w-8 rounded-full bg-transparent hover:bg-gray-100"
 				   x-on:click="$wire.call('destroyRecord')">
 					<x-micon.delete class="cursor-pointer micon-hover text-red-600 hover:text-red-800"
 						title="{{__('records.table.body.actions.delete_forever')}}" />
 				</a>
+				@endcan
+				@can('restore_record')
 				<a class="flex items-center justify-center h-8 w-8 rounded-full bg-transparent hover:bg-gray-100"
 				   x-on:click="$wire.call('restoreRecord')">
 					<x-micon.restore_from_trash class="cursor-pointer micon-hover"
 						title="{{__('records.table.body.actions.restore')}}" />
 				</a>
+				@endcan
 			</div>
 		</template>
 	</x-table.td>

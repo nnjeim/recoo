@@ -3,8 +3,9 @@
 		<!-- dropdown -->
 		<x-form.dropdown align="left">
 			<x-slot name="trigger">
-				<button class="flex items-center justify-center mx-2.5 cursor-pointer transition text-gray-300 hover:text-black focus:text-black">
-					<x-micon.more_vert />
+				<button
+					class="flex items-center justify-center mx-2.5 cursor-pointer transition text-gray-300 hover:text-black focus:text-black">
+					<x-micon.more_vert/>
 				</button>
 			</x-slot>
 
@@ -28,14 +29,18 @@
 		</div>
 		<div class="h-8 w-[1px] bg-gray-300 mx-4"></div>
 		<!-- init state -->
-		<button class="text-orange-600 hover:text-orange-800 focus:text-black" wire:click="initState" title="refresh">
-			<x-micon.settings_backup_restore />
+		<button
+			class="text-orange-600 hover:text-orange-800 focus:text-black"
+			wire:click="initState" title="refresh">
+			<x-micon.settings_backup_restore/>
 		</button>
 		<div class="h-8 w-[1px] bg-gray-300 mx-4"></div>
 		<!-- deleted records -->
 		@if($showDeleted)
 			<div>
-				<x-form.secondary-button class="text" wire:click="$toggle('filters.deleted')" wire:loading.class="loading">
+				<x-form.secondary-button
+					class="text" wire:click="$toggle('filters.deleted')"
+					wire:loading.class="loading">
 					{{ trans('records.table.action_bar.' . (!empty($filters['deleted']) ? 'hide_deleted' : 'show_deleted')) }}
 				</x-form.secondary-button>
 			</div>
@@ -50,19 +55,21 @@
 					class="mb-0"
 				/>
 			</div>
+			@can('store_record')
 			<div class="h-8 w-[1px] bg-gray-300 mx-4"></div>
 			<a href="{{ route('records.store') }}"
 			   class="form__btn_transparent">
-				<x-micon.add size="1.5rem" />
+				<x-micon.add size="1.5rem"/>
 				<span>{{ __('records.table.action_bar.record') }}</span>
 			</a>
+			@endcan
 		</div>
 	</div>
 	<!-- table -->
 	<x-table.table>
 		<x-table.thead>
 			<x-table.tr-thead>
-				<x-table.th-toggle-all :checked="count($selectedRecords) > 0" />
+				<x-table.th-toggle-all :checked="count($selectedRecords) > 0"/>
 				<x-table.th-sortable
 					title="{{ __('records.table.headers.title') }}"
 					sortField="title"
@@ -97,18 +104,18 @@
 				<x-table.th
 					class="w-24"
 					title="{{ __('records.table.headers.actions') }}"
-					align="center" />
+					align="center"/>
 			</x-table.tr-thead>
 		</x-table.thead>
 		<x-table.tbody>
 			@foreach($data as $record)
-				<livewire:records.row :rowData="$record" :key="time().$record['id']" />
+				<livewire:records.row :rowData="$record" :key="time().$record['id']"/>
 			@endforeach
 		</x-table.tbody>
 	</x-table.table>
 	<!-- table footer -->
-	<x-table.footer :paginator="$paginator" :selectedRecords="$selectedRecords" >
-		<x-records.partials.index.bulkActions :bulk-actions="$bulkActions" />
+	<x-table.footer :paginator="$paginator" :selectedRecords="$selectedRecords">
+		<x-records.partials.index.bulkActions :bulk-actions="$bulkActions"/>
 	</x-table.footer>
 
 	<!-- record delete confirmation -->

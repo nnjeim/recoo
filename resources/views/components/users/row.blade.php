@@ -87,12 +87,12 @@
 		<template x-if="row.deleted">
 			<div class="flex items-center justify-center w-full gap-1">
 				@can('destroy_user')
-					<a class="flex items-center justify-center h-8 w-8 rounded-full bg-transparent hover:bg-gray-100"
-					   x-on:click="$wire.call('destroyRecord')">
-						<x-micon.delete
-							class="cursor-pointer micon-hover text-red-600 hover:text-red-800"
-							title="{{__('users.table.body.actions.delete_forever')}}"/>
-					</a>
+				<a class="flex items-center justify-center h-8 w-8 rounded-full bg-transparent hover:bg-gray-100"
+				   x-on:click="$wire.call('destroyRecord')">
+					<x-micon.delete
+						class="cursor-pointer micon-hover text-red-600 hover:text-red-800"
+						title="{{__('users.table.body.actions.delete_forever')}}"/>
+				</a>
 				@endcan
 				@can('restore_user')
 				<a class="flex items-center justify-center h-8 w-8 rounded-full bg-transparent hover:bg-gray-100"
