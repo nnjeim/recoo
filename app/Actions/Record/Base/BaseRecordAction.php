@@ -7,11 +7,11 @@ use App\Models\Record;
 
 abstract class BaseRecordAction extends BaseAction
 {
+	protected string $attribute = 'record';
+
 	protected string $class = Record::class;
 
-	protected string $cacheTag = 'records';
-
-	protected string $attribute = 'record';
+	public string $cacheTag = 'records';
 
 	abstract public function execute(array $args = []);
 }

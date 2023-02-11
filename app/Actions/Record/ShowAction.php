@@ -18,11 +18,19 @@ class ShowAction extends BaseRecordAction
 	 */
 	public function execute(array $args = []): self
 	{
+		['id' => $id] = $args;
+
 		// exists
 		$recordBuilder = $this->validateModel($args);
+		// cache
+		$this
+			->setCacheTag($this->cacheTag)
+			->formCacheKey('record', $id);
 
 		$this->success = true;
-		$this->data = $this->transform($recordBuilder->first());
+		$this->data = $this->hasCacheKey()
+			? $this->getCacheKey()
+			: $this->rememberCacheForever($this->transform($recordBuilder->first()));
 
 		return $this;
 	}

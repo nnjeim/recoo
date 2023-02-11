@@ -73,6 +73,8 @@ class DestroyAction extends BaseUserAction
 		if ($this->success) {
 			// event
 			event(new UserDestroyedEvent($user));
+			// cache
+			$this->flushModuleCache();
 		}
 	}
 

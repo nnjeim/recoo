@@ -60,6 +60,8 @@ class RestoreAction extends BaseUserAction
 		if ($this->success) {
 			// event
 			event(new UserRestoredEvent($user));
+			// cache
+			$this->flushModuleCache();
 		}
 	}
 

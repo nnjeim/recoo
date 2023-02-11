@@ -7,11 +7,11 @@ use App\Models\User;
 
 abstract class BaseUserAction extends BaseAction
 {
+	protected string $attribute = 'user';
+
 	protected string $class = User::class;
 
-	protected string $cacheTag = 'users';
-
-	protected string $attribute = 'user';
+	public string $cacheTag = 'users';
 
 	abstract public function execute(array $args = []);
 }

@@ -8,11 +8,9 @@ use Illuminate\Support\Facades\Http;
 
 abstract class BaseOmdbAction extends BaseAction
 {
-	protected string $cacheTag = 'omdb';
+	protected string $apiBaseUrl;
 
 	protected string $attribute = 'omdb';
-
-	protected string $apiBaseUrl;
 
 	protected PendingRequest $httpClient;
 

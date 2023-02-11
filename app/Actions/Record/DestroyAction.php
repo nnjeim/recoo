@@ -67,6 +67,8 @@ class DestroyAction extends BaseRecordAction
 		if ($this->success) {
 			// event
 			event(new RecordDestroyedEvent($record));
+			// cache
+			$this->flushModuleCache();
 		}
 	}
 

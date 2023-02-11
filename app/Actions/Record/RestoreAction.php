@@ -58,6 +58,8 @@ class RestoreAction extends BaseRecordAction
 		if ($this->success) {
 			// event
 			event(new RecordRestoredEvent($record));
+			// cache
+			$this->flushModuleCache();
 		}
 	}
 

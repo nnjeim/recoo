@@ -31,4 +31,14 @@ trait ActionHelpersTrait
 			'message' => [$message],
 		];
 	}
+
+	/**
+	 * @return void
+	 */
+	protected function flushModuleCache(): void
+	{
+		$this
+			->setCacheTag($this->cacheTag)
+			->flushCacheTag();
+	}
 }

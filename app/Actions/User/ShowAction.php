@@ -18,11 +18,19 @@ class ShowAction extends BaseUserAction
 	 */
 	public function execute(array $args = []): self
 	{
+		['id' => $id] = $args;
+
 		// exists
 		$userBuilder = $this->validateModel($args);
+		// cache
+		$this
+			->setCacheTag($this->cacheTag)
+			->formCacheKey('user', $id);
 
 		$this->success = true;
-		$this->data = $this->transform($userBuilder->first());
+		$this->data = $this->hasCacheKey()
+			? $this->getCacheKey()
+			: $this->rememberCacheForever($this->transform($userBuilder->first()));
 
 		return $this;
 	}

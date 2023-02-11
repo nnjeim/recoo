@@ -68,6 +68,8 @@ class UpdateAction extends BaseUserAction
 		if ($this->success) {
 			// event
 			event(new UserUpdatedEvent($user));
+			// cache
+			$this->flushModuleCache();
 		}
 	}
 

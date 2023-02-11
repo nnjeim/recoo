@@ -2,16 +2,17 @@
 
 namespace App\Actions;
 
+use App\Actions\Traits\ActionExceptionsTrait;
 use App\Actions\Traits\ActionHelpersTrait;
 use App\Actions\Traits\ActionModelTrait;
-use App\Actions\Traits\ActionExceptionsTrait;
-use App\Http\Response\ResponseBuilder;
+use App\Services\Cache\PersistTrait;
 
 abstract class BaseAction
 {
-	use ActionModelTrait;
-	use ActionHelpersTrait;
 	use ActionExceptionsTrait;
+	use ActionHelpersTrait;
+	use ActionModelTrait;
+	use PersistTrait;
 
 	public bool $success = false;
 

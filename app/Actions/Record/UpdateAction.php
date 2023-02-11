@@ -60,6 +60,8 @@ class UpdateAction extends BaseRecordAction
 		if ($this->success) {
 			// event
 			event(new RecordUpdatedEvent($record));
+			// cache
+			$this->flushModuleCache();
 		}
 	}
 

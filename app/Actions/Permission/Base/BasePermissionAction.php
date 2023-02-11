@@ -7,9 +7,9 @@ use App\Models\Permission;
 
 abstract class BasePermissionAction extends BaseAction
 {
+	protected string $attribute = 'permission';
+
 	protected string $class = Permission::class;
 
-	protected string $cacheTag = 'permissions';
-
-	protected string $attribute = 'permission';
+	public string $cacheTag = 'permissions';
 }

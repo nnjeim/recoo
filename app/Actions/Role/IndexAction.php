@@ -25,8 +25,15 @@ class IndexAction extends BaseRoleAction
 			'limit' => null,
 		];
 
+		// cache
+		$this->setCacheTag($this->cacheTag)->formCacheKey('index');
+
+		if (! $this->hasCacheKey()) {
+			$this->rememberCacheForever($this->transform(invoke(IndexQuery::class)));
+		}
+
 		// transaction
-		$roles = $this->transform(invoke(IndexQuery::class));
+		$roles = $this->getCacheKey();
 
 		// search
 		$roles = $roles
