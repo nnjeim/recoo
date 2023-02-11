@@ -2,8 +2,11 @@
 
 namespace App\Http\Livewire\Profile\Traits\Edit;
 
+use App\Actions\Profile\DestroyAvatarAction;
+use App\Actions\Profile\UploadAvatarAction;
 use App\Actions\User;
 use App\Actions\UserEmail\GenerateVerificationEmailAction;
+use Livewire\Redirector;
 use Illuminate\Support\Facades\Auth;
 
 trait ActionsTrait
@@ -57,28 +60,27 @@ trait ActionsTrait
 	}
 
 	/**
-	 * Method to upload an avatar image.
-	 * @return void
+	 * Method to upload the user avatar.
+	 *
+	 * @return Redirector
 	 */
-	public function uploadProfilePhoto(): void
+	public function uploadProfilePhoto(): Redirector
 	{
-		$action = trigger(Profile\UploadAvatarAction::class, [
-			'user_id' => $this->user['id'],
-			'photo' => $this->photo,
-		]);
+		invoke(UploadAvatarAction::class, $this->photo, Auth::user());
 
-		if ($action->success) {
-			$this->showUser();
+		return redirect()->route('profile.index');
+	}
 
-			$this->setUserSession();
+	/**
+	 * Method to delete the user avatar.
+	 *
+	 * @return Redirector
+	 */
+	public function deleteProfilePhoto(): Redirector
+	{
+		invoke(DestroyAvatarAction::class, Auth::user());
 
-			$this->emit('saved');
-
-			$this->dispatchBrowserEvent('avatar-ev');
-		}
-
-		// notification
-		$this->notifyAction($action->success, $action->message);
+		return redirect()->route('profile.index');
 	}
 
 	/**

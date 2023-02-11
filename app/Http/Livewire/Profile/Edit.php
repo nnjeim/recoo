@@ -8,7 +8,6 @@ use App\Http\Livewire\Traits\WithToasts;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -26,18 +25,6 @@ class Edit extends Component
 	public function mount()
 	{
 		$this->showUser();
-	}
-
-	public function uploadProfilePhoto()
-	{
-		Auth::user()->updateProfilePhoto($this->photo);
-
-		return redirect()->route('profile.index');
-	}
-
-	public function deleteProfilePhoto()
-	{
-		Auth::user()->deleteProfilePhoto();
 	}
 
 	/**

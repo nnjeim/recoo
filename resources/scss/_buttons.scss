@@ -49,4 +49,10 @@
         hover:bg-red-500
         active:bg-red-700;
     }
+
+    &.btn_sm {
+        @apply
+        text-xs
+        p-2;
+    }
 }

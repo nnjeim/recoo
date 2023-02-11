@@ -6,7 +6,7 @@
 		photoPreview: null,
 		uploaded: false,
 		uploading: false,
-		user:@entangle('user')
+		user: @entangle('user'),
 		init() {
 			window.addEventListener('avatar-ev', () => {
 				photoPreview = null;
@@ -32,18 +32,18 @@
 	/>
 	<x-form.label for="photo" value="{{ __('profile.avatar.title') }}"/>
 	<!-- Current Profile Photo -->
-	<div class="mt-2" x-show="! photoPreview">
+	<div class="my-2" x-show="! photoPreview">
 		<template x-if="! user.profile_photo_url">
 			<img
 				x-bind:src="user.profile_photo_url"
 				x-bind:alt="user.first_name+ ' profile image'"
-				class="rounded-image h-20 w-20 object-cover">
+				class="h-20 w-20 object-cover">
 		</template>
 		<template x-if="user.profile_photo_url">
 			<img
-				x-bind:src="@js(auth()->user()->profile_photo_url)"
+				x-bind:src="user.profile_photo_url"
 				x-bind:alt="user.first_name + ' profile image'"
-				class="rounded-image h-20 w-20 object-cover">
+				class="rounded-full h-20 w-20 object-cover">
 		</template>
 	</div>
 
@@ -58,7 +58,7 @@
 	<div>
 		<!-- Select avatar button -->
 		<x-form.secondary-button
-			class="mt-2 mr-2"
+			class="mt-2 mr-2 btn_sm"
 			type="button"
 			x-on:click.prevent="$refs.photo.click();"
 		>
@@ -69,7 +69,7 @@
 		</x-form.secondary-button>
 		<!-- Upload avatar button -->
 		<x-form.secondary-button
-			class="mr-2"
+			class="mr-2 btn_sm"
 			type="button"
 			x-on:click.prevent="$wire.uploadProfilePhoto()"
 			x-show="uploaded"
@@ -80,7 +80,7 @@
 		<template x-if="user.profile_photo_path && !uploaded">
 			<x-form.secondary-button
 				type="button"
-				class="mt-2"
+				class="mt-2 btn_sm"
 				x-on:click="$wire.deleteProfilePhoto()"
 			>
 				{{ __('profile.avatar.remove_avatar') }}
