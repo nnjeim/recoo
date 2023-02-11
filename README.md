@@ -20,7 +20,7 @@ A Laravel application designed to maintain a database of movies.
 - Livewire and alpine.js.  
 - Tailwind css.  
 - Role and user permissions. 
-- Caching with Redis when env CACHE_ENABLED is set to true and CACHE_DRIVER is set to redis.  
+- Caching with Redis when env `CACHE_ENABLED` is set to true and `CACHE_DRIVER` is set to redis.  
 - Static analysis with phpstan.  
 
 ### Demo
