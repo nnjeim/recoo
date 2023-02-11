@@ -5,6 +5,12 @@ return [
 		'title' => 'Profile',
 		'edit_title' => 'Edit Profile',
 	],
+	'avatar' => [
+		'title' => 'Avatar',
+		'select_avatar' => 'Select A New Avatar',
+		'upload_avatar' => 'Upload Avatar',
+		'remove_avatar' => 'Remove Avatar',
+	],
 	'information' => [
 		'title' => 'Profile Information',
 		'description' => 'Update your account\'s profile information and email address.',

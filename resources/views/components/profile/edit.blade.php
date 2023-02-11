@@ -9,6 +9,9 @@
 		</x-slot>
 
 		<x-slot name="form">
+			<!-- profile avatar -->
+			<x-profile.avatar />
+
 			<div class="space-y-6 mt-6">
 				<div>
 					<x-form.label for="name" :value="__('profile.information.name')" />

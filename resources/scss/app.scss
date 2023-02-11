@@ -5,3 +5,7 @@
 @import "form";
 @import "micons";
 @import "table";
+
+[x-cloak] {
+    display: none !important;
+}

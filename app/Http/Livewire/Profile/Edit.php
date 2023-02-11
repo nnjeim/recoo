@@ -10,18 +10,34 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class Edit extends Component
 {
 	use ActionsTrait;
 	use ValidationTrait;
 	use WithToasts;
+	use WithFileUploads;
 
 	public array $user;
+
+	public $photo;
 
 	public function mount()
 	{
 		$this->showUser();
+	}
+
+	public function uploadProfilePhoto()
+	{
+		Auth::user()->updateProfilePhoto($this->photo);
+
+		return redirect()->route('profile.index');
+	}
+
+	public function deleteProfilePhoto()
+	{
+		Auth::user()->deleteProfilePhoto();
 	}
 
 	/**

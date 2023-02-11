@@ -57,6 +57,31 @@ trait ActionsTrait
 	}
 
 	/**
+	 * Method to upload an avatar image.
+	 * @return void
+	 */
+	public function uploadProfilePhoto(): void
+	{
+		$action = trigger(Profile\UploadAvatarAction::class, [
+			'user_id' => $this->user['id'],
+			'photo' => $this->photo,
+		]);
+
+		if ($action->success) {
+			$this->showUser();
+
+			$this->setUserSession();
+
+			$this->emit('saved');
+
+			$this->dispatchBrowserEvent('avatar-ev');
+		}
+
+		// notification
+		$this->notifyAction($action->success, $action->message);
+	}
+
+	/**
 	 * Method to send the user email verification mail.
 	 * @return void
 	 */

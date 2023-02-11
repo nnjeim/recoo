@@ -7,70 +7,74 @@ use Illuminate\Support\Facades\Storage;
 
 trait HasProfilePhoto
 {
-    /**
-     * Update the user's profile photo.
-     *
-     * @param UploadedFile $photo
-     * @return void
-     */
-    public function updateProfilePhoto(UploadedFile $photo): void
+	/**
+	 * Update the user's profile photo.
+	 *
+	 * @param  UploadedFile  $photo
+	 * @return void
+	 */
+	public function updateProfilePhoto(UploadedFile $photo): void
 	{
-        tap($this->profile_photo_path, function ($previous) use ($photo) {
-            $this->forceFill([
-                'profile_photo_path' => $photo->storePublicly(
-                    'profile-photos', ['disk' => $this->profilePhotoDisk()]
-                ),
-            ])->save();
+		tap($this->profile_photo_path, function ($previous) use ($photo) {
+			$this
+				->forceFill([
+					'profile_photo_path' => $photo
+						->storePublicly(
+							'profile-photos',
+							['disk' => $this->profilePhotoDisk()]
+						),
+				])
+				->save();
 
-            if ($previous) {
-                Storage::disk($this->profilePhotoDisk())->delete($previous);
-            }
-        });
-    }
+			if ($previous) {
+				Storage::disk($this->profilePhotoDisk())->delete($previous);
+			}
+		});
+	}
 
-    /**
-     * Delete the user's profile photo.
-     *
-     * @return void
-     */
-    public function deleteProfilePhoto(): void
+	/**
+	 * Delete the user's profile photo.
+	 *
+	 * @return void
+	 */
+	public function deleteProfilePhoto(): void
 	{
-        if (is_null($this->profile_photo_path)) {
-            return;
-        }
+		if (is_null($this->profile_photo_path)) {
+			return;
+		}
 
-        Storage::disk($this->profilePhotoDisk())->delete($this->profile_photo_path);
+		Storage::disk($this->profilePhotoDisk())->delete($this->profile_photo_path);
 
-        $this->forceFill([
-            'profile_photo_path' => null,
-        ])->save();
-    }
+		$this
+			->forceFill([
+				'profile_photo_path' => null,
+			])
+			->save();
+	}
 
-    /**
-     * Get the URL to the user's profile photo.
-     *
-     * @return string
-     */
-    public function getProfilePhotoUrlAttribute(): string
+	/**
+	 * Get the URL to the user's profile photo.
+	 *
+	 * @return string
+	 */
+	public function getProfilePhotoUrlAttribute(): string
 	{
-        return $this->profile_photo_path
-                    ? Storage::disk('public')->url($this->profile_photo_path)
-                    : $this->defaultProfilePhotoUrl();
-    }
+		return $this->profile_photo_path ? Storage::disk('public')->url($this->profile_photo_path) : $this->defaultProfilePhotoUrl();
+	}
 
-    /**
-     * Get the default profile photo URL if no profile photo has been uploaded.
-     *
-     * @return string
-     */
-    protected function defaultProfilePhotoUrl(): string
+	/**
+	 * Get the default profile photo URL if no profile photo has been uploaded.
+	 *
+	 * @return string
+	 */
+	protected function defaultProfilePhotoUrl(): string
 	{
-        $name = trim(collect(explode(' ', $this->name))->map(function ($segment) {
-            return mb_substr($segment, 0, 1);
-        })->join(' '));
+		$name = trim(collect(explode(' ', $this->name))->map(function ($segment) {
+			return mb_substr($segment, 0, 1);
+		})->join(' '));
 
-        return 'https://ui-avatars.com/api/?name='.urlencode($name).'&color=7F9CF5&background=EBF4FF';
-    }
+		return 'https://ui-avatars.com/api/?name=' . urlencode($name) . '&color=7F9CF5&background=EBF4FF';
+	}
 
 	/**
 	 * @return string
