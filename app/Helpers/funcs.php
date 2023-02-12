@@ -2,6 +2,7 @@
 
 use App\Actions\Permission\CanAction;
 
+include 'partials/array.php';
 include 'partials/datetime.php';
 
 if (! function_exists('trigger')) {
@@ -24,17 +25,6 @@ if (! function_exists('invoke')) {
 		$className = array_shift($args);
 
 		return (new $className(...$args))();
-	}
-}
-
-if (! function_exists('objectToArray')) {
-	function objectToArray($object)
-	{
-		if (! is_object($object) && ! is_array($object)) {
-			return $object;
-		}
-
-		return array_map('objectToArray', (array) $object);
 	}
 }
 
@@ -68,21 +58,6 @@ if (! function_exists('generatePassword')) {
 	function generatePassword(int $length = 8): string
 	{
 		return Str::random($length);
-	}
-}
-
-if (! function_exists('array_only')) {
-	/**
-	 * @param  array  $stack
-	 * @param  array  $keys
-	 * @return array
-	 */
-	function array_only(array $stack, array $keys): array
-	{
-		return array_intersect_key(
-			$stack,
-			array_flip($keys)
-		);
 	}
 }
 

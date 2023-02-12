@@ -37,7 +37,7 @@ trait ActionHelpersTrait
 	 */
 	protected function isCacheEnabled(): bool
 	{
-		return config('recoo.cache.enabled');
+		return config('cache.enabled', false);
 	}
 
 	/**
@@ -45,7 +45,7 @@ trait ActionHelpersTrait
 	 */
 	protected function flushModuleCache(): void
 	{
-		if (! config('recoo.cache.enabled')) {
+		if (! config('cache.enabled', false)) {
 			return;
 		}
 

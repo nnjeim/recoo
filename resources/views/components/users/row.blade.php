@@ -22,7 +22,10 @@
 	<x-table.td>
 		<div class="flex items-center w-full">
 			<div class="flex-shrink-0">
-				<img class="h-10 w-10 rounded-full" x-bind:src="row.profile_photo_url" x-bind:alt="row.name"/>
+				<img
+					class="h-10 w-10 rounded-full object-cover"
+					x-bind:src="row.profile_photo_url"
+					x-bind:alt="row.name"/>
 			</div>
 			<div class="ml-4">
 				<div x-text="row.name"></div>
@@ -75,32 +78,32 @@
 					</a>
 				@endcan
 				@can('show_user')
-				<a class="flex items-center justify-center h-8 w-8 rounded-full bg-transparent hover:bg-gray-100"
-				   x-on:click="$wire.call('showRecord')">
-					<x-micon.edit
-						class="cursor-pointer micon-hover text-gray-600 hover:text-black"
-						title="{{__('users.table.body.actions.edit')}}"/>
-				</a>
+					<a class="flex items-center justify-center h-8 w-8 rounded-full bg-transparent hover:bg-gray-100"
+					   x-on:click="$wire.call('showRecord')">
+						<x-micon.edit
+							class="cursor-pointer micon-hover text-gray-600 hover:text-black"
+							title="{{__('users.table.body.actions.edit')}}"/>
+					</a>
 				@endcan
 			</div>
 		</template>
 		<template x-if="row.deleted">
 			<div class="flex items-center justify-center w-full gap-1">
 				@can('destroy_user')
-				<a class="flex items-center justify-center h-8 w-8 rounded-full bg-transparent hover:bg-gray-100"
-				   x-on:click="$wire.call('destroyRecord')">
-					<x-micon.delete
-						class="cursor-pointer micon-hover text-red-600 hover:text-red-800"
-						title="{{__('users.table.body.actions.delete_forever')}}"/>
-				</a>
+					<a class="flex items-center justify-center h-8 w-8 rounded-full bg-transparent hover:bg-gray-100"
+					   x-on:click="$wire.call('destroyRecord')">
+						<x-micon.delete
+							class="cursor-pointer micon-hover text-red-600 hover:text-red-800"
+							title="{{__('users.table.body.actions.delete_forever')}}"/>
+					</a>
 				@endcan
 				@can('restore_user')
-				<a class="flex items-center justify-center h-8 w-8 rounded-full bg-transparent hover:bg-gray-100"
-				   x-on:click="$wire.call('restoreRecord')">
-					<x-micon.restore_from_trash
-						class="cursor-pointer micon-hover"
-						title="{{__('users.table.body.actions.restore')}}"/>
-				</a>
+					<a class="flex items-center justify-center h-8 w-8 rounded-full bg-transparent hover:bg-gray-100"
+					   x-on:click="$wire.call('restoreRecord')">
+						<x-micon.restore_from_trash
+							class="cursor-pointer micon-hover"
+							title="{{__('users.table.body.actions.restore')}}"/>
+					</a>
 				@endcan
 			</div>
 		</template>

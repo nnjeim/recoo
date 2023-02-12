@@ -25,6 +25,12 @@ class RegisterAction extends BaseUserAction
 	 */
 	public function execute(array $args = []): self
 	{
+		[
+			'options' => $options,
+		] = $args + [
+			'options' => null,
+		];
+
 		// transaction
 		DB::beginTransaction();
 		try {
@@ -43,6 +49,16 @@ class RegisterAction extends BaseUserAction
 					}
 
 					$user->syncRoles($args['roles']);
+					// user options
+					if (! isset($options) || ! is_array($options)) {
+						$options = config('userOptions');
+					}
+
+					$user
+						->options()
+						->create([
+							'params' => $options,
+						]);
 				}
 			);
 

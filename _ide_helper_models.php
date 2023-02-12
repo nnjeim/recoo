@@ -71,6 +71,28 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\ModuleOption
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|ModuleOption newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ModuleOption newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ModuleOption query()
+ */
+	class ModuleOption extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\ModuleSetting
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|ModuleSetting newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ModuleSetting newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ModuleSetting query()
+ */
+	class ModuleSetting extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Notification
  *
  * @property int $id
@@ -94,6 +116,29 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Notification whereUpdatedAt($value)
  */
 	class Notification extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Permission
+ *
+ * @property int $id
+ * @property string $model
+ * @property string $name
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Log> $logs
+ * @property-read int|null $logs_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Role> $roles
+ * @property-read int|null $roles_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\User> $users
+ * @property-read int|null $users_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Permission newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Permission newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Permission query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Permission whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Permission whereModel($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Permission whereName($value)
+ */
+	class Permission extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -142,6 +187,8 @@ namespace App\Models{
  * @property-read bool $deleted
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Log> $logs
  * @property-read int|null $logs_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Permission> $permissions
+ * @property-read int|null $permissions_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\User> $users
  * @property-read int|null $users_count
  * @method static \Illuminate\Database\Eloquent\Builder|Role newModelQuery()
@@ -185,6 +232,8 @@ namespace App\Models{
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
  * @property-read int|null $notifications_count
  * @property-read \App\Models\UserOption|null $options
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Permission> $permissions
+ * @property-read int|null $permissions_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Role> $roles
  * @property-read int|null $roles_count
  * @method static \Illuminate\Database\Eloquent\Builder|User active()

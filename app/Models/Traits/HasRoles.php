@@ -12,7 +12,9 @@ trait HasRoles
 	 */
 	public function defaultRoleName(): string
 	{
-		['name' => $name] = Arr::first(config('recoo.roles'), fn ($role) => $role['default']);
+		$roleSettings = Arr::get(config('moduleSettings'), Role::class);
+
+		['name' => $name] = Arr::first($roleSettings['roles'], fn ($role) => $role['default']);
 
 		return $name;
 	}

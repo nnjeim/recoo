@@ -1,6 +1,25 @@
 <?php
 
 return [
+	'App\Models\Role' => [
+		'roles' => [
+			[
+				'name' => 'superadmin',
+				'locked' => 1,
+				'default' => 0,
+			],
+			[
+				'name' => 'admin',
+				'locked' => 1,
+				'default' => 0,
+			],
+			[
+				'name' => 'editor',
+				'locked' => 1,
+				'default' => 1,
+			],
+		],
+	],
 	'App\Models\User' => [
 		'statuses' => [
 			[

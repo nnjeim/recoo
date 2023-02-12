@@ -4,6 +4,7 @@ namespace Database\Seeders\Partials;
 
 use App\Models\Role;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 
 class RoleSeeder extends Seeder
@@ -15,8 +16,10 @@ class RoleSeeder extends Seeder
 	 */
 	public function run()
 	{
+		$roleSettings = Arr::get(config('moduleSettings'), Role::class);
+
 		if (DB::table('roles')->count() === 0) {
-			foreach (config('recoo.roles') as $args) {
+			foreach ($roleSettings['roles'] as $args) {
 				// exists
 				$roleBuilder = Role::where('name', '=', $args['name']);
 

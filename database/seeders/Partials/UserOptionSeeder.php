@@ -5,7 +5,7 @@ namespace Database\Seeders\Partials;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Artisan;
 
-class ModuleSettingSeeder extends Seeder
+class UserOptionSeeder extends Seeder
 {
 	/**
 	 * Run the database seeds.
@@ -14,6 +14,6 @@ class ModuleSettingSeeder extends Seeder
 	 */
 	public function run()
 	{
-		Artisan::call('moduleSettings:generate');
+		Artisan::call('userOptions:generate');
 	}
 }

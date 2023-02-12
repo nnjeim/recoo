@@ -24,6 +24,12 @@ class StoreAction extends BaseUserAction
 	 */
 	public function execute(array $args = []): self
 	{
+		[
+			'options' => $options,
+		] = $args + [
+			'options' => null,
+		];
+
 		if (! isset($args['password'])) {
 			Arr::set($args, 'password', generatePassword());
 		}
@@ -43,6 +49,16 @@ class StoreAction extends BaseUserAction
 				}
 
 				$user->syncRoles($args['roles']);
+				// user options
+				if (! isset($options) || ! is_array($options)) {
+					$options = config('userOptions');
+				}
+
+				$user
+					->options()
+					->create([
+						'params' => $options,
+					]);
 			});
 			DB::commit();
 		} catch (Throwable $e) {

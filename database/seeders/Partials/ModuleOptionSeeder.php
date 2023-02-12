@@ -14,6 +14,6 @@ class ModuleOptionSeeder extends Seeder
 	 */
 	public function run()
 	{
-		Artisan::call('moduleoptions:generate');
+		Artisan::call('moduleOptions:generate');
 	}
 }
