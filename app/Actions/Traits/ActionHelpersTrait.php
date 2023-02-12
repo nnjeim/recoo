@@ -3,7 +3,7 @@
 namespace App\Actions\Traits;
 
 use App\Actions\ModuleOption;
-use App\Models\ModuleSetting;
+use App\Actions\ModuleSetting;
 use Illuminate\Support\Facades\Auth;
 
 trait ActionHelpersTrait
@@ -15,7 +15,7 @@ trait ActionHelpersTrait
 	protected function getModuleOptions(?string $optionable_type = null): mixed
 	{
 		return trigger(
-			ModuleOption\IndexAction::class,
+			ModuleOption\ShowAction::class,
 			[
 				'optionable_type' => $optionable_type ?? $this->class,
 			]
@@ -29,7 +29,7 @@ trait ActionHelpersTrait
 	protected function getModuleSettings(?string $settable_type = null): mixed
 	{
 		return trigger(
-			ModuleSetting\IndexAction::class,
+			ModuleSetting\ShowAction::class,
 			[
 				'settable_type' => $settable_type ?? $this->class,
 			]

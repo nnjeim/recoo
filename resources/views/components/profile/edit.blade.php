@@ -11,6 +11,7 @@
 		<x-slot name="form">
 			<!-- profile avatar -->
 			<x-profile.avatar />
+			<x-form.input-error for="upload" class="mt-2"/>
 
 			<div class="space-y-6 mt-6">
 				<div>

@@ -6,8 +6,9 @@ use App\Actions\Profile\DestroyAvatarAction;
 use App\Actions\Profile\UploadAvatarAction;
 use App\Actions\User;
 use App\Actions\UserEmail\GenerateVerificationEmailAction;
-use Livewire\Redirector;
+use App\Exceptions\UnprocessableException;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Redirector;
 
 trait ActionsTrait
 {
@@ -60,13 +61,16 @@ trait ActionsTrait
 	}
 
 	/**
-	 * Method to upload the user avatar.
-	 *
-	 * @return Redirector
+	 * @return Redirector|null
 	 */
-	public function uploadProfilePhoto(): Redirector
+	public function uploadProfilePhoto(): ?Redirector
 	{
-		invoke(UploadAvatarAction::class, $this->photo, Auth::user());
+		try {
+			invoke(UploadAvatarAction::class, $this->photo, Auth::user());
+		} catch (UnprocessableException $e) {
+			$this->addError('upload', $e->getMessage());
+			return null;
+		}
 
 		return redirect()->route('profile.index');
 	}
