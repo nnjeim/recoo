@@ -2,12 +2,42 @@
 
 namespace App\Actions\Traits;
 
+use App\Actions\ModuleOption;
+use App\Models\ModuleSetting;
 use Illuminate\Support\Facades\Auth;
 
 trait ActionHelpersTrait
 {
 	/**
-	 * @param array $args
+	 * @param  string|null  $optionable_type
+	 * @return mixed
+	 */
+	protected function getModuleOptions(?string $optionable_type = null): mixed
+	{
+		return trigger(
+			ModuleOption\IndexAction::class,
+			[
+				'optionable_type' => $optionable_type ?? $this->class,
+			]
+		)->data;
+	}
+
+	/**
+	 * @param  string|null  $settable_type
+	 * @return mixed
+	 */
+	protected function getModuleSettings(?string $settable_type = null): mixed
+	{
+		return trigger(
+			ModuleSetting\IndexAction::class,
+			[
+				'settable_type' => $settable_type ?? $this->class,
+			]
+		)->data;
+	}
+
+	/**
+	 * @param  array  $args
 	 * @return string
 	 */
 	protected function getDeleteMode(array $args): string
@@ -22,7 +52,7 @@ trait ActionHelpersTrait
 	}
 
 	/**
-	 * @param string $message
+	 * @param  string  $message
 	 * @return array
 	 */
 	protected function setErrors(string $message): array
@@ -45,12 +75,10 @@ trait ActionHelpersTrait
 	 */
 	protected function flushModuleCache(): void
 	{
-		if (! config('cache.enabled', false)) {
+		if (!config('cache.enabled', false)) {
 			return;
 		}
 
-		$this
-			->setCacheTag($this->cacheTag)
-			->flushCacheTag();
+		$this->setCacheTag($this->cacheTag)->flushCacheTag();
 	}
 }

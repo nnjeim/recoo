@@ -73,9 +73,19 @@ namespace App\Models{
 /**
  * App\Models\ModuleOption
  *
+ * @property int $id
+ * @property string $optionable_type
+ * @property array|null $params
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|ModuleOption newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ModuleOption newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ModuleOption query()
+ * @method static \Illuminate\Database\Eloquent\Builder|ModuleOption whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ModuleOption whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ModuleOption whereOptionableType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ModuleOption whereParams($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ModuleOption whereUpdatedAt($value)
  */
 	class ModuleOption extends \Eloquent {}
 }
@@ -84,9 +94,19 @@ namespace App\Models{
 /**
  * App\Models\ModuleSetting
  *
+ * @property int $id
+ * @property string $settable_type
+ * @property array|null $params
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|ModuleSetting newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ModuleSetting newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ModuleSetting query()
+ * @method static \Illuminate\Database\Eloquent\Builder|ModuleSetting whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ModuleSetting whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ModuleSetting whereParams($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ModuleSetting whereSettableType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ModuleSetting whereUpdatedAt($value)
  */
 	class ModuleSetting extends \Eloquent {}
 }
