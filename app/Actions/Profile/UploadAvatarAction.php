@@ -5,6 +5,7 @@ namespace App\Actions\Profile;
 use App\Actions\Profile\Base\BaseProfileAction;
 use App\Models\User;
 use App\Services\File\UploadTrait;
+use App\Services\Image\ImageTrait;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
@@ -12,6 +13,7 @@ use Illuminate\Support\Facades\Storage;
 class UploadAvatarAction extends BaseProfileAction
 {
 	use UploadTrait;
+	use ImageTrait;
 
 	private array $storage;
 
@@ -43,15 +45,18 @@ class UploadAvatarAction extends BaseProfileAction
 		$this->validateFileType($originalFileExtension, $this->file_extensions);
 		// file size
 		$this->validateFileSize((float) $originalFileSize, (float) $this->max_upload_file_size);
+		// file name
+		$newFileName = $this->generateFileName($originalFileExtension);
 
-		tap($this->user->profile_photo_path, function ($previous) {
+		tap($this->user->profile_photo_path, function ($previous) use ($newFileName) {
 			$this
 				->user
 				->forceFill([
 					'profile_photo_path' => $this
 						->file
-						->storePublicly(
+						->storePubliclyAs(
 							$this->storage['folder'],
+							$newFileName,
 							['disk' => $this->storage['disk']]
 						),
 				])
@@ -61,6 +66,21 @@ class UploadAvatarAction extends BaseProfileAction
 				Storage::disk($this->storage['disk'])->delete($previous);
 			}
 		});
+		// mime
+		$aggregate_type = $this->getMediaType($originalFileExtension);
+
+		if ($aggregate_type === 'image') {
+			// resize image
+			$this->resampleImage(
+				imagePath: $this->getFilePath($this->storage['disk'], $this->storage['folder']),
+				fileName: $newFileName,
+				width: (int) $this->thumbnail_size,
+				height: (int) $this->thumbnail_size,
+				proportions: true,
+				crop: true
+			);
+		}
+
 		// cache
 		$this->flushModuleCache();
 	}
