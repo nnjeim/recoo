@@ -20,6 +20,11 @@ class Row extends Component
 		$this->redirectRoute('users.edit', ['id' => $this->rowData['id']]);
 	}
 
+	public function toggleSelect()
+	{
+		$this->emitUp('toggleSelect', $this->rowData['id']);
+	}
+
 	public function destroyRecord()
 	{
 		$this->emitUp('confirmRecordDeletion', $this->rowData['id']);
@@ -27,7 +32,7 @@ class Row extends Component
 
 	public function restoreRecord()
 	{
-		$this->emitUp('restoreRecord-ev', $this->rowData['id']);
+		$this->emitUp('restoreRecords', $this->rowData['id']);
 	}
 
 	/**

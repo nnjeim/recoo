@@ -9,7 +9,7 @@
 	<x-table.td>
 		<div
 			class="w-5 h-5 mx-auto flex items-center justify-center rounded-full cursor-pointer text-gray hover:bg-gray-200"
-			x-on:click="toggleSelect(row.id); row.selected = !row.selected;"
+			x-on:click="$wire.call('toggleSelect'); row.selected = !row.selected;"
 		>
 			<template x-if="!row.selected">
 				<x-micon.check_box_blank fill="currentColor"/>

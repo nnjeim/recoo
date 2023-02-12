@@ -43,9 +43,9 @@ class Index extends Component
 	];
 
 	protected $listeners = [
-		'toggleSelect-ev' => 'toggleSelect',
+		'toggleSelect',
 		'confirmRecordDeletion',
-		'restoreRecord-ev' => 'restoreRecords',
+		'restoreRecords',
 	];
 
 	/**
