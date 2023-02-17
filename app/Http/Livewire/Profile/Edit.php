@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Profile;
 
 use App\Http\Livewire\Profile\Traits\Edit\ActionsTrait;
+use App\Http\Livewire\Profile\Traits\Edit\StateTrait;
 use App\Http\Livewire\Profile\Traits\Edit\ValidationTrait;
 use App\Http\Livewire\Traits\WithToasts;
 use Illuminate\Contracts\Foundation\Application;
@@ -14,13 +15,10 @@ use Livewire\WithFileUploads;
 class Edit extends Component
 {
 	use ActionsTrait;
+	use StateTrait;
 	use ValidationTrait;
-	use WithToasts;
 	use WithFileUploads;
-
-	public array $user;
-
-	public $photo;
+	use WithToasts;
 
 	public function mount()
 	{

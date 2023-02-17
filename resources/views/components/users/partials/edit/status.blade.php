@@ -20,10 +20,10 @@
 					<td class="px-6 py-4 border-b border-gray-300">{{ $user['created_at'] }}</td>
 				</tr>
 				<tr>
-					<td class="pr-6 py-4 border-b border-gray-300">
+					<td class="pr-6 py-4">
 						<x-form.label value="{{ __('users.entity.updated_at') }}"/>
 					</td>
-					<td class="px-6 py-4 border-b border-gray-300">{{ $user['updated_at'] }}</td>
+					<td class="px-6 py-4">{{ $user['updated_at'] }}</td>
 				</tr>
 				</tbody>
 			</table>

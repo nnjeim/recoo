@@ -4,10 +4,10 @@
 			<table class="table w-full">
 				<tbody>
 				<tr>
-					<td class="pr-6 py-4 border-b border-gray-300">
+					<td class="pr-6 py-4">
 						<x-form.label value="{{ __('users.entity.status_title') }}"/>
 					</td>
-					<td class="px-6 py-4 border-b border-gray-300">
+					<td class="px-6 py-4">
 						<x-form.switch wire:model="user.status"
 									   toggle-on-label="{{ __('users.entity.active') }}"
 									   toggle-off-label="{{ __('users.entity.inactive') }}"/>

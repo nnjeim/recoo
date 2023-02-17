@@ -1,13 +1,5 @@
 <section>
 	<x-form.form-section submit="updateUser">
-		<x-slot name="title">
-			{{ __('profile.information.title') }}
-		</x-slot>
-
-		<x-slot name="description">
-			{{ __('profile.information.description') }}
-		</x-slot>
-
 		<x-slot name="form">
 			<!-- profile avatar -->
 			<x-profile.avatar />

@@ -23,6 +23,11 @@ return [
 		'saved' => 'Saved.',
 	],
 	'password' => [
-
+		'title' => 'Update Password',
+		'description' => 'Ensure your account is using a long, random password to stay secure.',
 	],
+	'delete' => [
+		'title' => 'Delete Account',
+		'description' => '',
+	]
 ];

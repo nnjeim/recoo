@@ -10,10 +10,10 @@
 					<td class="px-6 py-4 border-b border-gray-300">{{ $record['created_at'] }}</td>
 				</tr>
 				<tr>
-					<td class="pr-6 py-4 border-b border-gray-300">
+					<td class="pr-6 py-4">
 						<x-form.label value="{{ __('records.entity.updated_at') }}"/>
 					</td>
-					<td class="px-6 py-4 border-b border-gray-300">{{ $record['updated_at'] }}</td>
+					<td class="px-6 py-4">{{ $record['updated_at'] }}</td>
 				</tr>
 				</tbody>
 			</table>
