@@ -16,7 +16,7 @@ trait IndexTransformer
 			->map(fn ($notification) => [
 				'id' => $notification->id,
 				'data' => [
-					'title' => trans('response.notification.title.' . $notification->data['title']),
+					'title' => $notification->data['title'],
 					'body' => $notification->data['body'],
 					'click_action' => $notification->data['click_action'] ?? null,
 				],
