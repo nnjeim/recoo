@@ -17988,6 +17988,29 @@
      
 }
 
+    namespace Nnjeim\World { 
+            /**
+     * 
+     *
+     */ 
+        class World {
+                    /**
+         * 
+         *
+         * @param string $requestLocale
+         * @return \Nnjeim\World\WorldHelper 
+         * @static 
+         */ 
+        public static function setLocale($requestLocale)
+        {
+                        /** @var \Nnjeim\World\WorldHelper $instance */
+                        return $instance->setLocale($requestLocale);
+        }
+         
+    }
+     
+}
+
     namespace Spatie\LaravelIgnition\Facades { 
             /**
      * 
@@ -22455,6 +22478,7 @@ namespace  {
             class GeoIP extends \Torann\GeoIP\Facades\GeoIP {}
             class Image extends \Intervention\Image\Facades\Image {}
             class Livewire extends \Livewire\Livewire {}
+            class Country extends \Nnjeim\World\World {}
             class Flare extends \Spatie\LaravelIgnition\Facades\Flare {}
      
 }

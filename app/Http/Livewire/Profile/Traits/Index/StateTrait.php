@@ -31,6 +31,17 @@ trait StateTrait
 			],
 		],
 		[
+			'slug' => 'options',
+			'title' => 'profile.options.title',
+			'description' => 'profile.options.description',
+			'icon' => 'settings_account',
+			'active' => true,
+			'error' => false,
+			'fields' => [
+				//
+			],
+		],
+		[
 			'slug' => 'delete',
 			'title' => 'profile.delete.title',
 			'description' => 'profile.delete.description',

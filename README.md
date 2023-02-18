@@ -3,12 +3,14 @@
 A Laravel application designed to maintain a database of movies.
 
 ### Installation
-- Copy .env.example into .env
+- Copy `.env.example` into `.env`
+- Edit the superadmin name, email and password in `.env`.
 - Run `composer install`.
 - Run `db artisan key:generate`.
 - Create a file named `database.sqlite` in the database directory or define a connection to your database.
 - Run `php artisan migrate`.
 - Run `php artisan db:seed`.
+- Run `php artisan db:seed --class=WorldSeeder`
 - Run `npm install` followed by `npm run build`.
 
 ### Technical requirement  

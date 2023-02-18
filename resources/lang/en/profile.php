@@ -26,6 +26,13 @@ return [
 		'title' => 'Update Password',
 		'description' => 'Ensure your account is using a long, random password to stay secure.',
 	],
+	'options' => [
+		'title' => 'User account options',
+		'description' => 'Update your account\'s options.',
+		'timezone' => 'Timezone',
+		'timezone_placeholder' => 'select timezone',
+		'search' => 'search',
+	],
 	'delete' => [
 		'title' => 'Delete Account',
 		'description' => '',

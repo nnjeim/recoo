@@ -12,6 +12,7 @@
         "laravel/framework": "^9.19",
         "laravel/tinker": "^2.7",
         "livewire/livewire": "^2.10",
+        "nnjeim/world": "^1.1",
         "torann/geoip": "^3.0"
     },
     "require-dev": {
