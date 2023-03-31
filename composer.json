@@ -63,7 +63,7 @@
             "@php artisan ide-helper:meta"
         ],
         "php-cs-fixer": "php-cs-fixer",
-        "phpstan": "phpstan analyse crowdfavorite"
+        "phpstan": "phpstan analyse app"
     },
     "extra": {
         "laravel": {

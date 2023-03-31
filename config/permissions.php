@@ -37,6 +37,14 @@ return [
 			'import',
 			'export',
 		],
+		'App\Models\Role' => [
+			'view',
+			'show',
+			'store',
+			'update',
+			'destroy',
+			'restore',
+		],
 		'App\Models\Record' => [
 			'view',
 			'show',

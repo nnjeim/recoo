@@ -1,9 +1,10 @@
 <?php
 
 use App\Http\Controllers\Auth;
-use App\Http\Controllers\View\ViewController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
+use App\Http\Controllers\View\ViewController;
+use App\Http\Middleware\CanMiddleware;
 use App\Http\Middleware\EnsureEmailIsVerified;
 use Illuminate\Support\Facades\Route;
 
@@ -99,7 +100,7 @@ Route::middleware([
 								Route::get('/', 'builder')->name('index');
 								Route::get('/{id}', 'builder')->where('id', '[0-9]+')->name('edit');
 								Route::get('/create', 'builder')->name('store');
-								Route::get('/options', 'builder')->name('options');
+								Route::get('/options', 'builder')->name('options')->middleware(CanMiddleware::class . ':view_options_users');
 							});
 							// records
 							Route::group([
@@ -109,6 +110,17 @@ Route::middleware([
 								Route::get('/', 'builder')->name('index');
 								Route::get('/{id}', 'builder')->where('id', '[0-9]+')->name('edit');
 								Route::get('/create', 'builder')->name('store');
+							});
+							// settings
+							Route::group([
+								'prefix' => 'settings',
+								'as' => 'settings.',
+								'middleware' => [
+									CanMiddleware::class . ':view_settings'
+								]
+							], function () {
+								Route::get('/', 'builder')->name('index');
+								Route::get('/roles', 'builder')->name('roles');
 							});
 						});
 				});

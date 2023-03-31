@@ -39,6 +39,10 @@ class AuthServiceProvider extends ServiceProvider
 				return false;
 			}
 
+			if (Auth::user()->isSuper()) {
+				return true;
+			}
+
 			$permissions = Auth::permissions()->toArray();
 
 			if (! in_array($name, array_keys($permissions))) {

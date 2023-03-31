@@ -29,7 +29,7 @@ class ShowAction extends BaseModuleSettingAction
 
 		$this->data = $this->hasCacheKey()
 			? $this->getCacheKey()
-			: $this->formData($settable_type);
+			: $this->rememberCacheForever($this->formData($settable_type));
 		$this->success = ! empty($this->data);
 
 		return $this;

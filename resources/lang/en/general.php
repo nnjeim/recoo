@@ -8,6 +8,7 @@ return [
 		'users' => 'Users',
 		'records' => 'Records',
 		'back_to' => 'Back to',
+		'settings' => 'Settings',
 	],
 	'table' => [
 		'selected_records' => ':count selected record|:count selected records',

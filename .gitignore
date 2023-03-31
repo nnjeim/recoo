@@ -16,3 +16,5 @@ yarn-error.log
 /.idea
 /.vscode
 .php-cs-fixer.cache
+docker-compose.yml
+docker/

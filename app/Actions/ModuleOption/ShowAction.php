@@ -29,7 +29,7 @@ class ShowAction extends BaseModuleOptionAction
 
 		$this->data = $this->hasCacheKey()
 			? $this->getCacheKey()
-			: $this->formData($optionable_type);
+			: $this->rememberCacheForever($this->formData($optionable_type));
 		$this->success = ! empty($this->data);
 
 		return $this;

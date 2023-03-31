@@ -55,8 +55,14 @@
 
 					<x-slot name="content">
 						<x-form.dropdown-link :href="route('profile.index')">
-							{{ __('profile.header.title') }}
+							{{ __('general.navbar.profile') }}
 						</x-form.dropdown-link>
+
+						@can('view_settings')
+							<x-form.dropdown-link :href="route('settings.index')">
+								{{ __('general.navbar.settings') }}
+							</x-form.dropdown-link>
+						@endcan
 
 						<!-- Authentication -->
 						<form method="POST" action="{{ route('logout') }}">
@@ -65,7 +71,7 @@
 							<x-form.dropdown-link :href="route('logout')"
 												  onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-								{{ __('Log Out') }}
+								{{ __('general.navbar.logout') }}
 							</x-form.dropdown-link>
 						</form>
 					</x-slot>

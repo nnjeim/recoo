@@ -3,10 +3,10 @@
 namespace App\Actions\Permission;
 
 use App\Actions\Permission\Base\BasePermissionAction;
+use App\Exceptions\AuthorizationException;
 use App\Http\Response\ResponseBuilder;
 use App\Models\Permission;
 use App\Models\User;
-use Illuminate\Auth\Access\AuthorizationException;
 
 class CanAction extends BasePermissionAction
 {
@@ -88,7 +88,7 @@ class CanAction extends BasePermissionAction
 		$permissionBuilder = Permission::where('name', '=', $name);
 
 		if (! $permissionBuilder->exists()) {
-			AuthorizationException::throw(trans('core::response.exceptions.not_authorized'));
+			throw new AuthorizationException(trans('core::response.exceptions.not_authorized'));
 		}
 
 		return $permissionBuilder->value('id');

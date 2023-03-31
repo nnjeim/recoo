@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\Traits\HasPermissions;
 use App\Models\Traits\Relations\RoleRelations;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Role extends Model
 {
+	use HasPermissions;
 	use RoleRelations;
 	use SoftDeletes;
 
