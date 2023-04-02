@@ -8,7 +8,6 @@ use App\Http\Livewire\Settings\Traits\Index\ValidationTrait;
 use App\Http\Livewire\Traits\WithToasts;
 use App\Http\Livewire\Traits\WithVerticalTabs;
 use Livewire\Component;
-use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class Index extends Component
 {

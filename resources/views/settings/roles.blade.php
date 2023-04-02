@@ -1,6 +1,6 @@
 <x-app-layout>
 	<x-slot name="title">
-		{{ __('settings.index.header.title') }}
+		{{ __('settings.roles.header.title') }}
 	</x-slot>
 	<x-slot name="header">
 		<livewire:settings.header />

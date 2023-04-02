@@ -4,7 +4,7 @@ namespace App\Http\Livewire\Settings\Traits\Index;
 
 trait StateTrait
 {
-	public $activeTab = 'index';
+	public $activeTab = 'info';
 
 	public array $tabs = [
 		[

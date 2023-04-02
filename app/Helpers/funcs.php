@@ -72,3 +72,14 @@ if (! function_exists('can')) {
 	}
 }
 
+if (! function_exists('generateToken')) {
+	/**
+	 * @param  int  $length
+	 * @return array|string|string[]
+	 */
+	function generateToken(int $length = 25): array|string
+	{
+		return str_replace('=', '', base64_encode(Str::random($length)));
+	}
+}
+
