@@ -1,6 +1,10 @@
 <x-form.form-section class="max-w-2xl" submit="editTenantOptions">
 	<x-slot name="form">
 		<div class="space-y-6">
+			<!-- Tenant address -->
+			<div>
+				<h3 class="font-bold">{{ __('settings.info.options.address_title') }}</h3>
+			</div>
 			<!-- Name -->
 			<div>
 				<x-form.label for="name" value="{{ __('settings.info.options.name') }}"/>
@@ -45,6 +49,14 @@
 				/>
 				<x-form.input-error for="tenantOptions.phone"/>
 			</div>
+
+			<!-- Tenant timezone -->
+			<div>
+				<h3 class="font-bold">{{ __('settings.info.options.timezone_title') }}</h3>
+			</div>
+			<!-- Name -->
+
+			<div>
 		</div>
 	</x-slot>
 	<x-slot name="actions">

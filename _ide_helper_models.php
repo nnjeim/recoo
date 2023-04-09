@@ -120,7 +120,7 @@ namespace App\Models{
  * @property string $notifiable_type
  * @property int $notifiable_id
  * @property string $data
- * @property \Illuminate\Support\Carbon|null $read_at
+ * @property string|null $read_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|Notification newModelQuery()
@@ -167,8 +167,8 @@ namespace App\Models{
  *
  * @property int $id
  * @property string $title
- * @property string $imdb_id
- * @property array $params
+ * @property string|null $imdb_id
+ * @property array|null $params
  * @property int|null $user_id
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property \Illuminate\Support\Carbon|null $created_at
@@ -225,6 +225,44 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Role withoutTrashed()
  */
 	class Role extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Tenant
+ *
+ * @property int $id
+ * @property string $name
+ * @property array|null $params
+ * @property int $status
+ * @property string $token
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Log> $logs
+ * @property-read int|null $logs_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ModuleOption> $moduleOptions
+ * @property-read int|null $module_options_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ModuleSetting> $moduleSettings
+ * @property-read int|null $module_settings_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Role> $roles
+ * @property-read int|null $roles_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Tenant newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Tenant newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Tenant onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Tenant query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Tenant whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Tenant whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Tenant whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Tenant whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Tenant whereParams($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Tenant whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Tenant whereToken($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Tenant whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Tenant withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Tenant withoutTrashed()
+ */
+	class Tenant extends \Eloquent {}
 }
 
 namespace App\Models{
